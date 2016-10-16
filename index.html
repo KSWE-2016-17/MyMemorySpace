@@ -9,9 +9,12 @@
     <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
 
     <!-- PLUGIN FOR DRAG&DROP -->
-    <script src="https://unpkg.com/aframe-click-drag-component"></script>
+    <!--<script src="https://unpkg.com/aframe-click-drag-component"></script>-->
+    <!--LOCAL USE-->
+    <script src="./scripts/drag_manual.js"></script>
     <script>
         registerAframeClickDragComponent(window.AFRAME);
+
     </script>
 
     <script type="text/javascript">
@@ -79,6 +82,8 @@
     <!-- LOAD BOXES -->
     <a-box color="#858e9b" depth="8" height="7" width="1" position="-4 0 0"></a-box>
     <a-box color="#858e9b" depth="8" height="7" width="1" position="8 0 0"></a-box>
+
+    <a-sphere click-drag position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
 
     <!-- LOAD IMAGES -->
     <a-image src="#ork" position="-3.2 0 0" rotation="0 90 0" scale="8 8 8"></a-image>

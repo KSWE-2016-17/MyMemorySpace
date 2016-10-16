@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../MyMemorySpace/.idea/MyMemorySpace.iml" filepath="$PROJECT_DIR$/../MyMemorySpace/.idea/MyMemorySpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyMemorySpace.iml" filepath="$PROJECT_DIR$/.idea/MyMemorySpace.iml" />
     </modules>
   </component>
 </project>
