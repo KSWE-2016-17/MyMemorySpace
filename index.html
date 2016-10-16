@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+
+    <!-- PLUGIN FOR TEXTS-->
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+
+    <!-- PLUGIN FOR DRAG&DROP -->
+    <script src="https://unpkg.com/aframe-click-drag-component"></script>
+    <script>
+        registerAframeClickDragComponent(window.AFRAME);
+    </script>
+
+    <script type="text/javascript">
+        window.onkeyup = function(e){
+            var key = e.keyCode ? e.keyCode : e.which;
+
+            if (key == 81){
+                console.log('PRESSED Q');
+                var camros = document.getElementById("mycamentity").getAttribute("rotation");
+                var campos = document.getElementById("mycamentity").getAttribute("position");
+                console.log(campos);
+
+                var x = campos.x;
+                var y = campos.y;
+                var z = campos.z;
+
+
+                camros.y += 4;
+                campos.x -= 0.1;
+
+                document.getElementById("mycamentity").setAttribute("rotation", camros);
+
+            }
+
+            if (key == 69){
+                var locked = document.getElementById("mycam").getAttribute('look-controls');
+                console.log(locked);
+
+                if(locked.enabled==="true"){
+                    document.getElementById("mycam").setAttribute('look-controls', {enabled: 'false'});
+                }
+                else{
+                    document.getElementById("mycam").setAttribute('look-controls', {enabled: 'true'});
+                }
+            }
+        }
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<a-scene>
+    <a-assets>
+        <img id="pic" src="./assets/images/pic.jpeg">
+        <img id="deep" src="./assets/images/deep.jpg">
+        <img id="ork" src="./assets/images/orks.png">
+        <!--<video id="vid" src="./assets/video/neo.mp4" autoplay loop="true"></video>-->
+        <a-asset-item id="sculpture" src="./assets/objects/cube/sculpture.dae"></a-asset-item>
+
+    </a-assets>
+
+    <!-- LOAD MODELS -->
+    <a-collada-model click-drag src="#sculpture" position="0 0 -6"></a-collada-model>
+
+    <!-- LOAD LIGHTS -->
+    <!--<a-entity light="type: spot; angle: 45" position="0 0 0"></a-entity>-->
+    <!--<a-entity light="type: ambient; color: #CCC"></a-entity>-->
+
+
+    <!-- LOAD BOXES -->
+    <a-box color="#858e9b" depth="8" height="7" width="1" position="-4 0 0"></a-box>
+    <a-box color="#858e9b" depth="8" height="7" width="1" position="8 0 0"></a-box>
+
+    <!-- LOAD IMAGES -->
+    <a-image src="#ork" position="-3.2 0 0" rotation="0 90 0" scale="8 8 8"></a-image>
+
+    <!-- LOAD TEXTS -->
+    <a-entity click-drag bmfont-text="text: Hello world; color:#ffffff; width:150" position="7.25 0 -2" rotation="0 -90 0" scale="10 10 10" ></a-entity>
+
+
+
+
+    <a-sky src="#deep"></a-sky>
+    <a-entity id="mycamentity" position="0 0 10" rotation="0 0 0">
+
+        <!--IF VR DISABLE?-->
+        <!---->
+        <a-camera id="mycam" look-controls-enabled="false"></a-camera>
+    </a-entity>
+</a-scene>
+</body>
+</html>
+
