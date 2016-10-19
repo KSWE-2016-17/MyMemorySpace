@@ -60,33 +60,93 @@
 </head>
 <body>
 
+    Path<input id="newimagepath" type="text">
+    <button onclick="getNewImage()">UPLOAD</button>
 
-<a-scene>
-    <a-assets>
+    <script type="text/javascript">
+        function getNewImage(){
+//            var yourpath = document.getElementById("newimagepath").value;
+//
+//            console.log(yourpath);
+//
+//            var findid = "#test";
+//            var newimage = document.createElement("IMG");
+//            newimage.setAttribute("src",yourpath);
+//            newimage.setAttribute("id","test");
+//
+//            console.log(newimage);
+//            document.getElementById('assetmanager').appendChild(newimage);
+//
+//            var theimg = document.createElement("A-IMAGE");
+//            theimg.setAttribute("src",findid);
+//            theimg.setAttribute("position","0 0 1");
+//            theimg.setAttribute("rotation","0 90 0");
+//            theimg.setAttribute("scale","8 8 8");
+//
+//
+//            console.log(theimg);
+//
+//            document.getElementById('myscene').appendChild(theimg);
+        }
+
+
+        function loadNewText(){
+            var yourtext = document.getElementById("newtext").value;
+            var yourcolor = document.getElementById("newcolor").value;
+
+            var textnode = document.createElement("A-ENTITY");
+            textnode.setAttribute('click-drag',1);
+            textnode.setAttribute('position',{x: 1, y: 1, z: 0});
+
+            textnode.setAttribute("bmfont-text","text: "+yourtext+"; color:"+yourcolor+"; width:1000");
+            textnode.setAttribute("scale",{x: 5, y: 5, z:1});
+
+
+
+            console.log(textnode);
+            document.getElementById("myscene").appendChild(textnode);
+
+        }
+
+    </script>
+
+    YourNewText<input id="newtext" type="text">
+    <button onclick="loadNewText()">Upload My Text</button>
+    YourColor<input id="newcolor" type="color">
+
+
+
+<a-scene id="myscene">
+    <a-assets id="assetmanager">
         <img id="pic" src="./assets/images/pic.jpeg">
         <img id="deep" src="./assets/images/deep.jpg">
         <img id="ork" src="./assets/images/orks.png">
+        <img id="myimage" src="./assets/images/myskybox.png">
         <!--<video id="vid" src="./assets/video/neo.mp4" autoplay loop="true"></video>-->
         <a-asset-item id="sculpture" src="./assets/objects/cube/sculpture.dae"></a-asset-item>
 
     </a-assets>
 
     <!-- LOAD MODELS -->
-    <a-collada-model click-drag src="#sculpture" position="0 0 -6"></a-collada-model>
+    <a-collada-model click-drag src="#sculpture" position="10 0 -6"></a-collada-model>
 
     <!-- LOAD LIGHTS -->
-    <!--<a-entity light="type: spot; angle: 45" position="0 0 0"></a-entity>-->
-    <!--<a-entity light="type: ambient; color: #CCC"></a-entity>-->
+    <a-entity light="type: spot; angle: -25" position="0 10 0"></a-entity>
+    <a-entity light="type: ambient; color: #CCC"></a-entity>
 
 
     <!-- LOAD BOXES -->
-    <a-box color="#858e9b" depth="8" height="7" width="1" position="-4 0 0"></a-box>
-    <a-box color="#858e9b" depth="8" height="7" width="1" position="8 0 0"></a-box>
+    <a-box color="#f4b042" depth="40" height="40" width="2" position="0 0 -20" rotation="0 90 0"></a-box>
+    <a-box color="#f44274" depth="40" height="40" width="2" position="0 0 20" rotation="0 90 0"></a-box>
+    <a-box color="#f47442" depth="40" height="40" width="2" position="-20 0 0"></a-box>
+    <a-box color="#42f4ad" depth="40" height="40" width="2" position="20 0 0"></a-box>
 
-    <a-sphere click-drag position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+    <a-box color="#bbc9c3" depth="40" height="40" width="2" position="0 -10 0" rotation="0 0 90"></a-box>
+
+    <a-sphere click-drag position="10 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
 
     <!-- LOAD IMAGES -->
-    <a-image src="#ork" position="-3.2 0 0" rotation="0 90 0" scale="8 8 8"></a-image>
+    <a-image click-drag src="#ork" position="-3.2 0 0" rotation="0 90 0" scale="8 8 8"></a-image>
 
     <!-- LOAD TEXTS -->
     <a-entity click-drag bmfont-text="text: Hello world; color:#ffffff; width:150" position="7.25 0 -2" rotation="0 -90 0" scale="10 10 10" ></a-entity>
@@ -94,8 +154,8 @@
 
 
 
-    <a-sky src="#deep"></a-sky>
-    <a-entity id="mycamentity" position="0 0 10" rotation="0 0 0">
+    <a-sky src="#myimage"></a-sky>
+    <a-entity id="mycamentity" position="0 0 0" rotation="0 0 0">
 
         <!--IF VR DISABLE?-->
         <!---->
