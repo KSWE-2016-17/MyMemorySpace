@@ -1,8 +1,8 @@
 {
-  "name": "aframe-hello-world-boilerplate",
-  "description": "Boilerplate with A-Frame's 'Hello, World!' of WebVR.",
-  "version": "0.3.0",
-  "license": "MIT",
+  "name": "mymemoryspace",
+  "description": "",
+  "version": "0.0.1",
+  "license": "UNLICENCED",
   "scripts": {
 	"start": "nodemon scripts/main.js --exec babel-node --presets es2015,stage-0",
 	"build" : "babel scripts --presets es2015,stage-0 -o dist/bundle.js",
