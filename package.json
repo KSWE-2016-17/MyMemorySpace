@@ -4,8 +4,10 @@
   "version": "0.0.1",
   "license": "UNLICENCED",
   "scripts": {
-	"start": "nodemon scripts/main.js --exec babel-node --presets es2015,stage-0",
-	"build" : "babel scripts --presets es2015,stage-0 -o dist/bundle.js"
+    "prestart": "npm run build",
+    "start": "budo --port 3000 --cors --live --open",
+    "prebuild": "mkdir -p dist",
+    "build": "browserify scripts/main.js -o dist/bundle.js -t [ babelify --presets [ es2015 stage-0 ] ]"
   },
   "devDependencies": {
     "budo": "7.0.0"
