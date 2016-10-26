@@ -5,13 +5,10 @@
   "license": "UNLICENCED",
   "scripts": {
 	"start": "nodemon scripts/main.js --exec babel-node --presets es2015,stage-0",
-	"build" : "babel scripts --presets es2015,stage-0 -o dist/bundle.js",
-    "deploy": "ghpages",
-    "ghpages": "ghpages"
+	"build" : "babel scripts --presets es2015,stage-0 -o dist/bundle.js"
   },
   "devDependencies": {
-    "budo": "7.0.0",
-    "ghpages": "0.0.3"
+    "budo": "7.0.0"
   },
   "keywords": [
     "aframe",
