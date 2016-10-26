@@ -19,6 +19,8 @@
     "vr"
   ],
   "dependencies": {
+    "aframe": "0.3.2",
+    "aframe-click-drag-component": "1.3.1",
     "babel": "6.5.2",
     "babel-cli": "6.18.0",
     "babel-preset-es2015": "6.18.0",
