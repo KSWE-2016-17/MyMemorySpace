@@ -2,14 +2,15 @@
  * Created by xenia on 25.10.16.
  */
 
-import 'aframe';
-import 'aframe-click-drag-component';
+import aframe from 'aframe';
+import registerClickDrag from 'aframe-click-drag-component';
 
+registerClickDrag(aframe);
 
 init();
 function init() {
     alert("loaded");
-    window.registerAframeClickDragComponent(window.AFRAME);
+//    window.registerAframeClickDragComponent(window.AFRAME);
     window.onkeyup = function(e){
         var key = e.keyCode ? e.keyCode : e.which;
 
