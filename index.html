@@ -3,58 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
+    <script src="dist/bundle.js"></script>
+
+
 
     <!-- PLUGIN FOR TEXTS-->
-    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+    <!--<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>-->
 
     <!-- PLUGIN FOR DRAG&DROP -->
     <!--<script src="https://unpkg.com/aframe-click-drag-component"></script>-->
     <!--LOCAL USE-->
-    <script src="./scripts/drag_manual.js"></script>
-    <script>
-        registerAframeClickDragComponent(window.AFRAME);
-
-    </script>
-
-    <script type="text/javascript">
-        window.onkeyup = function(e){
-            var key = e.keyCode ? e.keyCode : e.which;
-
-            if (key == 81){
-                console.log('PRESSED Q');
-                var camros = document.getElementById("mycamentity").getAttribute("rotation");
-                var campos = document.getElementById("mycamentity").getAttribute("position");
-                console.log(campos);
-
-                var x = campos.x;
-                var y = campos.y;
-                var z = campos.z;
-
-
-                camros.y += 4;
-                campos.x -= 0.1;
-
-                document.getElementById("mycamentity").setAttribute("rotation", camros);
-
-            }
-
-            if (key == 69){
-                var locked = document.getElementById("mycam").getAttribute('look-controls');
-                console.log(locked);
-
-                if(locked.enabled==="true"){
-                    document.getElementById("mycam").setAttribute('look-controls', {enabled: 'false'});
-                }
-                else{
-                    document.getElementById("mycam").setAttribute('look-controls', {enabled: 'true'});
-                }
-            }
-        }
-
-
-
-    </script>
+    <!--<script src="./scripts/drag_manual.js"></script>-->
 
 
 </head>
@@ -62,53 +22,6 @@
 
     Path<input id="newimagepath" type="text">
     <button onclick="getNewImage()">UPLOAD</button>
-
-    <script type="text/javascript">
-        function getNewImage(){
-//            var yourpath = document.getElementById("newimagepath").value;
-//
-//            console.log(yourpath);
-//
-//            var findid = "#test";
-//            var newimage = document.createElement("IMG");
-//            newimage.setAttribute("src",yourpath);
-//            newimage.setAttribute("id","test");
-//
-//            console.log(newimage);
-//            document.getElementById('assetmanager').appendChild(newimage);
-//
-//            var theimg = document.createElement("A-IMAGE");
-//            theimg.setAttribute("src",findid);
-//            theimg.setAttribute("position","0 0 1");
-//            theimg.setAttribute("rotation","0 90 0");
-//            theimg.setAttribute("scale","8 8 8");
-//
-//
-//            console.log(theimg);
-//
-//            document.getElementById('myscene').appendChild(theimg);
-        }
-
-
-        function loadNewText(){
-            var yourtext = document.getElementById("newtext").value;
-            var yourcolor = document.getElementById("newcolor").value;
-
-            var textnode = document.createElement("A-ENTITY");
-            textnode.setAttribute('click-drag',1);
-            textnode.setAttribute('position',{x: 1, y: 1, z: 0});
-
-            textnode.setAttribute("bmfont-text","text: "+yourtext+"; color:"+yourcolor+"; width:1000");
-            textnode.setAttribute("scale",{x: 5, y: 5, z:1});
-
-
-
-            console.log(textnode);
-            document.getElementById("myscene").appendChild(textnode);
-
-        }
-
-    </script>
 
     YourNewText<input id="newtext" type="text">
     <button onclick="loadNewText()">Upload My Text</button>
