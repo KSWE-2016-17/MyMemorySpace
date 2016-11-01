@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>470</x>
-      <y>40</y>
-      <w>330</w>
-      <h>320</h>
+      <x>430</x>
+      <y>140</y>
+      <w>280</w>
+      <h>280</h>
     </coordinates>
-    <panel_attributes>VR bewegen
+    <panel_attributes>sich in Raum bewegen
 halign=left</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>250</x>
-      <y>160</y>
+      <x>280</x>
+      <y>250</y>
       <w>60</w>
-      <h>110</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>User</panel_attributes>
     <additional_attributes/>
@@ -27,10 +26,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>560</x>
-      <y>90</y>
-      <w>230</w>
-      <h>110</h>
+      <x>490</x>
+      <y>190</y>
+      <w>170</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Vor
 Zurück
@@ -41,10 +40,10 @@ Rechts</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>550</x>
-      <y>220</y>
-      <w>240</w>
-      <h>110</h>
+      <x>480</x>
+      <y>310</y>
+      <w>180</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Kamera drehen</panel_attributes>
     <additional_attributes/>
@@ -52,23 +51,23 @@ Rechts</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>140</y>
-      <w>280</w>
-      <h>70</h>
+      <x>330</x>
+      <y>220</y>
+      <w>180</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;50.0;260.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>190</y>
-      <w>270</w>
-      <h>100</h>
+      <x>330</x>
+      <y>280</y>
+      <w>170</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;10.0;250.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;60.0</additional_attributes>
   </element>
 </diagram>
