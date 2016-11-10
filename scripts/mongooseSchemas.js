@@ -21,12 +21,33 @@ var lightSchema=new mongoose.Schema({
     type: String
 });
 var mediafileSchema=new mongoose.Schema({
-
-
+    src: String,
+    type: String,
+    position: positionSchema,
+    width: Number,
+    height: Number,
+    depth: Number,
+    rotation: positionSchema,
+    scale: positionSchema,
+    color: String,
+    visible: Boolean
 });
 var wallSchema=new mongoose.Schema({
+    position: 	positionSchema,
+    width: Number,
+    height: Number,
+    depth: Number,
+    rotation: positionSchema,
+    color: String,
+    textur: 	mediafileSchema,
+    visible: Boolean
 
 });
 var roomSchema=new mongoose.Schema({
-
+    user_id: mongoose.Schema.Types.ObjectId,
+    roomname: String,
+    walls: [wallSchema],
+    sky: mediafileSchema,
+    light: lightSchema,
+    media: [mediafileSchema]
 });
