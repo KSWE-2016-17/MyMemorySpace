@@ -1,3 +1,5 @@
+let CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
     entry: {
         javascript: "./src/js/main.js",
@@ -25,5 +27,13 @@ module.exports = {
                 loader: "file?name=[name].[ext]"
             }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            {
+                from: "assets",
+                to: "assets"
+            }
+        ])
+    ]
 };
