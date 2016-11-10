@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
-        javascript: "./scripts/main.js",
-        html: "./index.html"
+        javascript: "./src/js/main.js",
+        html: "./src/html/index.html"
     },
     output: {
         path: "./dist",
