@@ -2,7 +2,7 @@
   "name": "mymemoryspace",
   "description": "",
   "version": "0.0.1",
-  "license": "UNLICENCED",
+  "license": "UNLICENSED",
   "scripts": {
     "prestart": "npm run build",
     "start": "budo --port 3000 --cors --live --open",
