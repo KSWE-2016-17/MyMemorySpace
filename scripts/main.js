@@ -16,6 +16,12 @@ $(() => {
         // alert("loaded");
         // window.registerAframeClickDragComponent(window.AFRAME);
 
+        $("#btnNewImagePath").click(() => {
+            alert("TODO Implement me!");
+        });
+
+        $("#btnNewText").click(loadNewText);
+
         window.onkeyup = function(e) {
             var key = e.keyCode ? e.keyCode : e.which;
 
