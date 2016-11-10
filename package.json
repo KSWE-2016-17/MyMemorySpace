@@ -6,8 +6,7 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "budo --port 3000 --cors --live --open",
-    "prebuild": "mkdir -p dist && npm -s install",
-    "build": "browserify scripts/main.js -o dist/bundle.js -t [ babelify --presets [ es2015 stage-0 ] ]"
+    "build": "webpack"
   },
   "devDependencies": {
     "babel": "6.5.2",
