@@ -30,6 +30,7 @@
     "aframe": "0.3.2",
     "aframe-click-drag-component": "2.0.0",
     "gridfs-stream": "^1.1.1",
+    "jquery": "3.1.1",
     "mongoose": "^4.5.8"
   }
 }
