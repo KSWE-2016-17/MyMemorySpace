@@ -4,7 +4,7 @@
 
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
-
+import mongoseSchemas from './mongooseSchemas';
 import $ from 'jquery';
 
 $(() => {
