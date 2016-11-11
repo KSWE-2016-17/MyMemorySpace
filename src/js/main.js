@@ -5,6 +5,7 @@
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
 import mongoseSchemas from './mongooseSchemas';
+
 import $ from 'jquery';
 
 $(() => {
@@ -17,7 +18,20 @@ $(() => {
         // window.registerAframeClickDragComponent(window.AFRAME);
 
         $("#btnNewImagePath").click(() => {
-            alert("TODO Implement me!");
+            mongoose.connect('mongodb://localhost/test');
+           console.log("TODO Implement me!");
+            var User = mongoose.model('User', mongoseSchemas.userSchema);
+            // Create a user in memory
+            var user = new User({name: "user1", password: "1235"});
+            // Save it to database
+            user.save(function(err){
+                if(err){
+                    console.log("write to db wars not successefull");
+                    console.log(err);
+                }
+                else{
+                    console.log(user);}
+            });
         });
 
         $("#btnNewText").click(loadNewText);
