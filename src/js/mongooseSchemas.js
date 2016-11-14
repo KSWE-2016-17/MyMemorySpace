@@ -51,3 +51,11 @@ var roomSchema=new mongoose.Schema({
     light: lightSchema,
     media: [mediafileSchema]
 });
+
+var User = mongoose.model("User", userSchema);
+var Mediafile = mongoose.model("Mediafile", mediafileSchema);
+var Room = mongoose.model("Room", roomSchema);
+
+module.exports = User;
+module.exports = Mediafile;
+module.exports = Room;
