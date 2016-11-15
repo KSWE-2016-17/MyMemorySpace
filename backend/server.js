@@ -350,7 +350,7 @@ server.delete('/mediafile/:_id', function (req, res) {
 * */
 server.put('/user/:_id', function (req,res) {
 	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
-		if ( err ) send(err);
+		if ( err ) res.status(500).send({ error: 'put user with id: '+req.params._id +'filed!' });
 		res.json({
 			message:"Successfully updated the user",
 			user : result
@@ -364,6 +364,7 @@ server.put('/user/:_id', function (req,res) {
 
 server.delete('/user/:_id', function (req, res) {
 	dbSchema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+		if ( err ) res.status(500).send({ error: 'delete user with id: '+req.params._id +'filed!' });
 		res.json({
 			message: "Successfully deleted the user",
 			user: result
