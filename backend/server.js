@@ -35,7 +35,7 @@ server.post("/user", function(req,res){
 	});
 	
 	user.save(function(err,result){
-		if(err) throw err;
+		if(err) send(err);
 		res.json({
 			user:result
 		});
@@ -47,7 +47,7 @@ server.post("/user", function(req,res){
 * */
 server.get('/user',function(req,res){
 	dbSchema.User.find({}, function(err, result){
-		if(err) throw err;
+		if(err) send(err);
 		res.json(result);
 	});
 });
@@ -57,7 +57,7 @@ server.get('/user',function(req,res){
 * */
 server.get('/user/:_id',function(req,res){
 	dbSchema.User.findById(req.params._id, function(err, result){
-		if(err) throw err;
+		if(err) send(err);
 		res.json(result);
 	});
 });
@@ -67,7 +67,7 @@ server.get('/user/:_id',function(req,res){
 * */
 server.get('/user/:name',function(req,res){
 	dbSchema.User.findOne(req.params.name, function(err, result){
-		if(err) throw err;
+		if(err) send(err);
 		res.json(result);
 	});
 });
@@ -77,7 +77,7 @@ server.get('/user/:name',function(req,res){
 * */
 server.put('/user/:_id', function (req,res) {
 	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
-		if ( err ) throw err;
+		if ( err ) send(err);
 		res.json({
 			message:"Successfully updated the user",
 			user : result
