@@ -35,7 +35,7 @@ server.post("/user", function(req,res){
 	});
 	
 	user.save(function(err,result){
-		if(err) send(err);
+		if(err) res.status(500).send({ error: 'post new user filed!' });
 		res.json({
 			user:result
 		});
@@ -47,7 +47,7 @@ server.post("/user", function(req,res){
 * */
 server.get('/user',function(req,res){
 	dbSchema.User.find({}, function(err, result){
-		if(err) send(err);
+		if(err) res.status(500).send({ error: 'get user list filed!' });
 		res.json(result);
 	});
 });
@@ -57,7 +57,7 @@ server.get('/user',function(req,res){
 * */
 server.get('/user/:_id',function(req,res){
 	dbSchema.User.findById(req.params._id, function(err, result){
-		if(err) send(err);
+		if(err) res.status(500).send({ error: 'get user with id: '+ req.params._id+' filed!' });
 		res.json(result);
 	});
 });
@@ -67,7 +67,7 @@ server.get('/user/:_id',function(req,res){
 * */
 server.get('/user/:name',function(req,res){
 	dbSchema.User.findOne(req.params.name, function(err, result){
-		if(err) send(err);
+		if(err) res.status(500).send({ error: 'get user with name: '+req.params.name +'filed!' });
 		res.json(result);
 	});
 });
@@ -77,7 +77,7 @@ server.get('/user/:name',function(req,res){
 * */
 server.put('/user/:_id', function (req,res) {
 	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
-		if ( err ) send(err);
+		if ( err ) res.status(500).send({ error: 'put user with id: '+req.params._id +'filed!' });
 		res.json({
 			message:"Successfully updated the user",
 			user : result
@@ -91,6 +91,7 @@ server.put('/user/:_id', function (req,res) {
 
 server.delete('/user/:_id', function (req, res) {
 	dbSchema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+		if ( err ) res.status(500).send({ error: 'delete user with id: '+req.params._id +'filed!' });
 		res.json({
 			message: "Successfully deleted the user",
 			user: result
