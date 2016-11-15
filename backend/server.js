@@ -44,7 +44,7 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
-	var user = new User({
+	var user = new dbSchema.User({
 		username: req.body.username,
 		password: req.body.password
 	});
@@ -349,8 +349,7 @@ server.delete('/mediafile/:_id', function (req, res) {
 * PUT: update user
 * */
 server.put('/user/:_id', function (req,res) {
-	User.
-	dbShema.User.findByIdAndUpdate(req.params._id, function (err,result) {
+	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
 		if ( err ) throw err;
 		res.json({
 			message:"Successfully updated the user",
