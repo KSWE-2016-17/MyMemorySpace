@@ -1,19 +1,19 @@
 // NODE JS WEB server - EXPRESS
-var express = require('express');
+import express from 'express';
 // PARSER TO PARSE REQUEST BODY
-var parser = require('body-parser');
+import parser from 'body-parser';
 
 // Mongoose
-var mongoose = require('mongoose');
-var dbShema = require('./mongooseSchemas');
+import mongoose from 'mongoose';
+import dbShema from './mongooseSchemas';
 
-var server = express();
+let server = express();
 server.set('port',8081);
 
 // Configuration to make use of Parser JSON Functionality
 server.use(parser.json());
 
-var dbHost = 'mongodb://localhost:27017';
+let dbHost = 'mongodb://localhost:27017';
 mongoose.connect(dbHost);
 
 //Connect
