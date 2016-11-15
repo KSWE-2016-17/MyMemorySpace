@@ -44,7 +44,7 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
-	var user = new dbSchema.User({
+	var user = new User({
 		username: req.body.username,
 		password: req.body.password
 	});
