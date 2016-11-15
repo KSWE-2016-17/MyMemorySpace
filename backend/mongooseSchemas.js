@@ -1,7 +1,5 @@
-/**
- * Created by xenia on 10.11.16.
- */
-import mongoose from 'mongoose';
+
+var mongoose = require( 'mongoose');
 
 var userSchema = new mongoose.Schema({
     username: {type: String, trim: true},
