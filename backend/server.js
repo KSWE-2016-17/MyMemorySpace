@@ -76,11 +76,22 @@ server.get('/user/:name',function(req,res){
 * PUT: update user
 * */
 server.put('/user/:_id', function (req,res) {
-	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
-		if ( err ) res.status(500).send({ error: 'put user with id: '+req.params._id +'filed!' });
-		res.json({
-			message:"Successfully updated the user",
-			user : result
+	dbSchema.User.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get user with id: '+req.params._id +'filed!' });
+		if(!result){
+			res.json({
+				message:"User with id: " + req.params._id+" not found."
+			});
+		}
+		result.username = req.body.username;
+		result.password = req.body.password
+		
+		result.save(function (err, result) {
+			if(err) result.status(500).send({ error: 'save user with id: '+req.params._id +'filed!' });
+			res.json({
+				message:"Successfully updated the user",
+				user: result
+			});
 		});
 	});
 });
