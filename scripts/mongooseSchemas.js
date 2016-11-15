@@ -23,23 +23,29 @@ var lightSchema=new mongoose.Schema({
 var mediafileSchema=new mongoose.Schema({
     src: String,
     type: String,
+});
+
+var mediaobjectSchema = new mongoose.Schemaa({
+	position: positionSchema,
+	width: Number,
+    height: Number,
+    depth: Number,
+	rotation: positionSchema,
+    scale: positionSchema,
+	color: String,
+    visible: Boolean,
+	mediafile: mediafileSchema
+	
+});
+
+var wallSchema=new mongoose.Schema({
     position: positionSchema,
     width: Number,
     height: Number,
     depth: Number,
     rotation: positionSchema,
-    scale: positionSchema,
     color: String,
-    visible: Boolean
-});
-var wallSchema=new mongoose.Schema({
-    position: 	positionSchema,
-    width: Number,
-    height: Number,
-    depth: Number,
-    rotation: positionSchema,
-    color: String,
-    textur: 	mediafileSchema,
+    textur: mediafileSchema,
     visible: Boolean
 
 });
@@ -49,5 +55,5 @@ var roomSchema=new mongoose.Schema({
     walls: [wallSchema],
     sky: mediafileSchema,
     light: lightSchema,
-    media: [mediafileSchema]
+    mediaobject: [mediaobjectSchema]
 });
