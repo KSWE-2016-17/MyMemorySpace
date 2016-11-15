@@ -345,5 +345,31 @@ server.delete('/mediafile/:_id', function (req, res) {
 	
 });
 
+/*
+* PUT: update user
+* */
+server.put('/user/:_id', function (req,res) {
+	User.
+	dbShema.User.findByIdAndUpdate(req.params._id, function (err,result) {
+		if ( err ) throw err;
+		res.json({
+			message:"Successfully updated the user",
+			user : result
+		});
+	});
+});
+
+/*
+* DELETE: delete user
+* */
+
+server.delete('/user/:_id', function (req, res) {
+	dbShema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+		res.json({
+			message: "Successfully deleted the user",
+			user: result
+		});
+	});
+});
 
 
