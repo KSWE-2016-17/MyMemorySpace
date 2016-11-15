@@ -29,7 +29,7 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
-	var user = new dbSchema.User({
+	var user = new User({
 		username: req.body.username,
 		password: req.body.password
 	});
@@ -45,8 +45,8 @@ server.post("/user", function(req,res){
 /*
 * GET: get all users
 * */
-server.get('/userlist',function(req,res){
-	dbSchema.User.find({}, function(err, result){
+server.get('/user',function(req,res){
+	User.find({}, function(err, result){
 		if(err) throw err;
 		res.json(result);
 	});
