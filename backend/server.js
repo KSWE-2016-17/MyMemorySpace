@@ -1,5 +1,5 @@
 // NODE JS WEB server - EXPRESS
-var express = require('express');
+import express from 'express';
 // PARSER TO PARSE REQUEST BODY
 var  parser  = require('body-parser');
 
