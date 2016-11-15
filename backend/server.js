@@ -1,5 +1,5 @@
 // NODE JS WEB server - EXPRESS
-import express from 'express';
+var express = require('express');
 // PARSER TO PARSE REQUEST BODY
 var  parser  = require('body-parser');
 
@@ -364,7 +364,7 @@ server.put('/user/:_id', function (req,res) {
 * */
 
 server.delete('/user/:_id', function (req, res) {
-	dbShema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+	dbSchema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
 		res.json({
 			message: "Successfully deleted the user",
 			user: result
