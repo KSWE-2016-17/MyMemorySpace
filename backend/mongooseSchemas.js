@@ -58,8 +58,10 @@ var roomSchema=new mongoose.Schema({
 
 var User = mongoose.model('User', userSchema);
 var Room = mongoose.model('Room', roomSchema);
-var Medifile = mongoose.model('Mediafile', mediafileSchema);
+var Mediafile = mongoose.model('Mediafile', mediafileSchema);
 
-module.exports = User;
-module.exports = Room;
-module.exports = Medifile;
+module.exports = {
+    User: User,
+    Room: Room,
+    Mediafile: Mediafile
+}
