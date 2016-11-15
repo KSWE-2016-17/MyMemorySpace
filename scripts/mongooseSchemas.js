@@ -25,7 +25,7 @@ var mediafileSchema=new mongoose.Schema({
     type: String,
 });
 
-var mediaobjectSchema = new mongoose.Schemaa({
+var mediaobjectSchema = new mongoose.Schema({
 	position: positionSchema,
 	width: Number,
     height: Number,
