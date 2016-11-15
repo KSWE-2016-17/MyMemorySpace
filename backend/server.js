@@ -350,7 +350,7 @@ server.delete('/mediafile/:_id', function (req, res) {
 * */
 server.put('/user/:_id', function (req,res) {
 	dbSchema.User.findByIdAndUpdate(req.params._id, function (err,result) {
-		if ( err ) throw err;
+		if ( err ) send(err);
 		res.json({
 			message:"Successfully updated the user",
 			user : result
