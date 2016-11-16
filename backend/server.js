@@ -84,7 +84,7 @@ server.put('/user/:_id', function (req,res) {
 			});
 		}
 		result.username = req.body.username;
-		result.password = req.body.password
+		result.password = req.body.password;
 		
 		result.save(function (err, result) {
 			if(err) result.status(500).send({ error: 'save user with id: '+req.params._id +'filed!' });
@@ -151,4 +151,57 @@ server.get('/room/:_id',function(req,res){
 		res.json(result);
 	});
 });
+
+/*
+ * GET: get one room by user_id
+ * */
+server.get('/room/:user_id',function(req,res){
+	dbSchema.Room.find(req.params.user_id, function(err, result){
+		if(err) res.status(500).send({ error: 'get rooms with user id: '+req.params.user_id +'filed!' });
+		res.json(result);
+	});
+});
+
+/*
+ * PUT: update room
+ * */
+server.put('/room/:_id', function (req,res) {
+	dbSchema.Room.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get room with id: '+req.params._id +'filed!' });
+		if(!result){
+			res.json({
+				message:"Room with id: " + req.params._id+" not found."
+			});
+		}
+		result.user_id=req.body.user_id;
+		result.roomname=req.body.roomname;
+		result.walls=req.body.walls;
+		result.sky=req.body.sky;
+		result.light=req.body.light;
+		result.mediaobject=req.body.mediaobject;
+	});
+
+	result.save(function (err, result) {
+		if(err) result.status(500).send({ error: 'save room with id: '+req.params._id +'filed!' });
+		res.json({
+			message:"Successfully updated the room",
+			room: result
+		});
+	});
+});
+
+/*
+ * DELETE: delete room
+ * */
+
+server.delete('/room/:_id', function (req, res) {
+	dbSchema.Room.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+		if ( err ) res.status(500).send({ error: 'delete room with id: '+req.params._id +'filed!' });
+		res.json({
+			message: "Successfully deleted the room",
+			room: result
+		});
+	});
+});
+
 
