@@ -7,6 +7,7 @@ import registerClickDrag from 'aframe-click-drag-component';
 
 import $ from 'jquery';
 
+var file;
 
 $(() => {
     registerClickDrag(aframe);
@@ -88,7 +89,7 @@ $(() => {
 		console.log("UPLOADUPLOADUALOD");
 		var file_selected = document.getElementById("uploadfile").files;
 		
-		var file = file_selected[0];
+		file = file_selected[0];
 		console.log(file);
 
 		
@@ -106,14 +107,40 @@ $(() => {
 			senddata.fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
  
 		console.log(reader);
-		var request = new XMLHttpRequest();
+		
+		startUpload();
+		
+		
+		/*var request = new XMLHttpRequest();
+		
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
 		request.open("POST", "localhost:8081/upload", true);
-		request.send(senddata);
+		request.send(senddata);*/
+		
 		}
 		
 		reader.readAsDataURL(file);
 
+	}
+	
+	function startUpload(){
+		console.log("we are inside the upload block!");
+		 $.ajax({
+			  method: 'POST',         // HTTP-Methode, hier: POST
+			  url: "localhost:8081/", // Wohin soll die Datei geschickt werden?
+			  data: file,          // Das ist unser Datenobjekt.
+
+			  processData: false,
+			  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			  // und wenn alles erfolgreich verlaufen ist, schreibe eine Meldung
+			  // in das Response-Div
+			  success: function() { 
+				console.log("yahoo!");
+			},
+			error: function(xhr, status, error) {
+				console.log(error);
+			}
+		});
 	}
 	
 });

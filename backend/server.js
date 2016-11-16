@@ -291,8 +291,10 @@ server.delete('/mediafile/:_id', function (req, res) {
 
 
 // MULTER-FILE HANDLER
-server.post('/upload', upload.single('file'), function(req,res,next){
-	if(err) res.status(500)-send({ error: 'blabla'});
+// ({ dest: './uploads/'}).single('fileuploaded')
+server.post('/', upload.single(), function(req,res){
+	console.log("inside file upload block :)")
+	if(err) res.status(500).send({ error: 'blabla'});
 	console.log(req.body);
 	console.log(req.files);
 	console.log("UPLOADED!");
