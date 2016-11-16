@@ -107,7 +107,8 @@ $(() => {
  
 		console.log(reader);
 		var request = new XMLHttpRequest();
-		request.open("POST", "localhost:8081/upload");
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+		request.open("POST", "localhost:8081/upload", true);
 		request.send(senddata);
 		}
 		
