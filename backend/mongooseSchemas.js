@@ -53,7 +53,7 @@ var roomSchema=new mongoose.Schema({
     walls: [wallSchema],
     sky: mediafileSchema,
     light: lightSchema,
-    mediaobject: [mediaobjectSchema]
+    mediaobjects: [mediaobjectSchema]
 });
 
 var User = mongoose.model('User', userSchema);
