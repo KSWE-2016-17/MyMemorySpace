@@ -90,24 +90,29 @@ $(() => {
 		
 		var file = file_selected[0];
 		console.log(file);
-		var formData = new FormData();
-		
-		formData.append("file",file,file.name);
 
-		var xhr = new XMLHttpRequest();
-		// Open the connection.
-		xhr.open('POST', 'localhost:8081/upload', true);
-		// Set up a handler for when the request finishes.
-		xhr.onload = function () {
-		  if (xhr.status === 200) {
-			// File(s) uploaded.
-			uploadButton.innerHTML = 'Upload';
-		  } else {
-			alert('An error occurred!');
-		  }
-		};
-		xhr.send(formData);
 		
+		var reader = new FileReader();
+		
+		var senddata = new Object();
+		// Auslesen der Datei-Metadaten
+		senddata.name = file.name;
+		senddata.date = file.lastModified;
+		senddata.size = file.size;
+		senddata.type = file.type;
+ 
+		// Wenn der Dateiinhalt ausgelesen wurde...
+		reader.onload = function(theFileData) {
+			senddata.fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
+ 
+		console.log(reader);
+		var request = new XMLHttpRequest();
+		request.open("POST", "localhost:8081/upload");
+		request.send(senddata);
+		}
+		
+		reader.readAsDataURL(file);
+
 	}
 	
 });
