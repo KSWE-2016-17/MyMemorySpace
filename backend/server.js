@@ -179,7 +179,7 @@ server.put('/room/:_id', function (req,res) {
 		result.sky=req.body.sky;
 		result.light=req.body.light;
 		result.mediaobject=req.body.mediaobject;
-	
+
 
 		result.save(function (err, result) {
 		if(err) result.status(500).send({ error: 'save room with id: '+req.params._id +'filed!' });
@@ -204,5 +204,85 @@ server.delete('/room/:_id', function (req, res) {
 		});
 	});
 });
+
+//MEDIAFILE
+/*
+ * POST: create new mediafile
+ * */
+server.post("/mediafile", function(req,res){
+	var mediafile = new dbSchema.Mediafile({
+		src: req.body.src,
+		type: req.body.type
+	});
+
+	mediafile.save(function(err,result){
+		if(err) res.status(500).send({ error: 'post new mediafile filed!' });
+		res.json({
+			mediafile:result
+		});
+	});
+});
+
+/*
+ * GET: get all mediafiles
+ * */
+server.get('/mediafile',function(req,res){
+	dbSchema.Mediafile.find({}, function(err, result){
+		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
+		res.json(result);
+	});
+});
+
+
+/*
+ * GET: get all mediafiles by _id
+ * */
+server.get('/mediafile/:_id',function(req,res){
+	dbSchema.Mediafile.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get mediafile with id: ' + req.params._id +'filed!' });
+		res.json(result);
+	});
+});
+
+
+/*
+ * PUT: update mediafile
+ * */
+server.put('/mediafile/:_id', function (req,res) {
+	dbSchema.Mediafile.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get mediafile with id: '+req.params._id +'filed!' });
+		if(!result){
+			res.json({
+				message:"Mediafile with id: " + req.params._id+" not found."
+			});
+		}
+		result.src=req.body.src;
+		result.type=req.body.type;
+
+		result.save(function (err, result) {
+			if(err) result.status(500).send({ error: 'save mediafile with id: '+req.params._id +'filed!' });
+			res.json({
+				message:"Successfully updated the mediafile",
+				mediafile: result
+			});
+		});
+	});
+});
+
+
+/*
+ * DELETE: delete room
+ * */
+
+server.delete('/mediafile/:_id', function (req, res) {
+	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
+		res.json({
+			message: "Successfully deleted the mediafile",
+			room: result
+		});
+	});
+});
+
 
 
