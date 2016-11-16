@@ -156,7 +156,7 @@ server.get('/room/:_id',function(req,res){
  * GET: get one room by user_id
  * */
 server.get('/room/:user_id',function(req,res){
-	dbSchema.Room.find(req.params.user_id, function(err, result){
+	dbSchema.Room.find({"user_id": req.params.user_id}, function(err, result){
 		if(err) res.status(500).send({ error: 'get rooms with user id: '+req.params.user_id +'filed!' });
 		res.json(result);
 	});
@@ -181,7 +181,7 @@ server.put('/room/:_id', function (req,res) {
 		result.mediaobject=req.body.mediaobject;
 	
 
-	result.save(function (err, result) {
+		result.save(function (err, result) {
 		if(err) result.status(500).send({ error: 'save room with id: '+req.params._id +'filed!' });
 		res.json({
 			message:"Successfully updated the room",
