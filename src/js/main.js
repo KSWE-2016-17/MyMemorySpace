@@ -7,6 +7,7 @@ import registerClickDrag from 'aframe-click-drag-component';
 
 import $ from 'jquery';
 
+
 $(() => {
     registerClickDrag(aframe);
 
@@ -21,6 +22,8 @@ $(() => {
         });
 
         $("#btnNewText").click(loadNewText);
+		
+		$("#upload").click(uploadFile);
 
         window.onkeyup = function(e) {
             var key = e.keyCode ? e.keyCode : e.which;
@@ -80,4 +83,29 @@ $(() => {
         console.log(textnode);
         document.getElementById("myscene").appendChild(textnode);
     }
+	
+	function uploadFile(){
+		console.log("UPLOADUPLOADUALOD");
+		var file_selected = document.getElementById("uploadFile");
+		var file = file_selected.files[0];
+		var formData = new FormData();
+		
+		formData.append("file",file,file.name);
+		
+		var xhr = new XMLHttpRequest();
+		// Open the connection.
+		xhr.open('POST', 'localhost:8081/upload', true);
+		// Set up a handler for when the request finishes.
+		xhr.onload = function () {
+		  if (xhr.status === 200) {
+			// File(s) uploaded.
+			uploadButton.innerHTML = 'Upload';
+		  } else {
+			alert('An error occurred!');
+		  }
+		};
+		xhr.send(formData);
+		
+	}
+	
 });

@@ -7,6 +7,11 @@ var  parser  = require('body-parser');
 var mongoose  = require('mongoose');
 var dbSchema  = require('./mongooseSchemas');
 
+// Multer
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/'});
+
+
 let server = express();
 server.set('port',8081);
 
@@ -283,6 +288,16 @@ server.delete('/mediafile/:_id', function (req, res) {
 		});
 	});
 });
+
+
+// MULTER-FILE HANDLER
+server.post('/upload', upload.single('file'), function(req,res,next){
+	if(err) res.status(500)-send({ error: 'blabla'});
+	console.log(req.body);
+	console.log(req.files);
+	console.log("UPLOADED!");
+});
+
 
 
 
