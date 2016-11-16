@@ -110,4 +110,45 @@ server.delete('/user/:_id', function (req, res) {
 	});
 });
 
+//ROOM
+/*
+ * POST: create new room
+ * */
+server.post("/room", function(req,res){
+	var room = new dbSchema.Room({
+		user_id: req.body.user_id,
+		roomname: req.body.roomname,
+		walls: req.body.walls,
+		sky: req.body.sky,
+		light: req.body.light,
+		mediaobject: req.body.mediaobject
+	});
+
+	room.save(function(err,result){
+		if(err) res.status(500).send({ error: 'post new room filed!' });
+		res.json({
+			room:result
+		});
+	});
+});
+
+/*
+ * GET: get all rooms
+ * */
+server.get('/room',function(req,res){
+	dbSchema.Room.find({}, function(err, result){
+		if(err) res.status(500).send({ error: 'get room list filed!' });
+		res.json(result);
+	});
+});
+
+/*
+ * GET: get one room by _id
+ * */
+server.get('/room/:_id',function(req,res){
+	dbSchema.Room.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get room with id: '+ req.params._id+' filed!' });
+		res.json(result);
+	});
+});
 
