@@ -86,12 +86,14 @@ $(() => {
 	
 	function uploadFile(){
 		console.log("UPLOADUPLOADUALOD");
-		var file_selected = document.getElementById("uploadFile");
-		var file = file_selected.files[0];
+		var file_selected = document.getElementById("uploadfile").files;
+		
+		var file = file_selected[0];
+		console.log(file);
 		var formData = new FormData();
 		
 		formData.append("file",file,file.name);
-		
+
 		var xhr = new XMLHttpRequest();
 		// Open the connection.
 		xhr.open('POST', 'localhost:8081/upload', true);
