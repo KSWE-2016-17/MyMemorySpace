@@ -194,6 +194,7 @@ server.put('/room/:_id', function (req,res) {
 		result.sky=req.body.sky;
 		result.light=req.body.light;
 		result.mediaobject=req.body.mediaobject;
+	
 
 
 		result.save(function (err, result) {
