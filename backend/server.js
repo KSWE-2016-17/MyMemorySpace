@@ -36,6 +36,7 @@ mongoose.connection;
 
 //GRID-FS
 Grid.mongo = mongoose.mongo;
+var gfs = Grid(mongoose.connection.db);
 
 server.listen(server.get('port'), function(){
 	console.log('Server running: localhost:'+server.get('port'));
@@ -315,7 +316,7 @@ server.post('/', upload.single('Datei'),function(req,res){
 	console.log("UPLOADED!");
 	
 	console.log("Writing to the DB---");
-	var gfs = Grid(mongoose.connection.db);
+	
  
     // streaming to gridfs
     //filename to store in mongodb
@@ -331,6 +332,22 @@ server.post('/', upload.single('Datei'),function(req,res){
 	
 });
 
-
+server.get('/:id', function (req, res){
+	//write content to file system
+	var fs_write_stream = fs.createWriteStream('write.txt');
+	 
+	//read from mongodb
+	var readstream = gfs.createReadStream({
+		 _id: mongoose.Types.ObjectId(req.params.id)
+	});
+	readstream.pipe(fs_write_stream);
+	fs_write_stream.on('close', function () {
+		 console.log('file has been written fully!');
+	});
+	
+	res.json({"status":"all done =P"});
+	console.log("gotcha file");
+	
+});
 
 
