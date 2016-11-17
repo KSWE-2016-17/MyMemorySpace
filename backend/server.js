@@ -19,7 +19,7 @@ let server = express();
 server.set('port',8081);
 
 // Configuration to make use of Parser JSON Functionality
-server.use(parser.raw());
+server.use(parser.json());
 
 server.use(cors());
 
@@ -298,25 +298,27 @@ server.delete('/mediafile/:_id', function (req, res) {
 
 // MULTER-FILE HANDLER
 // ({ dest: './uploads/'}).single('fileuploaded')
-server.post('/upload', function(req,res){
+server.post('/', upload.single(),function(req,res){
 	console.log("inside file upload block :)")
 	//if(err) res.status(500).send({ error: 'blabla'});
 	console.log(req);
 	uploady = multer({dest: 'uploads/'}).single('Datei');
     uploady(req,res,function(err) {
         if(err) {
+			
             return handleError(err, res);
         }
 		console.log(res.status);
 		console.log(req.body);
         console.log("done upload---");
 		console.log(req.body);
+		console.log(req.files);
+		console.log(req.file);
         res.json({"status":"completed"});
 
     });
 	
-	console.log(req.files);
-	console.log(req.file);
+
 	console.log("UPLOADED!");
 });
 
