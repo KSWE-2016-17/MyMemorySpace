@@ -15,14 +15,23 @@ server.use(parser.json());
 
 // Multer
 var multer = require('multer');
-var upload = multer({storage: tempStorage});
-var tempStorage = multer.memoryStorage();
+//var tempStorage = multer.memoryStorage();
+//var upload = multer({storage: tempStorage});
+var tempDest = './tempData/';
+var tempFilename = 'tempFilename';
+var upload = multer({dest: tempDest});
+
+
 
 let dbHost = 'mongodb://localhost:27017';
 mongoose.connect(dbHost);
 
 //Connect
-mongoose.connection;
+var dbConnection =  mongoose.connection;
+
+//GridFS
+var Grid = require('gridfs-stream');
+Grid.mongo = mongoose.mongo;
 
 
 server.listen(server.get('port'), function(){
@@ -214,19 +223,48 @@ server.delete('/room/:_id', function (req, res) {
 /*
  * POST: create new mediafile
  * */
-server.post("/mediafile/:user_id",upload.single('Datei') ,function(req,res){
-	var mediafile = new dbSchema.Mediafile({
-		user_id: req.params.user_id,
-		src: req.file,
-		mimetype: req.file.mimetype
-	});
+server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res){
+	var gfs = Grid(dbConnection.db);
+	var fs = require('fs');
+	var newfilename = req.file.originalfilename;
+	var user_id = new mongoose.Types.ObjectId();
+	var newfie_id = new mongoose.Types.ObjectId();
 
-	mediafile.save(function(err,result){
-		if(err) res.status(500).send({ error: 'post new mediafile filed!' });
-		res.json({
-			mediafile:result
+	try{
+		user_id = req.params._id;
+	} catch(err) {
+		console.log(err);
+	}
+
+	var writeStream = gfs.createWriteStream({
+		filename: newfilename
+	})
+	fs.createReadStream(req.file.path).pipe(writeStream);
+	writeStream.on('close', function (file) {
+        console.log(file._id + ' Written To DB');
+		try{
+			newfie_id = file._id;
+		} catch(err) {
+			console.log(err);
+		}
+		var mediafile = new dbSchema.Mediafile({
+			user_id: user_id,
+			src: newfie_id,
+			mimetype: req.file.mimetype
+		});
+		console.log(mediafile);
+		/**/mediafile.save(function(err,result){
+			if(err) {
+
+				res.status(500).send({ error: 'post new mediafile filed!' });
+				console.log(err);
+			}
+			res.json({
+				mediafile:result
+			});
 		});
 	});
+
 });
 
 /*
