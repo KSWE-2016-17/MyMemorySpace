@@ -278,69 +278,48 @@ server.get('/mediafile',function(req,res){
 
 
 /*
- * GET: get all mediafiles by user_id
- * */
-server.get('/mediafile/by_user/:user_id',function(req,res){
-	dbSchema.Mediafile.find({user_id : req.params.user_id}, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
-		res.json(result);
-	});
-});
-/*
- * GET: get  mediafile by _id
+ * GET: get all mediafiles by _id
  * */
 server.get('/mediafile/:_id',function(req,res){
 	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
+		if(err) res.status(500).send({ error: 'get mediafile with id: ' + req.params._id +'filed!' });
 		res.json(result);
 	});
 });
 
 
 /*
- * GET: get file by _id
+ * PUT: update mediafile
  * */
-server.get('/mediafile/file/:_id',function(req,res){
-    var id = req.params._id;
-	gfs.findOne({_id: req.params._id}, function (err, file) {
-		if (err) {return res.status(500).send(err);}
-		if (!file) {return res.status(404).send(''); console.log("file not found")}
-		console.log(file.contentType);
-		res.set('Content-Type', file.contentType);
-   		res.set('Content-Disposition', 'attachment; filename=' + file.filename + '' );
-		var readstream = gfs.createReadStream({
-			_id: file._id
-		});
-		readstream.on("error", function (err) {
-			console.log("Got error while processing stream " + err.message);
-      		res.end();
-		});
-		readstream.pipe(res);
-	});
+server.put('/mediafile/:_id', function (req,res) {
+	dbSchema.Mediafile.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send({ error: 'get mediafile with id: '+req.params._id +'filed!' });
+		if(!result){
+			res.json({
+				message:"Mediafile with id: " + req.params._id+" not found."
+			});
+		}
+		result.src=req.body.src;
+		result.type=req.body.type;
 
+		result.save(function (err, result) {
+			if(err) result.status(500).send({ error: 'save mediafile with id: '+req.params._id +'filed!' });
+			res.json({
+				message:"Successfully updated the mediafile",
+				mediafile: result
+			});
+		});
+	});
 });
 
 
 /*
- * DELETE: delete mediafile
+ * DELETE: delete room
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
-	var src = {"_id":""};
-	dbSchema.Mediafile.findById({_id: req.params._id}, function (err, result) {
+	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
-		console.log("DELETING");
-		console.log(result.src);
-		src._id = result.src;
-		
-		console.log(src);
-		gfs.remove(src, function (err, result2) {
-			if ( err ) res.status(500).send({ error: 'delete file with id: '+ result.src +'filed!' });
-
-		});
-		dbSchema.Mediafile.findByIdAndRemove(req.params._id, function (err) {
-			if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+ req.params._id +'filed!' });
-		});
 		res.json({
 			message: "Successfully deleted the mediafile",
 			room: result
