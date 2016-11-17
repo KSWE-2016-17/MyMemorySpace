@@ -298,9 +298,9 @@ server.delete('/mediafile/:_id', function (req, res) {
 
 // MULTER-FILE HANDLER
 // ({ dest: './uploads/'}).single('fileuploaded')
-server.post('/', upload.single(),function(req,res){
+server.post('/', upload.single('Datei'),function(req,res){
 	console.log("inside file upload block :)")
-	//if(err) res.status(500).send({ error: 'blabla'});
+
 	console.log(req);
 	uploady = multer({dest: 'uploads/'}).single('Datei');
     uploady(req,res,function(err) {

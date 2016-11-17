@@ -97,7 +97,7 @@ $(() => {
 		
 		var senddata = new Object();
 		// Auslesen der Datei-Metadaten
-		senddata.name = file.name;
+		senddata.name = 'Datei';
 		senddata.date = file.lastModified;
 		senddata.size = file.size;
 		senddata.type = file.type;
@@ -126,37 +126,25 @@ $(() => {
 	function startUpload(){
 		
 		console.log("we are inside the upload block!");
-		 $.ajax({
-			  method: 'POST',         // HTTP-Methode, hier: POST
-			  url: "http://localhost:8081/", // Wohin soll die Datei geschickt werden?
-			  data: file,          // Das ist unser Datenobjekt.
-			  processData: false,
-			  contentType: 'image/jpeg',//'image/jpeg',//false,//'multipart/form-data',//'application/x-www-form-urlencoded; charset=UTF-8',
-			  // und wenn alles erfolgreich verlaufen ist, schreibe eine Meldung
-			  // in das Response-Div
-			  success: function() { 
-				console.log("yahoo!");
-			},
-			error: function(xhr, status, error) {
-				console.log(error);
-			}
-		});
-		$.ajax({
-			  method: 'POST',         // HTTP-Methode, hier: POST
-			  url: "http://localhost:8082/", // Wohin soll die Datei geschickt werden?
-			  data: file,          // Das ist unser Datenobjekt.
 
-			  processData: false,
-			  contentType: false,//'image/jpeg',//false,//'multipart/form-data',//'application/x-www-form-urlencoded; charset=UTF-8',
-			  // und wenn alles erfolgreich verlaufen ist, schreibe eine Meldung
-			  // in das Response-Div
-			  success: function() { 
-				console.log("yahoo!");
-			},
-			error: function(xhr, status, error) {
-				console.log(error);
-			}
-		});
+
+		var formData = new FormData();
+		formData.append("Datei",file, "Datei");
+		 var xhr      = new XMLHttpRequest();
+		xhr.open("POST", "http://localhost:8081/", true);
+
+		xhr.onreadystatechange = function () {  
+			if (xhr.readyState === 4) {  
+				if (xhr.status === 200) {  
+                console.log(xhr.responseText);
+				} else {  
+                console.error(xhr.statusText);  
+				}  
+			}  
+		};
+
+		xhr.send(formData);
+		
 	}
 	
 });
