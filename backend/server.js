@@ -11,12 +11,18 @@ var dbSchema  = require('./mongooseSchemas');
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/'});
 
+//CORS
+var cors = require('cors');
+
 
 let server = express();
 server.set('port',8081);
 
 // Configuration to make use of Parser JSON Functionality
 server.use(parser.json());
+
+server.use(cors());
+
 
 let dbHost = 'mongodb://localhost:27017';
 mongoose.connect(dbHost);
@@ -292,11 +298,24 @@ server.delete('/mediafile/:_id', function (req, res) {
 
 // MULTER-FILE HANDLER
 // ({ dest: './uploads/'}).single('fileuploaded')
-server.post('/', upload.single(), function(req,res){
+server.post('/', upload.single('Datei'), function(req,res){
 	console.log("inside file upload block :)")
-	if(err) res.status(500).send({ error: 'blabla'});
-	console.log(req.body);
+	//if(err) res.status(500).send({ error: 'blabla'});
+	
+	uploady = multer({dest: 'uploads/'}).any();
+    uploady(req,res,function(err) {
+        if(err) {
+            return handleError(err, res);
+        }
+		console.log(req.body);
+        console.log("done upload---");
+		console.log(req.body);
+        res.json({"status":"completed"});
+
+    });
+	
 	console.log(req.files);
+	console.log(req.file);
 	console.log("UPLOADED!");
 });
 

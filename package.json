@@ -32,6 +32,7 @@
     "aframe": "0.3.2",
     "aframe-click-drag-component": "2.0.0",
     "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "gridfs-stream": "^1.1.1",
     "jquery": "3.1.1",

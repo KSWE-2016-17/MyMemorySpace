@@ -124,14 +124,15 @@ $(() => {
 	}
 	
 	function startUpload(){
+		
 		console.log("we are inside the upload block!");
 		 $.ajax({
 			  method: 'POST',         // HTTP-Methode, hier: POST
-			  url: "localhost:8081/", // Wohin soll die Datei geschickt werden?
+			  url: "http://localhost:8081/", // Wohin soll die Datei geschickt werden?
 			  data: file,          // Das ist unser Datenobjekt.
 
 			  processData: false,
-			  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			  contentType: 'image/jpeg',//'image/jpeg',//false,//'multipart/form-data',//'application/x-www-form-urlencoded; charset=UTF-8',
 			  // und wenn alles erfolgreich verlaufen ist, schreibe eine Meldung
 			  // in das Response-Div
 			  success: function() { 
