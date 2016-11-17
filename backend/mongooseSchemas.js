@@ -19,8 +19,9 @@ var lightSchema=new mongoose.Schema({
     type: String
 });
 var mediafileSchema=new mongoose.Schema({
+    user_id: ObjectId,
     src: String,
-    type: String,
+    mimetype: String,
 });
 
 var mediaobjectSchema = new mongoose.Schema({
