@@ -275,6 +275,8 @@ server.get('/mediafile',function(req,res){
 		res.json(result);
 	});
 });
+
+
 /*
  * GET: get all mediafiles by user_id
  * */
@@ -293,6 +295,8 @@ server.get('/mediafile/:_id',function(req,res){
 		res.json(result);
 	});
 });
+
+
 /*
  * GET: get file by _id
  * */
@@ -315,6 +319,7 @@ server.get('/mediafile/file/:_id',function(req,res){
 	});
 
 });
+
 
 /*
  * DELETE: delete mediafile
@@ -340,10 +345,7 @@ server.delete('/mediafile/:_id', function (req, res) {
 			message: "Successfully deleted the mediafile",
 			room: result
 		});
-		});
-		
-		
-	
+	});
 });
 
 /*
