@@ -19,8 +19,8 @@ var lightSchema=new mongoose.Schema({
     type: String
 });
 var mediafileSchema=new mongoose.Schema({
-    user_id: ObjectId,
-    src: String,
+    user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    src: mongoose.Schema.Types.ObjectId,
     mimetype: String,
 });
 
@@ -49,7 +49,7 @@ var wallSchema=new mongoose.Schema({
 
 });
 var roomSchema=new mongoose.Schema({
-    user_id: mongoose.Schema.Types.ObjectId,
+    user_id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     roomname: String,
     walls: [wallSchema],
     sky: mediafileSchema,
