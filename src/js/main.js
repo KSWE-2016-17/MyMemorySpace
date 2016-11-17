@@ -129,7 +129,7 @@ $(() => {
 
 
 		var formData = new FormData();
-		formData.append("Datei",file, "Datei");
+		formData.append("Datei",file);
 		 var xhr      = new XMLHttpRequest();
 		xhr.open("POST", "http://localhost:8081/", true);
 

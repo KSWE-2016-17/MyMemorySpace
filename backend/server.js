@@ -14,6 +14,10 @@ var upload = multer({ dest: './uploads/'});
 //CORS
 var cors = require('cors');
 
+//GRID FS
+var fs = require('fs');
+var Grid = require('gridfs-stream');
+
 
 let server = express();
 server.set('port',8081);
@@ -30,6 +34,8 @@ mongoose.connect(dbHost);
 //Connect
 mongoose.connection;
 
+//GRID-FS
+Grid.mongo = mongoose.mongo;
 
 server.listen(server.get('port'), function(){
 	console.log('Server running: localhost:'+server.get('port'));
@@ -302,24 +308,27 @@ server.post('/', upload.single('Datei'),function(req,res){
 	console.log("inside file upload block :)")
 
 	console.log(req);
-	uploady = multer({dest: 'uploads/'}).single('Datei');
-    uploady(req,res,function(err) {
-        if(err) {
-			
-            return handleError(err, res);
-        }
-		console.log(res.status);
-		console.log(req.body);
-        console.log("done upload---");
-		console.log(req.body);
-		console.log(req.files);
-		console.log(req.file);
-        res.json({"status":"completed"});
+	console.log(req.body);
+	console.log(req.file);
 
+	res.json({"status":"completed"});
+	console.log("UPLOADED!");
+	
+	console.log("Writing to the DB---");
+	var gfs = Grid(mongoose.connection.db);
+ 
+    // streaming to gridfs
+    //filename to store in mongodb
+    var writestream = gfs.createWriteStream({
+        filename: req.file.originalname
+    });
+    fs.createReadStream(req.file.path).pipe(writestream);
+ 
+    writestream.on('close', function (file) {
+        // do something with `file`
+        console.log(file.filename + 'Written To DB');
     });
 	
-
-	console.log("UPLOADED!");
 });
 
 
