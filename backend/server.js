@@ -9,7 +9,7 @@ var dbSchema  = require('./mongooseSchemas');
 
 // Multer
 var multer = require('multer');
-var upload = multer({ dest: 'uploads/'});
+var upload = multer({ dest: './uploads/'});
 
 //CORS
 var cors = require('cors');
@@ -302,7 +302,7 @@ server.post('/', upload.single('Datei'), function(req,res){
 	console.log("inside file upload block :)")
 	//if(err) res.status(500).send({ error: 'blabla'});
 	
-	uploady = multer({dest: 'uploads/'}).any();
+	uploady = multer({dest: 'uploads/'}).single('Datei');
     uploady(req,res,function(err) {
         if(err) {
             return handleError(err, res);
