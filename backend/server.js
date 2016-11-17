@@ -13,6 +13,11 @@ server.set('port',8081);
 // Configuration to make use of Parser JSON Functionality
 server.use(parser.json());
 
+// Multer
+var multer = require('multer');
+var upload = multer({storage: tempStorage});
+var tempStorage = multer.memoryStorage();
+
 let dbHost = 'mongodb://localhost:27017';
 mongoose.connect(dbHost);
 
@@ -209,10 +214,11 @@ server.delete('/room/:_id', function (req, res) {
 /*
  * POST: create new mediafile
  * */
-server.post("/mediafile", function(req,res){
+server.post("/mediafile/:user_id",upload.single('Datei') ,function(req,res){
 	var mediafile = new dbSchema.Mediafile({
-		src: req.body.src,
-		type: req.body.type
+		user_id: req.params.user_id,
+		src: req.file,
+		mimetype: req.file.mimetype
 	});
 
 	mediafile.save(function(err,result){
