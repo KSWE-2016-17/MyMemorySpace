@@ -328,6 +328,7 @@ server.post('/', upload.single('Datei'),function(req,res){
     writestream.on('close', function (file) {
         // do something with `file`
         console.log(file.filename + 'Written To DB');
+		console.log("File ID: " + file._id);
     });
 	
 });
