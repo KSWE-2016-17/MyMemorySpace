@@ -239,6 +239,7 @@ server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res)
 	})
 	fs.createReadStream(req.file.path).pipe(writeStream);
 	writeStream.on('close', function (file) {
+        console.log(file._id + ' Written To DB');
 		try{
 			newfie_id= new mongoose.Types.ObjectId(file._id);
 		} catch(err) {
