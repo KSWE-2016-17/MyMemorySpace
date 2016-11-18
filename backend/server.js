@@ -32,7 +32,8 @@ var dbConnection =  mongoose.connection;
 //GridFS
 var Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
-
+var gfs = Grid(dbConnection.db);
+var fs = require('fs');
 
 server.listen(server.get('port'), function(){
 	console.log('Server running: localhost:'+server.get('port'));
@@ -224,31 +225,25 @@ server.delete('/room/:_id', function (req, res) {
  * POST: create new mediafile
  * */
 server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res){
-	var gfs = Grid(dbConnection.db);
-	var fs = require('fs');
-	var newfilename = req.file.originalfilename;
-	var user_id = new mongoose.Types.ObjectId();
-	var newfie_id = new mongoose.Types.ObjectId();
-
 	try{
-		user_id = req.params._id;
+		var userid = mongoose.Types.ObjectId(req.params.user_id.slice(1));
 	} catch(err) {
 		console.log(err);
 	}
-
+	var newfie_id;
+	var newfilename = req.params.user_id.slice(1).concat("/").concat(req.file.originalname);
 	var writeStream = gfs.createWriteStream({
 		filename: newfilename
 	})
 	fs.createReadStream(req.file.path).pipe(writeStream);
 	writeStream.on('close', function (file) {
-        console.log(file._id + ' Written To DB');
 		try{
-			newfie_id = file._id;
+			newfie_id= new mongoose.Types.ObjectId(file._id);
 		} catch(err) {
 			console.log(err);
 		}
 		var mediafile = new dbSchema.Mediafile({
-			user_id: user_id,
+			user_id: userid,
 			src: newfie_id,
 			mimetype: req.file.mimetype
 		});
@@ -262,57 +257,59 @@ server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res)
 			res.json({
 				mediafile:result
 			});
+			console.log(file._id + ' Written To DB');
 		});
 	});
 
 });
 
 /*
- * GET: get all mediafiles
+ * GET: get all mediafiles in db
  * */
+
 server.get('/mediafile',function(req,res){
 	dbSchema.Mediafile.find({}, function(err, result){
 		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
 		res.json(result);
 	});
 });
-
-
 /*
- * GET: get all mediafiles by _id
+ * GET: get all mediafiles by user_id
  * */
-server.get('/mediafile/:_id',function(req,res){
-	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile with id: ' + req.params._id +'filed!' });
+server.get('/mediafile/:user_id',function(req,res){
+	dbSchema.Mediafile.find({user_id : req.params.user_id}, function(err, result){
+		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
 		res.json(result);
 	});
 });
-
-
 /*
- * PUT: update mediafile
+ * GET: get  mediafile by _id
  * */
-server.put('/mediafile/:_id', function (req,res) {
+server.get('/mediafile/:_id',function(req,res){
 	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile with id: '+req.params._id +'filed!' });
-		if(!result){
-			res.json({
-				message:"Mediafile with id: " + req.params._id+" not found."
-			});
-		}
-		result.src=req.body.src;
-		result.type=req.body.type;
-
-		result.save(function (err, result) {
-			if(err) result.status(500).send({ error: 'save mediafile with id: '+req.params._id +'filed!' });
-			res.json({
-				message:"Successfully updated the mediafile",
-				mediafile: result
-			});
-		});
+		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
+		res.json(result);
 	});
 });
+/*
+ * GET: get file by _id
+ * */
+server.get('/mediafile/file/:_id',function(req,res){
 
+	//write content to file system
+	var fs_write_stream = fs.createWriteStream('tempData');
+
+	//read from mongodb
+	var readstream = gfs.createReadStream({
+		 _id: mongoose.Types.ObjectId(req.params.id)
+	});
+	readstream.pipe(fs_write_stream);
+	fs_write_stream.on('close', function () {
+		 console.log('file has been written fully!');
+	});
+
+	res.json({status:"file send"});
+});
 
 /*
  * DELETE: delete room
