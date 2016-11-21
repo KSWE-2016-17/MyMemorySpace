@@ -300,6 +300,7 @@ server.get('/mediafile/file/:_id',function(req,res){
 	gfs.findOne({_id: req.params._id}, function (err, file) {
 		if (err) {return res.status(500).send(err);}
 		if (!file) {return res.status(404).send(''); console.log("file not found")}
+		console.log(file.contentType);
 		res.set('Content-Type', file.contentType);
    		res.set('Content-Disposition', 'attachment; filename=' + file.filename + '' );
 		var readstream = gfs.createReadStream({
@@ -319,8 +320,15 @@ server.get('/mediafile/file/:_id',function(req,res){
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
-	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+	dbSchema.Mediafile.findById({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
+		gfs.delete(result.src, function (err, result2) {
+			if ( err ) res.status(500).send({ error: 'delete file with id: '+ result.src +'filed!' });
+
+		});
+		dbSchema.Mediafile.remove(req.params._id, function (err) {
+			if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+ req.params._id +'filed!' });
+		});
 		res.json({
 			message: "Successfully deleted the mediafile",
 			room: result
