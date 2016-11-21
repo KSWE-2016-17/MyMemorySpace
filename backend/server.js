@@ -304,7 +304,6 @@ server.get('/mediafile/file/:_id',function(req,res){
 		var readstream = gfs.createReadStream({
 			_id: file._id
 		});
-		res.json({status: "file  send"});
 		readstream.on("error", function (err) {
 			console.log("Got error while processing stream " + err.message);
       		res.end();
