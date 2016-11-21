@@ -225,13 +225,14 @@ server.delete('/room/:_id', function (req, res) {
  * POST: create new mediafile
  * */
 server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res){
+	console.log(req.params.user_id);
 	try{
-		var userid = mongoose.Types.ObjectId(req.params.user_id.slice(1));
+		var userid = mongoose.Types.ObjectId(req.params.user_id);
 	} catch(err) {
 		console.log(err);
 	}
 	var newfie_id;
-	var newfilename = req.params.user_id.slice(1).concat("/").concat(req.file.originalname);
+	var newfilename = req.params.user_id.concat("/").concat(req.file.originalname);
 	var writeStream = gfs.createWriteStream({
 		filename: newfilename
 	})
