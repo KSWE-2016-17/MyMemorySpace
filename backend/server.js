@@ -161,7 +161,7 @@ server.get('/room',function(req,res){
  * GET: get one room by _id
  * */
 server.get('/room/:_id',function(req,res){
-	dbSchema.Room.findById(req.params._id, function(err, result){
+	dbSchema.Room.findById({_id: req.params._id}, function(err, result){
 		if(err) res.status(500).send({ error: 'get room with id: '+ req.params._id+' filed!' });
 		res.json(result);
 	});
