@@ -310,6 +310,12 @@ server.put('/mediafile/:_id', function (req,res) {
 				mediafile: result
 			});
 		});
+		res.json({status: "file  send"});
+		readstream.on("error", function (err) {
+			console.log("Got error while processing stream " + err.message);
+      		res.end();
+		});
+		readstream.pipe(res);
 	});
 });
 
