@@ -80,7 +80,7 @@ server.get('/user/:_id',function(req,res){
 /*
 * GET: get one user by name
 * */
-server.get('/user/:name',function(req,res){
+server.get('/user/name/:name',function(req,res){
 	dbSchema.User.findOne(req.params.name, function(err, result){
 		if(err) res.status(500).send({ error: 'get user with name: '+req.params.name +'filed!' });
 		res.json(result);
@@ -170,7 +170,7 @@ server.get('/room/:_id',function(req,res){
 /*
  * GET: get one room by user_id
  * */
-server.get('/room/:user_id',function(req,res){
+server.get('/room/by_user/:user_id',function(req,res){
 	dbSchema.Room.find({"user_id": req.params.user_id}, function(err, result){
 		if(err) res.status(500).send({ error: 'get rooms with user id: '+req.params.user_id +'filed!' });
 		res.json(result);
@@ -276,7 +276,7 @@ server.get('/mediafile',function(req,res){
 /*
  * GET: get all mediafiles by user_id
  * */
-server.get('/mediafile/:user_id',function(req,res){
+server.get('/mediafile/by_user/:user_id',function(req,res){
 	dbSchema.Mediafile.find({user_id : req.params.user_id}, function(err, result){
 		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
 		res.json(result);
@@ -295,24 +295,27 @@ server.get('/mediafile/:_id',function(req,res){
  * GET: get file by _id
  * */
 server.get('/mediafile/file/:_id',function(req,res){
-
-	//write content to file system
-	var fs_write_stream = fs.createWriteStream('tempData');
-
-	//read from mongodb
-	var readstream = gfs.createReadStream({
-		 _id: mongoose.Types.ObjectId(req.params.id)
+    var id = req.params._id;
+	gfs.findOne({_id: req.params._id}, function (err, file) {
+		if (err) {return res.status(500).send(err);}
+		if (!file) {return res.status(404).send(''); console.log("file not found")}
+		res.set('Content-Type', file.contentType);
+   		res.set('Content-Disposition', 'attachment; filename=' + file.filename + '' );
+		var readstream = gfs.createReadStream({
+			_id: file._id
+		});
+		res.json({status: "file  send"});
+		readstream.on("error", function (err) {
+			console.log("Got error while processing stream " + err.message);
+      		res.end();
+		});
+		readstream.pipe(res);
 	});
-	readstream.pipe(fs_write_stream);
-	fs_write_stream.on('close', function () {
-		 console.log('file has been written fully!');
-	});
 
-	res.json({status:"file send"});
 });
 
 /*
- * DELETE: delete room
+ * DELETE: delete mediafile
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
