@@ -37,3 +37,6 @@ MediafileDAO.prototype.create = function(obj,callbacks){
 MediafileDAO.prototype.delete = function(obj,callbacks){
 	return this.daoHelper.delete(obj,this.connection.getFullUrl()+"/mediafile/"+obj._id, callbacks);
 };
+
+exports.default = MediafileDAO;
+module.exports = exports.default;
