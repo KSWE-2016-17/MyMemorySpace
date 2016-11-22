@@ -14,7 +14,7 @@ var DaoManager = function(){
     };
 };
 
-DaoManager.prototype.getDao = function(dao) {
+DaoManager.getDao = function(dao) {
     if (!this.daos[dao]) {
         this.daos[dao] = this.createDao(dao);
     }
