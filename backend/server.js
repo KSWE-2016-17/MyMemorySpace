@@ -33,7 +33,7 @@ var dbConnection =  mongoose.connection;
 var Grid = require('gridfs-stream');
 Grid.mongo = mongoose.mongo;
 var gfs = Grid(dbConnection.db);
-var fs = require('fs');
+var fs = require('fs');	
 
 server.listen(server.get('port'), function(){
 	console.log('Server running: localhost:'+server.get('port'));
@@ -320,20 +320,29 @@ server.get('/mediafile/file/:_id',function(req,res){
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
+	var src = {"_id":""};
 	dbSchema.Mediafile.findById({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
-		gfs.delete(result.src, function (err, result2) {
+		console.log("DELETING");
+		console.log(result.src);
+		src._id = result.src;
+		
+		console.log(src);
+		gfs.remove(src, function (err, result2) {
 			if ( err ) res.status(500).send({ error: 'delete file with id: '+ result.src +'filed!' });
 
 		});
-		dbSchema.Mediafile.remove(req.params._id, function (err) {
+		dbSchema.Mediafile.findByIdAndRemove(req.params._id, function (err) {
 			if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+ req.params._id +'filed!' });
 		});
 		res.json({
 			message: "Successfully deleted the mediafile",
 			room: result
 		});
-	});
+		});
+		
+		
+	
 });
 
 
