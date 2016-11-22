@@ -1,8 +1,3 @@
-// schalten und walten 
-// \..../ \..../
-//  \../   \../
-//   \/     \/
-
 
 var DaoHelper = require ("./DaoHelper");
 
