@@ -14,7 +14,7 @@ var DaoManager = function(){
     };
 };
 
-DaoManager.getDao = function(dao) {
+DaoManager.prototype.getDao = function(dao) {
     if (!this.daos[dao]) {
         this.daos[dao] = this.createDao(dao);
     }
@@ -22,7 +22,7 @@ DaoManager.getDao = function(dao) {
     return this.daos[dao];
 };
 
-DaoManager.createDao = function(dao) {
+DaoManager.prototype.createDao = function(dao) {
     return new dao();
 };
 exports.default = DaoManager;
