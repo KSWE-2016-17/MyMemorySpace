@@ -330,6 +330,13 @@ server.put('/mediafile/:_id', function (req,res) {
 server.delete('/mediafile/:_id', function (req, res) {
 	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
+		gfs.delete(result.src, function (err, result2) {
+			if ( err ) res.status(500).send({ error: 'delete file with id: '+ result.src +'filed!' });
+
+		});
+		dbSchema.Mediafile.remove(req.params._id, function (err) {
+			if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+ req.params._id +'filed!' });
+		});
 		res.json({
 			message: "Successfully deleted the mediafile",
 			room: result
