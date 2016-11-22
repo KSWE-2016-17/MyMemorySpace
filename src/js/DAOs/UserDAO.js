@@ -32,3 +32,6 @@ UserDAO.prototype.update = function(obj,callbacks){
 UserDAO.prototype.delete = function(obj,callbacks){
 	return this.daoHelper.delete(obj,this.connection.getFullUrl()+"/user/"+obj._id, callbacks);
 };
+
+exports.default = UserDAO;
+module.exports = exports.default;
