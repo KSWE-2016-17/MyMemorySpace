@@ -1,80 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
-    <script src="bundle.js"></script>
-
-
-
-    <!-- PLUGIN FOR TEXTS-->
-    <!--<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>-->
-
-    <!-- PLUGIN FOR DRAG&DROP -->
-    <!--<script src="https://unpkg.com/aframe-click-drag-component"></script>-->
-    <!--LOCAL USE-->
-    <!--<script src="./scripts/drag_manual.js"></script>-->
-
-
-</head>
-<body>
-
-    Path<input id="newimagepath" type="text">
-    <button id="btnNewImagePath" type="button">UPLOAD</button>
-
-    YourNewText<input id="newtext" type="text">
-    <button id="btnNewText" type="button">Upload My Text</button>
-    YourColor<input id="newcolor" type="color">
-
-
-
-<a-scene id="myscene">
-    <a-assets id="assetmanager">
-        <img id="pic" src="./assets/images/pic.jpeg">
-        <img id="deep" src="./assets/images/deep.jpg">
-        <img id="ork" src="./assets/images/orks.png">
-        <img id="myimage" src="./assets/images/myskybox.png">
-        <!--<video id="vid" src="./assets/video/neo.mp4" autoplay loop="true"></video>-->
-        <a-asset-item id="sculpture" src="./assets/objects/cube/sculpture.dae"></a-asset-item>
-
-    </a-assets>
-
-    <!-- LOAD MODELS -->
-    <a-collada-model click-drag src="#sculpture" position="10 0 -6"></a-collada-model>
-
-    <!-- LOAD LIGHTS -->
-    <a-entity light="type: spot; angle: -25" position="0 10 0"></a-entity>
-    <a-entity light="type: ambient; color: #CCC"></a-entity>
-
-
-    <!-- LOAD BOXES -->
-    <a-box color="#f4b042" depth="40" height="40" width="2" position="0 0 -20" rotation="0 90 0"></a-box>
-    <a-box color="#f44274" depth="40" height="40" width="2" position="0 0 20" rotation="0 90 0"></a-box>
-    <a-box color="#f47442" depth="40" height="40" width="2" position="-20 0 0"></a-box>
-    <a-box color="#42f4ad" depth="40" height="40" width="2" position="20 0 0"></a-box>
-
-    <a-box color="#bbc9c3" depth="40" height="40" width="2" position="0 -10 0" rotation="0 0 90"></a-box>
-
-    <a-sphere click-drag position="10 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-
-    <!-- LOAD IMAGES -->
-    <a-image click-drag src="#ork" position="-3.2 0 0" rotation="0 90 0" scale="8 8 8"></a-image>
-
-    <!-- LOAD TEXTS -->
-    <a-entity click-drag bmfont-text="text: Hello world; color:#ffffff; width:150" position="7.25 0 -2" rotation="0 -90 0" scale="10 10 10" ></a-entity>
-
-
-
-
-    <a-sky src="#myimage"></a-sky>
-    <a-entity id="mycamentity" position="0 0 0" rotation="0 0 0">
-
-        <!--IF VR DISABLE?-->
-        <!---->
-        <a-camera id="mycam" look-controls-enabled="false"></a-camera>
-    </a-entity>
-</a-scene>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>MyMemorySpace</title>
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="bundle.js"></script>
+  </head>
+  <body>
+  
+  <div style="background-image:url('./assets/images/test.png');">
+    <div style="display:flex;justify-content:center;align-items:center; margin-top: 100px; text-align:center">
+		<div>
+			<h1>MyMemorySpace</h1>
+			<h5><i>Login or Register</i></h5>
+			
+			<div class="form-group" style="text-align:center">
+				<span class="glyphicon glyphicon-user"></span>
+				<span>Username</span>
+				<br>
+				<input type="text" placeholder="Username" style="text-align:center" class="form-control" id="username">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				<span>Password</span>
+				<br>
+				<input type="text" placeholder="Password" style="text-align:center" class="form-control" id="password">
+		
+				<button class="btn btn-primary" type="submit" value="Login" style="margin-top: 10px; width: 70%" id="login">Login</button>
+				<br>
+				<button class="btn btn-warning" style="width: 70%" id="register">Register</button>
+				<br><br>
+				<span id="error" style="color: red"></span>
+			</div>
+			
+		</div>
+		
+	</div>
+	</div>
+	
+  </body>
 </html>
-

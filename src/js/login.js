@@ -1,5 +1,6 @@
 
 if(!localStorage.getItem("userid")){
+	console.log("LOGIN JS");
 	console.log("LOADED LOGIN-JS");
 
 	let username;
@@ -70,6 +71,7 @@ if(!localStorage.getItem("userid")){
 		
 		//CHECK DIE DB AUF USER 
 		
+		route();
 	}
 
 	function checkRegister(){
@@ -83,7 +85,7 @@ if(!localStorage.getItem("userid")){
 	function route(){
 		localStorage.setItem("userid","true");
 		// similar behavior as an HTTP redirect
-		window.location.replace("http://localhost:3000/main.html");
+		window.location.replace("main.html");
 
 		// similar behavior as clicking on a link
 		//window.location.href = "http://stackoverflow.com";
