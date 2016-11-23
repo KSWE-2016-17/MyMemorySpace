@@ -1,7 +1,7 @@
 
 var Mediaobject = function(media_obj){
     this.id=media_obj.id;
-    this.position==media_obj.positio;
+    this.position==media_obj.position;
     this.width==media_obj.width;
     this.height==media_obj.height;
     this.depth==media_obj.depth;
