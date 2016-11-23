@@ -7,7 +7,12 @@ import registerClickDrag from 'aframe-click-drag-component';
 
 import $ from 'jquery';
 
+import "./login.js";
+
+import "../html/main.html";
+
 if(localStorage.getItem("userid")){
+	console.log("A-FRAME JS");
 	$(() => {
 		registerClickDrag(aframe);
 
@@ -56,6 +61,10 @@ if(localStorage.getItem("userid")){
 						});
 					}
 				}
+				
+				if (key==70){
+					logout();
+				}
 			}
 		}
 
@@ -80,6 +89,12 @@ if(localStorage.getItem("userid")){
 
 			console.log(textnode);
 			document.getElementById("myscene").appendChild(textnode);
+		}
+		
+		function logout(){
+			console.log("Clearing local storage");
+			localStorage.clear();
+			window.location.replace("http://localhost:3000/index.html");
 		}
 	});
 }
