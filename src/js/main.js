@@ -7,6 +7,8 @@ import registerClickDrag from 'aframe-click-drag-component';
 
 import $ from 'jquery';
 
+import bootstrap from 'bootstrap';
+
 import "./login.js";
 
 import "../html/main.html";
@@ -27,6 +29,8 @@ if(localStorage.getItem("userid")){
 			});
 
 			$("#btnNewText").click(loadNewText);
+			
+			$("#logout").click(logout);
 
 			window.onkeyup = function(e) {
 				var key = e.keyCode ? e.keyCode : e.which;

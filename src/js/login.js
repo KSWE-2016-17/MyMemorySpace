@@ -90,4 +90,5 @@ if(!localStorage.getItem("userid")){
 		// similar behavior as clicking on a link
 		//window.location.href = "http://stackoverflow.com";
 	}
+	
 }
