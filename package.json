@@ -7,7 +7,7 @@
     "prestart": "npm run build",
     "start": "webpack-dev-server --port 3000 --open --watch --hot --progress --inline",
     "build": "webpack",
-	"fire": "node ./backend/server.js"
+    "fire": "node ./backend/server.js"
   },
   "devDependencies": {
     "babel": "6.5.2",
@@ -31,10 +31,11 @@
   "dependencies": {
     "aframe": "0.3.2",
     "aframe-click-drag-component": "2.0.0",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
     "gridfs-stream": "^1.1.1",
     "jquery": "3.1.1",
-	"body-parser": "^1.15.2",
-    "express": "^4.14.0",
     "mongoose": "^4.5.8"
   }
 }
