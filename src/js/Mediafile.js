@@ -5,5 +5,5 @@ var Mediafile = function(id, user_id, src, mimetype){
     this.mimetype=mimetype;
 };
 
-exports.default =User;
+exports.default =Mediafile;
 module.exports = exports.default;
