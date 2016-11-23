@@ -1,8 +1,8 @@
-var Mediafile = function(id, user_id, src, mimetype){
-    this.id=id;
-    this.user_id=user_id;
-    this.src = src;
-    this.mimetype=mimetype;
+var Mediafile = function(mediafile_obj){
+    this.id=mediafile_obj.id;
+    this.user_id=mediafile_obj.user_id;
+    this.src = mediafile_obj.src;
+    this.mimetype=mediafile_obj.mimetype;
 };
 
 exports.default =Mediafile;
