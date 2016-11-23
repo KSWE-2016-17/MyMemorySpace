@@ -1,5 +1,5 @@
 
-var Mediafile = function(id, position, width, height, depth, rotation, scale, color){
+var Mediaobject = function(id, position, width, height, depth, rotation, scale, color, visible, mediafile){
     this.id=id;
     this.position=positio;
     this.width=width;
@@ -8,7 +8,9 @@ var Mediafile = function(id, position, width, height, depth, rotation, scale, co
     this.rotation=rotation;
     this.scale=scale;
     this.color=color;
+    this.visible=visible;
+    this.medifile=mediafile;
 };
 
-exports.default =User;
+exports.default =Mediaobject;
 module.exports = exports.default;
