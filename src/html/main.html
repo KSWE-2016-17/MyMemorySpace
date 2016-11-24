@@ -19,12 +19,12 @@
     <!--LOCAL USE-->
     <!--<script src="./scripts/drag_manual.js"></script>-->
 	<style>
-	#south    { margin:0;  padding:1em; clear:both }        
-#east     { margin:0;  padding:1em;  width:22em; height:22em; float:left; margin-right:1.1em }        
-#west     { margin:0;  padding:1em;  width:22em; height:22em; float:right; margin-left:1.1em }        
-#center   { margin:0;  padding:1em;  padding-bottom:0em;}        
-
-#center:after    { content:' '; display:block; height:0; overflow:hidden }
+	#south    { margin:0;  height:10% clear:both; margin-top:1px }        
+#east     { margin:0;    width:9%; height:22em; float:left; margin-top: 35px; }        
+#west     { margin:0;   width:9%; height:22em; float:right; margin-top: 35px ; }        
+#center   { padding-bottom:0em; }        
+#center:after    { content:' ';  height:0; overflow:hidden; }
+#myscene { width: 81%; height:640px; float: left}
 	</style>
 
 
@@ -110,7 +110,7 @@
 </div>
 
 <div id="center">
-<a-scene id="myscene">
+<a-scene embedded id="myscene">
     <a-assets id="assetmanager">
         <img id="pic" src="./assets/images/pic.jpeg">
         <img id="deep" src="./assets/images/deep.jpg">
