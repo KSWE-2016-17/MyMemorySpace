@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
+	<link rel="stylesheet" href="main.css">
     <!--<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>-->
     
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<script src="bundle.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- PLUGIN FOR TEXTS-->
     <!--<script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>-->
 
@@ -15,21 +18,98 @@
     <!--<script src="https://unpkg.com/aframe-click-drag-component"></script>-->
     <!--LOCAL USE-->
     <!--<script src="./scripts/drag_manual.js"></script>-->
+	<style>
+	#south    { margin:0;  padding:1em; clear:both }        
+#east     { margin:0;  padding:1em;  width:22em; height:22em; float:left; margin-right:1.1em }        
+#west     { margin:0;  padding:1em;  width:22em; height:22em; float:right; margin-left:1.1em }        
+#center   { margin:0;  padding:1em;  padding-bottom:0em;}        
+
+#center:after    { content:' '; display:block; height:0; overflow:hidden }
+	</style>
 
 
 </head>
 <body>
+<div id="east" style="margin-left:auto;margin-right:auto;text-align:center">
+	<div>Wall Color 
 
-    Path<input id="newimagepath" type="text">
-    <button id="btnNewImagePath" type="button">UPLOAD</button>
+		<div>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Dropdown
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li><a href="#">Separated link</a></li>
+			  </ul>
+			  <button type="button" class="btn btn-primary">OK</button>
+			</div>
+		</div>
+	</div>
+	<hr>
+	Sky Box
+		<div style=" margin-top: 5px">
+		<label class="btn btn-primary btn-file">
+		Upload File<input type="file" style="display: none;">
+		</label>
+		</div>
+		<hr>
+		Wall Visibility
+		<br>
+		<!-- Single button -->
+		<div style="margin-top:15px">
+	<div class="btn-group" >
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Wall<span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+		<li><a href="#">Wall 1</a></li>
+		<li><a href="#">Wall 2</a></li>
+		<li><a href="#">Something else here</a></li>
+		<li><a href="#">Separated link</a></li>
+	  </ul>
+	</div>
+	<button type="button" class="btn btn-primary">
+      <span class="glyphicon glyphicon-eye-open" style="color:#CECECE"></span>
+    </button>
+	</div>
+	<hr>
+</div>
 
-    YourNewText<input id="newtext" type="text">
-    <button id="btnNewText" type="button">Upload My Text</button>
-    YourColor<input id="newcolor" type="color">
-
-	<button id="logout">X Logout</button>
 
 
+<div id="west" style="margin-left:auto;margin-right:auto;text-align:center">
+	Upload Mediafile
+	<br>
+	<label class="btn btn-primary btn-file" style="margin-top: 5px">
+			Upload File<input type="file" style="display: none;">
+			</label>
+			<hr>
+			Visibility
+			<br>
+			<div>
+			<div class="dropdown">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Dropdown
+				<span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">Action</a></li>
+				<li><a href="#">Another action</a></li>
+				<li><a href="#">Something else here</a></li>
+				<li><a href="#">Separated link</a></li>
+			  </ul>
+			  	<button type="button" class="btn btn-primary">
+			<span class="glyphicon glyphicon-eye-open" style="color:#CECECE"></span>
+			</div>
+			</div>
+			<hr>
+</div>
+
+<div id="center">
 <a-scene id="myscene">
     <a-assets id="assetmanager">
         <img id="pic" src="./assets/images/pic.jpeg">
@@ -75,7 +155,52 @@
         <!---->
         <a-camera id="mycam" look-controls-enabled="false"></a-camera>
     </a-entity>
-</a-scene>
+</a-scene></div>
+<div id="south" style="text-align:center ;margin-left: auto; margin-right:auto;">
+
+	<ul class="list-inline" >
+		<li style="border-right: 2px solid #000; border-left: 2px solid #000">Share Room
+		<br>
+			<input type="text" placeholder="UserName"> <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></button>
+		</li>
+  <li style="border-right: 2px solid #000">Create Room
+  <br>
+	<input type="text" placeholder="Room Name">  <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></button>
+  </li>
+  <li style="border-right: 2px solid #000">Logout <br><button class="btn btn-info" id="logout"><span class=" glyphicon glyphicon-remove-circle"></button> </li>
+  <li style="border-right: 2px solid #000">Change Room <br>
+			<div class="dropup">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Change Room
+				<span class="caret"></span>
+			  </button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">Maths</a></li>
+				<li><a href="#">Biology</a></li>
+			  </ul>
+			  </div>
+  </li>
+  <li style="border-right: 2px solid #000">Delete Room
+  <br>
+		<div class="dropup">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				Delete Room
+				<span class="caret"></span>
+			  </button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="#">Maths</a></li>
+				<li><a href="#">Biology</a></li>
+			  </ul>
+			  <button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></button>
+			  </div>
+  </li>
+</ul>
+
+</div>
+
+
+
+
 </body>
 </html>
 
