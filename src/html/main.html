@@ -19,12 +19,12 @@
     <!--LOCAL USE-->
     <!--<script src="./scripts/drag_manual.js"></script>-->
 	<style>
-	#south    { margin:0;  height:10% clear:both; margin-top:1px }        
-#east     { margin:0;    width:9%; height:22em; float:left; margin-top: 35px; }        
-#west     { margin:0;   width:9%; height:22em; float:right; margin-top: 35px ; }        
-#center   { padding-bottom:0em;  }        
-#center:after    { content:' ';  height:0; overflow:hidden; }
-#myscene { width: 81%; height:640px; float: left}
+	* {margin:0; padding:0}
+	#south    { left:10%; height:10%; clear:both; bottom:0; z-index:10; position:fixed;}        
+#east     { margin:0;    width:9%; height:22em; float:left; margin-top: 35px; position:fixed; left:0; z-index:10}        
+#west     { margin:0;   width:9%; height:22em; float:right; margin-top: 35px ; position:fixed; right:0; z-index:10; }        
+#center   { padding-bottom:0em; right:10px; overflow:hidden }        
+#myscene { width: 100%; height:708px;float:left;}
 	</style>
 
 
@@ -161,7 +161,7 @@
 	<ul class="list-inline" >
 		<li style=" border-left: 2px solid #000">
 		<br>
-		<button class="btn btn-default" style="width:200px"><span class="glyphicon glyphicon-chevron-left"></button>
+		<button class="btn btn-default" style="width:200px" id="showLeft"><span class="glyphicon glyphicon-chevron-left"></button>
 		</li>
 		<li style="border-right: 2px solid #000; border-left: 2px solid #000">Share Room
 		<br>
@@ -199,7 +199,7 @@
 			  
 			  <li style="border-right: 2px solid #000; ">
 				<br>
-				<button class="btn btn-default" style="width:200px"><span class="glyphicon glyphicon-chevron-right"></button>
+				<button class="btn btn-default" style="width:200px" id="showRight"><span class="glyphicon glyphicon-chevron-right"></button>
 				</li>
 			  </div>
   </li>
