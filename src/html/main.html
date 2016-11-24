@@ -22,7 +22,7 @@
 	#south    { margin:0;  height:10% clear:both; margin-top:1px }        
 #east     { margin:0;    width:9%; height:22em; float:left; margin-top: 35px; }        
 #west     { margin:0;   width:9%; height:22em; float:right; margin-top: 35px ; }        
-#center   { padding-bottom:0em; }        
+#center   { padding-bottom:0em;  }        
 #center:after    { content:' ';  height:0; overflow:hidden; }
 #myscene { width: 81%; height:640px; float: left}
 	</style>
@@ -159,6 +159,10 @@
 <div id="south" style="text-align:center ;margin-left: auto; margin-right:auto;">
 
 	<ul class="list-inline" >
+		<li style=" border-left: 2px solid #000">
+		<br>
+		<button class="btn btn-default" style="width:200px"><span class="glyphicon glyphicon-chevron-left"></button>
+		</li>
 		<li style="border-right: 2px solid #000; border-left: 2px solid #000">Share Room
 		<br>
 			<input type="text" placeholder="UserName"> <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></button>
@@ -192,6 +196,11 @@
 				<li><a href="#">Biology</a></li>
 			  </ul>
 			  <button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></button>
+			  
+			  <li style="border-right: 2px solid #000; ">
+				<br>
+				<button class="btn btn-default" style="width:200px"><span class="glyphicon glyphicon-chevron-right"></button>
+				</li>
 			  </div>
   </li>
 </ul>
