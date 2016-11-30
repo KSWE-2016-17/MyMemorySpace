@@ -1,57 +1,50 @@
 import q from "q";
-import RoomDAO from "../DAOs/RoomDAO";
+import MediafileDAO from "../DAOs/MediafileDAO";
 
 export default class RoomService {
     constructor(){
         this.dm =  new DaoManager();
-        this.roomDao = this.dm.getDao(RoomDAO);
+        this.mediaDao = this.dm.getDao(MediafileDAO);
     }
     findAll(){
         let defer = q.defer();
 
-        this.roomDao.findAll()
+        this.mediaDao.findAll()
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;
     }
     findById(id){
         let defer = q.defer();
-        this.roomDao.findById(id)
+        this.mediaDao.findById(id)
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;
     }
     findByUser(id){
         let defer = q.defer();
-        this.roomDao.findByUser(id)
+        this.mediaDao.findByUserID(id)
+            .then(defer.resolve)
+            .catch(defer.reject);
+        return defer.promise;
+    }
+    findFileByID(id){
+        let defer = q.defer();
+        this.mediaDao.findFileByID(id)
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;
     }
     create(obj){
         let defer = q.defer();
-        this.roomDao.create(obj)
-            .then(defer.resolve)
-            .catch(defer.reject);
-        return defer.promise;
-    }
-    update(obj){
-        let defer = q.defer();
-        this.roomDao.update(obj)
-            .then(defer.resolve)
-            .catch(defer.reject);
-        return defer.promise;
-    }
-    createOrUpdate(obj){
-        let defer = q.defer();
-        this.roomDao.createOrUpdate(obj)
+        this.mediaDao.create(obj)
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;
     }
     delete(obj){
         let defer = q.defer();
-        this.roomDao.delete(obj)
+        this.mediaDao.delete(obj)
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;

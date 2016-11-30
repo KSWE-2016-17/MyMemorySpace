@@ -1,4 +1,5 @@
 import q from "q";
+import UserDAO from "../DAOs/UserDAO";
 
 export default class UserService {
     constructor(){
