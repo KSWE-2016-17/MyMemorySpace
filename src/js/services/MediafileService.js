@@ -1,7 +1,7 @@
 import q from "q";
 import MediafileDAO from "../DAOs/MediafileDAO";
 
-export default class RoomService {
+export default class MediafileService {
     constructor(){
         this.dm =  new DaoManager();
         this.mediaDao = this.dm.getDao(MediafileDAO);
