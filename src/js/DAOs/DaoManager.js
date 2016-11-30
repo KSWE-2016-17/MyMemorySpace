@@ -1,3 +1,7 @@
+import "./UserDAO";
+import "./RoomDAO";
+import "./MediafileDAO";
+
 var DaoManager = function(){
     this.daos = {};
     this.connection = {
