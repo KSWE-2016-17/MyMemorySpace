@@ -316,12 +316,9 @@ server.put('/mediafile/:_id', function (req,res) {
       		res.end();
 		});
 		readstream.pipe(res);
+
 	});
 });
-
-	res.json({status:"file send"});
-});
-
 
 /*
  * DELETE: delete room
