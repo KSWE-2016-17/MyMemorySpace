@@ -1,5 +1,6 @@
 import q from "q";
 import UserDAO from "../DAOs/UserDAO";
+import DaoManager from "../DAOs/DaoManager"
 
 export default class UserService {
     constructor(){
@@ -8,11 +9,11 @@ export default class UserService {
     }
     findByName(name){
 		let defer = q.defer();
-
+        console.log('UserService: findByName function');
         this.userDao.findByName(name)
             .then(defer.resolve)
             .catch(defer.reject);
-
+        console.log('UserService: findByName function : return promise: '+defer.promise);
         return defer.promise;
 	}
 	findAll(){

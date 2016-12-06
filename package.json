@@ -36,6 +36,7 @@
     "express": "^4.14.0",
     "gridfs-stream": "^1.1.1",
     "jquery": "3.1.1",
-    "mongoose": "^4.5.8"
+    "mongoose": "^4.5.8",
+    "q": "^1.4.1"
   }
 }
