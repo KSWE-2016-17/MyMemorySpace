@@ -1,7 +1,3 @@
-/**
- * Created by xenia on 25.10.16.
- */
-
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
 
@@ -31,6 +27,10 @@ if(localStorage.getItem("userid")){
 			$("#btnNewText").click(loadNewText);
 			
 			$("#logout").click(logout);
+			
+			$("#showLeft").click(showLeft);
+			$("#showRight").click(showRight);
+			
 
 			window.onkeyup = function(e) {
 				var key = e.keyCode ? e.keyCode : e.which;
@@ -100,5 +100,14 @@ if(localStorage.getItem("userid")){
 			localStorage.clear();
 			window.location.replace("http://localhost:3000/index.html");
 		}
+		
+		function showLeft(){
+			$("#east").toggle();
+		}
+		
+		function showRight(){
+			$("#west").toggle();
+		}
+		
 	});
 }
