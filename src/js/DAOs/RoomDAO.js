@@ -22,16 +22,16 @@ RoomDAO.prototype.update = function(obj, callbacks) {
     return this.daoHelper.update(obj, this.connection.getFullUrl() + "/room/:" + obj._id, callbacks);
 };
 
-RoomDAO.prototype.createOrUpdate = function(obj, callbacks) {
+FriendDAO.prototype.createOrUpdate = function(obj, callbacks) {
     if (obj._id) {
         return this.update(obj, this.connection.getFullUrl() + "/room/:" +  obj._id, callbacks);
     } else {
         return this.create(obj, this.connection.getFullUrl() + "/room", callbacks);
     }
 };
-RoomDAO.prototype.delete = function(obj, callbacks) {
+FriendDAO.prototype.delete = function(obj, callbacks) {
     return this.daoHelper.delete(obj, this.connection.getFullUrl() + "/room/:" +  obj._id , callbacks);
 };
-exports.default = RoomDAO;
+exports.default = FriendDAO;
 module.exports = exports.default;
 

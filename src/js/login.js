@@ -1,6 +1,3 @@
-import UserService from './services/UserService'
-
-let userService = new UserService();
 
 if(!localStorage.getItem("userid")){
 	console.log("LOGIN JS");
@@ -37,7 +34,6 @@ if(!localStorage.getItem("userid")){
 			sendErrorMessage("Username or Password Field are empty");
 			return;
 		}
-		console.log('login');
 		checkLogin();
 	}
 
@@ -70,32 +66,12 @@ if(!localStorage.getItem("userid")){
 	}
 
 	function checkLogin(){
-        console.log('checkLogin');
 		let name = username.val();
-		let passwordInput= ''+password.val();
-        userService.findByName(name).then(function(data) {
-            console.log('user: '+ data);
-            if(data) {
-                console.log('input password: '+ passwordInput);
-                console.log('user.password: '+data.password);
-
-                if(data.password === passwordInput){
-
-                    console.log('login succeseful');
-                    route();
-                } else {
-                    //fehler password stimmt nicht überein
-                    console.log('fehler password stimmt nicht überein');
-                }
-            } else {
-                //fehler user existiert nicht
-                console.log('fehler user existiert nicht ');
-            }
-        }).catch((err) =>{
-            console.log('fehler: '+err.toString());
-        });
-
-
+		let pass = password.val();
+		
+		//CHECK DIE DB AUF USER 
+		
+		route();
 	}
 
 	function checkRegister(){

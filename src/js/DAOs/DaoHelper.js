@@ -4,7 +4,7 @@ var DaoHelper = function() {};
 
 DaoHelper.prototype.find = function(dest, callbacks) {
     var defer = q.defer();
-    console.log('daoHelper find dest: ' +dest);
+
     if (typeof $ === "function" && typeof $.ajax === "function") {
         $.ajax({
             url: dest,
@@ -16,13 +16,12 @@ DaoHelper.prototype.find = function(dest, callbacks) {
             for (var index = 0; index < jsonResponse.rows.length; index++) {
                 rows.push(jsonResponse.rows[index].value);
             }
-            console.log(rows);
+
             if (callbacks && typeof callbacks.success === "function") {
                 callbacks.success(rows);
             }
             defer.resolve(rows);
         }).error(function(jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown);
             if (callbacks && typeof callbacks.error === "function") {
                 callbacks.error(errorThrown);
             }

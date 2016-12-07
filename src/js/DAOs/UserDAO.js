@@ -1,7 +1,6 @@
 var DaoHelper = require ("./DaoHelper");
 
 var UserDAO = function(connection){
-	console.log('UserDao cotor: connection: '+ connection);
 	this.connection = connection;
 	this.daoHelper = new DaoHelper();
 };
@@ -16,9 +15,7 @@ UserDAO.prototype.findByID = function(id,callbacks){
 };
 
 UserDAO.prototype.findByName = function(name,callbacks){
-	console.log('UserDao function findByName:'+ name);
-	let res = this.daoHelper.find(this.connection.getFullUrl() + "/user/name/"+name, callbacks)
-	return res;
+	return this.daoHelper.find(this.connection.getFullUrl() + "/user/name/"+name, callbacks);
 };
 
 // CREATE - POST
