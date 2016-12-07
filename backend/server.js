@@ -50,10 +50,10 @@ server.post("/user", function(req,res){
 	});
 	
 	user.save(function(err,result){
-		if(err) res.status(500).send({ error: 'post new user filed!' });
-		res.json({
+		if(err) res.status(500).send(JSON.stringify({ error: 'post new user filed!' }));
+		res.send(JSON.stringify({
 			user:result
-		});
+		}));
 	});
 });
 
@@ -62,8 +62,8 @@ server.post("/user", function(req,res){
 * */
 server.get('/user',function(req,res){
 	dbSchema.User.find({}, function(err, result){
-		if(err) res.status(500).send({ error: 'get user list filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get user list filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -72,8 +72,8 @@ server.get('/user',function(req,res){
 * */
 server.get('/user/:_id',function(req,res){
 	dbSchema.User.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get user with id: '+ req.params._id+' filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get user with id: '+ req.params._id+' filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -82,8 +82,8 @@ server.get('/user/:_id',function(req,res){
 * */
 server.get('/user/name/:name',function(req,res){
 	dbSchema.User.findOne({username: req.params.name}, function(err, result){
-		if(err) res.status(500).send({ error: 'get user with name: '+req.params.name +'filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get user with name: '+req.params.name +'filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -92,21 +92,21 @@ server.get('/user/name/:name',function(req,res){
 * */
 server.put('/user/:_id', function (req,res) {
 	dbSchema.User.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get user with id: '+req.params._id +'filed!' });
+		if(err) res.status(500).send(JSON.stringify({ error: 'get user with id: '+req.params._id +'filed!' }));
 		if(!result){
-			res.json({
+			res.send(JSON.stringify({
 				message:"User with id: " + req.params._id+" not found."
-			});
+			}));
 		}
 		result.username = req.body.username;
 		result.password = req.body.password;
 		
 		result.save(function (err, result) {
-			if(err) result.status(500).send({ error: 'save user with id: '+req.params._id +'filed!' });
-			res.json({
+			if(err) result.status(500).send(JSON.stringify({ error: 'save user with id: '+req.params._id +'filed!' }));
+			res.send(JSON.stringify({
 				message:"Successfully updated the user",
 				user: result
-			});
+			}));
 		});
 	});
 });
@@ -117,11 +117,11 @@ server.put('/user/:_id', function (req,res) {
 
 server.delete('/user/:_id', function (req, res) {
 	dbSchema.User.findByIdAndRemove({_id: req.params._id}, function (err, result) {
-		if ( err ) res.status(500).send({ error: 'delete user with id: '+req.params._id +'filed!' });
-		res.json({
+		if ( err ) res.status(500).send(JSON.stringify({ error: 'delete user with id: '+req.params._id +'filed!' }));
+		res.send(JSON.stringify({
 			message: "Successfully deleted the user",
 			user: result
-		});
+		}));
 	});
 });
 
@@ -140,10 +140,10 @@ server.post("/room", function(req,res){
 	});
 
 	room.save(function(err,result){
-		if(err) res.status(500).send({ error: 'post new room filed!' });
-		res.json({
+		if(err) res.status(500).send(JSON.stringify({ error: 'post new room filed!' }));
+		res.send(JSON.stringify({
 			room:result
-		});
+		}));
 	});
 });
 
@@ -152,8 +152,8 @@ server.post("/room", function(req,res){
  * */
 server.get('/room',function(req,res){
 	dbSchema.Room.find({}, function(err, result){
-		if(err) res.status(500).send({ error: 'get room list filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get room list filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -162,8 +162,8 @@ server.get('/room',function(req,res){
  * */
 server.get('/room/:_id',function(req,res){
 	dbSchema.Room.findById({_id: req.params._id}, function(err, result){
-		if(err) res.status(500).send({ error: 'get room with id: '+ req.params._id+' filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get room with id: '+ req.params._id+' filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -172,8 +172,8 @@ server.get('/room/:_id',function(req,res){
  * */
 server.get('/room/by_user/:user_id',function(req,res){
 	dbSchema.Room.find({"user_id": req.params.user_id}, function(err, result){
-		if(err) res.status(500).send({ error: 'get rooms with user id: '+req.params.user_id +'filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get rooms with user id: '+req.params.user_id +'filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -182,11 +182,11 @@ server.get('/room/by_user/:user_id',function(req,res){
  * */
 server.put('/room/:_id', function (req,res) {
 	dbSchema.Room.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get room with id: '+req.params._id +'filed!' });
+		if(err) res.status(500).send(JSON.stringify({ error: 'get room with id: '+req.params._id +'filed!' }));
 		if(!result){
-			res.json({
+			res.send(JSON.stringify({
 				message:"Room with id: " + req.params._id+" not found."
-			});
+			}));
 		}
 		result.user_id=req.body.user_id;
 		result.roomname=req.body.roomname;
@@ -198,11 +198,11 @@ server.put('/room/:_id', function (req,res) {
 
 
 		result.save(function (err, result) {
-		if(err) result.status(500).send({ error: 'save room with id: '+req.params._id +'filed!' });
-		res.json({
+		if(err) result.status(500).send(JSON.stringify({ error: 'save room with id: '+req.params._id +'filed!' }));
+		res.send(JSON.stringify({
 			message:"Successfully updated the room",
 			room: result
-			});
+			}));
 		});
 	});
 });
@@ -213,11 +213,11 @@ server.put('/room/:_id', function (req,res) {
 
 server.delete('/room/:_id', function (req, res) {
 	dbSchema.Room.findByIdAndRemove({_id: req.params._id}, function (err, result) {
-		if ( err ) res.status(500).send({ error: 'delete room with id: '+req.params._id +'filed!' });
-		res.json({
+		if ( err ) res.status(500).send(JSON.stringify({ error: 'delete room with id: '+req.params._id +'filed!' }));
+		res.send(JSON.stringify({
 			message: "Successfully deleted the room",
 			room: result
-		});
+		}));
 	});
 });
 
@@ -254,12 +254,12 @@ server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res)
 		/**/mediafile.save(function(err,result){
 			if(err) {
 
-				res.status(500).send({ error: 'post new mediafile filed!' });
+				res.status(500).send(JSON.stringify({ error: 'post new mediafile filed!' }));
 				console.log(err);
 			}
-			res.json({
+			res.send(JSON.stringify({
 				mediafile:result
-			});
+			}));
 			console.log(file._id + ' Written To DB');
 		});
 	});
@@ -272,8 +272,8 @@ server.post("/mediafile/:user_id",upload.single(tempFilename) ,function(req,res)
 
 server.get('/mediafile',function(req,res){
 	dbSchema.Mediafile.find({}, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile list filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile list filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -283,8 +283,8 @@ server.get('/mediafile',function(req,res){
  * */
 server.get('/mediafile/:_id',function(req,res){
 	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile with id: ' + req.params._id +'filed!' });
-		res.json(result);
+		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile with id: ' + req.params._id +'filed!' }));
+		res.send(JSON.stringify(result));
 	});
 });
 
@@ -294,23 +294,23 @@ server.get('/mediafile/:_id',function(req,res){
  * */
 server.put('/mediafile/:_id', function (req,res) {
 	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send({ error: 'get mediafile with id: '+req.params._id +'filed!' });
+		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile with id: '+req.params._id +'filed!' }));
 		if(!result){
-			res.json({
+			res.send(JSON.stringify({
 				message:"Mediafile with id: " + req.params._id+" not found."
-			});
+			}));
 		}
 		result.src=req.body.src;
 		result.type=req.body.type;
 
 		result.save(function (err, result) {
-			if(err) result.status(500).send({ error: 'save mediafile with id: '+req.params._id +'filed!' });
-			res.json({
+			if(err) result.status(500).send(JSON.stringify({ error: 'save mediafile with id: '+req.params._id +'filed!' }));
+			res.send(JSON.stringify({
 				message:"Successfully updated the mediafile",
 				mediafile: result
-			});
+			}));
 		});
-		res.json({status: "file  send"});
+		res.send(JSON.stringify({status: "file  send"}));
 		readstream.on("error", function (err) {
 			console.log("Got error while processing stream " + err.message);
       		res.end();
@@ -326,18 +326,18 @@ server.put('/mediafile/:_id', function (req,res) {
 
 server.delete('/mediafile/:_id', function (req, res) {
 	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
-		if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+req.params._id +'filed!' });
+		if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+req.params._id +'filed!' }));
 		gfs.delete(result.src, function (err, result2) {
-			if ( err ) res.status(500).send({ error: 'delete file with id: '+ result.src +'filed!' });
+			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete file with id: '+ result.src +'filed!' }));
 
 		});
 		dbSchema.Mediafile.remove(req.params._id, function (err) {
-			if ( err ) res.status(500).send({ error: 'delete mediafile with id: '+ req.params._id +'filed!' });
+			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+ req.params._id +'filed!' }));
 		});
-		res.json({
+		res.send(JSON.stringify({
 			message: "Successfully deleted the mediafile",
 			room: result
-		});
+		}));
 	});
 });
 
