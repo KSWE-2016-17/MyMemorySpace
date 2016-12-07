@@ -77,9 +77,28 @@ if(!localStorage.getItem("userid")){
 	function checkRegister(){
 		let name = username.val();
 		let pass = password.val();
-		
-		// 1. CHECK OB USERNAME BEREITS SO EXISTIERT
-		// 2. USER REGISTRIEREN
+
+		userService.findByName(name).then(function(data) {
+			console.log('user: '+ data);
+			if(data) {
+				console.log('input password: '+ passwordInput);
+				console.log('user.password: '+data.password);
+
+				if(data.password === passwordInput){
+
+					console.log('login succeseful');
+					route();
+				} else {
+					//fehler password stimmt nicht überein
+					console.log('fehler password stimmt nicht überein');
+				}
+			} else {
+				//fehler user existiert nicht
+				console.log('fehler user existiert nicht ');
+			}
+		}).catch((err) =>{
+			console.log('fehler: '+err.toString());
+		});
 	}
 
 	function route(){

@@ -11,7 +11,7 @@ let server = express();
 server.set('port',8081);
 
 // Configuration to make use of Parser JSON Functionality
-server.use(parser.json());
+server.use(parser.text());
 
 // Multer
 var multer = require('multer');
@@ -44,9 +44,11 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
+	let r = req;
+	console.log(req);
 	var user = new dbSchema.User({
-		username: req.body.username,
-		password: req.body.password
+		username: r.body.username,
+		password: r.body.password
 	});
 	
 	user.save(function(err,result){
