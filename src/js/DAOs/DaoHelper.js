@@ -8,17 +8,21 @@ DaoHelper.prototype.find = function(dest, callbacks) {
     if (typeof $ === "function" && typeof $.ajax === "function") {
         $.ajax({
             url: dest,
-            type: 'GET',
-            dataType: "jsonp",
-            success: function(data, textStatus, jqXHR) {
-                console.log(data);
-                if (callbacks && typeof callbacks.success === "function") {
-                    callbacks.success(data);
-                }
-                defer.resolve(data);
+            type: "GET",
+            contentType: "application/json"
+        }).success(function(data, textStatus, jqXHR) {
+            var jsonResponse = JSON.parse(data);
+            var rows = [];
+            for (var index = 0; index < jsonResponse.rows.length; index++) {
+                rows.push(jsonResponse.rows[index].value);
             }
+            console.log(rows);
+            if (callbacks && typeof callbacks.success === "function") {
+                callbacks.success(rows);
+            }
+            defer.resolve(rows);
         }).error(function(jqXHR, textStatus, errorThrown) {
-            console.log(errorThrown.toString());
+            console.log(errorThrown);
             if (callbacks && typeof callbacks.error === "function") {
                 callbacks.error(errorThrown);
             }

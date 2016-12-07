@@ -85,7 +85,7 @@ server.get('/user/name/:name',function(req,res){
 	dbSchema.User.findOne({username: req.params.name}, function(err, result){
 		if(err) res.status(500).send({ error: 'get user with name: '+req.params.name +'filed!' });
 		console.log(result);
-		res.jsonp(result);
+		res.json(result);
 	});
 });
 
