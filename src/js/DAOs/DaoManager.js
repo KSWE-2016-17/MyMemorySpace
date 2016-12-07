@@ -5,14 +5,14 @@ import "./MediafileDAO";
 var DaoManager = function(){
     this.daos = {};
     this.connection = {
-        protocol: "https",
+        protocol: "http",
         url: "localhost",
         port: "8081"
     };
     this.connection.getFullUrl = function() {
         var result = "";
 
-        result += this.protocol + '//' + this.url + ':' + this.port;
+        result += this.protocol + '://' + this.url + ':' + this.port;
         console.log("full url to server: " + result);
         return result;
     };
