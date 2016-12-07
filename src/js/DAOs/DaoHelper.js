@@ -9,7 +9,7 @@ DaoHelper.prototype.find = function(dest, callbacks) {
         $.ajax({
             url: dest,
             type: "GET",
-            contentType: "application/json"
+            contentType: "text/plain"
         }).success(function(data, textStatus, jqXHR) {
             var jsonResponse = JSON.parse(data);
             var rows = [];
@@ -32,7 +32,7 @@ DaoHelper.prototype.find = function(dest, callbacks) {
             method: "GET",
             mode: "cors",
             headers: new Headers({
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain"
             })
         }).then(function(response) {
             return response.json();
@@ -68,7 +68,7 @@ DaoHelper.prototype.create = function(obj, dest, callbacks) {
              * stated here: https://wiki.apache.org/couchdb/HTTP_Document_API#POST
              */
             type: "POST",
-            contentType: "application/json",
+            contentType: "text/plain",
             data: JSON.stringify(obj)
         }).success(function(data, textStatus, jqXHR) {
             if (callbacks && typeof callbacks.success === "function") {
@@ -90,7 +90,7 @@ DaoHelper.prototype.create = function(obj, dest, callbacks) {
             method: "POST",
             mode: "cors",
             headers: new Headers({
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain"
             }),
             body: JSON.stringify(obj)
         }).then(function(response) {
@@ -118,7 +118,7 @@ DaoHelper.prototype.update = function(obj, dest, callbacks) {
         $.ajax({
             url: dest,
             type: "PUT",
-            contentType: "application/json",
+            contentType: "text/plain",
             data: JSON.stringify(obj)
         }).success(function(data, textStatus, jqXHR) {
             if (callbacks && typeof callbacks.success === "function") {
@@ -136,7 +136,7 @@ DaoHelper.prototype.update = function(obj, dest, callbacks) {
             method: "PUT",
             mode: "cors",
             headers: new Headers({
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain"
             }),
             body: JSON.stringify(obj)
         }).then(function(response) {
@@ -164,7 +164,7 @@ DaoHelper.prototype.delete = function(obj, dest, callbacks) {
         $.ajax({
             url: dest,
             type: "DELETE",
-            contentType: "application/json"
+            contentType: "text/plain"
         }).success(function(data, textStatus, jqXHR) {
             if (callbacks && typeof callbacks.success === "function") {
                 callbacks.success(JSON.parse(data));
@@ -181,7 +181,7 @@ DaoHelper.prototype.delete = function(obj, dest, callbacks) {
             method: "DELETE",
             mode: "cors",
             headers: new Headers({
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain"
             })
         }).then(function(response) {
             return response.json();
