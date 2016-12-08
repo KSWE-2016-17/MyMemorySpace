@@ -44,11 +44,10 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
-	let r = req;
-	console.log(req);
+	let reqbody = JSON.parse(req.body);
 	var user = new dbSchema.User({
-		username: r.body.username,
-		password: r.body.password
+		username: reqbody.username,
+		password: reqbody.password
 	});
 	
 	user.save(function(err,result){
@@ -100,8 +99,9 @@ server.put('/user/:_id', function (req,res) {
 				message:"User with id: " + req.params._id+" not found."
 			}));
 		}
-		result.username = req.body.username;
-		result.password = req.body.password;
+		let reqbody = JSON.parse(req.body);
+		result.username = reqbody.username;
+		result.password = reqbody.password;
 		
 		result.save(function (err, result) {
 			if(err) result.status(500).send(JSON.stringify({ error: 'save user with id: '+req.params._id +'filed!' }));
@@ -132,13 +132,14 @@ server.delete('/user/:_id', function (req, res) {
  * POST: create new room
  * */
 server.post("/room", function(req,res){
+	let reqbody = JSON.parse(req.body);
 	var room = new dbSchema.Room({
-		user_id: req.body.user_id,
-		roomname: req.body.roomname,
-		walls: req.body.walls,
-		sky: req.body.sky,
-		light: req.body.light,
-		mediaobject: req.body.mediaobject
+		user_id: reqbody.user_id,
+		roomname: reqbody.roomname,
+		walls: reqbody.walls,
+		sky: reqbody.sky,
+		light: reqbody.light,
+		mediaobject: reqbody.mediaobject
 	});
 
 	room.save(function(err,result){
@@ -190,12 +191,13 @@ server.put('/room/:_id', function (req,res) {
 				message:"Room with id: " + req.params._id+" not found."
 			}));
 		}
-		result.user_id=req.body.user_id;
-		result.roomname=req.body.roomname;
-		result.walls=req.body.walls;
-		result.sky=req.body.sky;
-		result.light=req.body.light;
-		result.mediaobject=req.body.mediaobject;
+		let reqbody = JSON.parse(req.body);
+		result.user_id=reqbody.user_id;
+		result.roomname=reqbody.roomname;
+		result.walls=reqbody.walls;
+		result.sky=reqbody.sky;
+		result.light=reqbody.light;
+		result.mediaobject=reqbody.mediaobject;
 	
 
 
@@ -279,6 +281,15 @@ server.get('/mediafile',function(req,res){
 	});
 });
 
+/*
+ * GET: get all mediafiles by user_id
+ * */
+server.get('/mediafile/by_user/:user_id',function(req,res){
+	dbSchema.Mediafile.find({user_id : req.params.user_id}, function(err, result){
+		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile list filed!' }));
+		res.send(JSON.stringify(result));
+	});
+});
 
 /*
  * GET: get all mediafiles by _id
@@ -290,57 +301,57 @@ server.get('/mediafile/:_id',function(req,res){
 	});
 });
 
-
 /*
- * PUT: update mediafile
+ * GET: get file by _id
  * */
-server.put('/mediafile/:_id', function (req,res) {
-	dbSchema.Mediafile.findById(req.params._id, function(err, result){
-		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile with id: '+req.params._id +'filed!' }));
-		if(!result){
-			res.send(JSON.stringify({
-				message:"Mediafile with id: " + req.params._id+" not found."
-			}));
-		}
-		result.src=req.body.src;
-		result.type=req.body.type;
+server.get('/mediafile/file/:_id',function(req,res){
+	var id = req.params._id;
+	gfs.findOne({_id: req.params._id}, function (err, file) {
+		if (err) {return res.status(500).send(err);}
 
-		result.save(function (err, result) {
-			if(err) result.status(500).send(JSON.stringify({ error: 'save mediafile with id: '+req.params._id +'filed!' }));
-			res.send(JSON.stringify({
-				message:"Successfully updated the mediafile",
-				mediafile: result
-			}));
+		if (!file) {return res.status(404).send('file not found'); console.log("file not found")}
+		console.log(file.contentType);
+		res.set('Content-Type', file.contentType);
+		res.set('Content-Disposition', 'attachment; filename=' + file.filename + '' );
+		var readstream = gfs.createReadStream({
+			_id: file._id
 		});
-		res.send(JSON.stringify({status: "file  send"}));
 		readstream.on("error", function (err) {
 			console.log("Got error while processing stream " + err.message);
-      		res.end();
+			res.end();
 		});
 		readstream.pipe(res);
-
 	});
+
 });
 
 /*
- * DELETE: delete room
+ * DELETE: delete mediafile
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
-	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
+	var src = {"_id":""};
+	dbSchema.Mediafile.findById({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+req.params._id +'filed!' }));
-		gfs.delete(result.src, function (err, result2) {
-			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete file with id: '+ result.src +'filed!' }));
+		console.log("DELETING");
+		console.log(result.src);
+		src._id = result.src;
 
+		console.log(src);
+		gfs.remove(src, function (err, result) {
+			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete file with id: '+ result.src +'filed!' }));
+			dbSchema.Mediafile.findByIdAndRemove(req.params._id, function (err) {
+				if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+ req.params._id +'filed!' }));
+			});
 		});
-		dbSchema.Mediafile.remove(req.params._id, function (err) {
-			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+ req.params._id +'filed!' }));
-		});
-		res.send(JSON.stringify({
+		res.json({
 			message: "Successfully deleted the mediafile",
-			room: result
-		}));
+			mediafile: result
+		});
 	});
+
+
+
 });
 
 
