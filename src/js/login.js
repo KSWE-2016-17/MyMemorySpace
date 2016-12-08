@@ -68,15 +68,6 @@ if(!localStorage.getItem("userid")){
 	function checkLogin(){
 		let name = username.val();
 		let pass = password.val();
-		
-		//CHECK DIE DB AUF USER 
-		
-		route();
-	}
-
-	function checkRegister(){
-		let name = username.val();
-		let pass = password.val();
 
 		userService.findByName(name).then(function(data) {
 			console.log('user: '+ data);
@@ -99,6 +90,11 @@ if(!localStorage.getItem("userid")){
 		}).catch((err) =>{
 			console.log('fehler: '+err.toString());
 		});
+	}
+
+	function checkRegister(){
+		let name = username.val();
+		let pass = password.val();
 	}
 
 	function route(){
