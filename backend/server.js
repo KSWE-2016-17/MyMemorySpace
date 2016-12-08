@@ -3,6 +3,7 @@ var express = require('express');
 // PARSER TO PARSE REQUEST BODY
 var  parser  = require('body-parser');
 
+require('cors');
 // Mongoose
 var mongoose  = require('mongoose');
 var dbSchema  = require('./mongooseSchemas');
@@ -21,7 +22,11 @@ var tempDest = './tempData/';
 var tempFilename = 'tempFilename';
 var upload = multer({dest: tempDest});
 
-
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 let dbHost = 'mongodb://localhost:27017';
 mongoose.connect(dbHost);
