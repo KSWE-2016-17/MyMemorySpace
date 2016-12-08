@@ -1,5 +1,6 @@
 import q from "q";
 import RoomDAO from "../DAOs/RoomDAO";
+import DaoManager from "../DAOs/DaoManager";
 
 export default class RoomService {
     constructor(){

@@ -1,5 +1,6 @@
 import q from "q";
 import MediafileDAO from "../DAOs/MediafileDAO";
+import DaoManager from "../DAOs/DaoManager";
 
 export default class MediafileService {
     constructor(){
