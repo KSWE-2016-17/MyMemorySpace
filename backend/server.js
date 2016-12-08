@@ -3,6 +3,7 @@ var express = require('express');
 // PARSER TO PARSE REQUEST BODY
 var  parser  = require('body-parser');
 
+var cors = require('cors');
 // Mongoose
 var mongoose  = require('mongoose');
 var dbSchema  = require('./mongooseSchemas');
@@ -21,6 +22,11 @@ var tempDest = './tempData/';
 var tempFilename = 'tempFilename';
 var upload = multer({dest: tempDest});
 
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 let dbHost = 'mongodb://localhost:27017';
@@ -44,10 +50,17 @@ server.listen(server.get('port'), function(){
 * POST: create new user
 * */
 server.post("/user", function(req,res){
-	let reqbody = JSON.parse(req.body);
+	let r = req;
+	console.log(req);
+	console.log("////");
+	console.log(req.body);
+	let js = JSON.parse(req.body);
+	console.log(js);
+	console.log(js.username);
+	console.log(js.password);
 	var user = new dbSchema.User({
-		username: reqbody.username,
-		password: reqbody.password
+		username: js.username,
+		password: js.password
 	});
 	
 	user.save(function(err,result){
@@ -99,9 +112,8 @@ server.put('/user/:_id', function (req,res) {
 				message:"User with id: " + req.params._id+" not found."
 			}));
 		}
-		let reqbody = JSON.parse(req.body);
-		result.username = reqbody.username;
-		result.password = reqbody.password;
+		result.username = req.body.username;
+		result.password = req.body.password;
 		
 		result.save(function (err, result) {
 			if(err) result.status(500).send(JSON.stringify({ error: 'save user with id: '+req.params._id +'filed!' }));
@@ -132,14 +144,13 @@ server.delete('/user/:_id', function (req, res) {
  * POST: create new room
  * */
 server.post("/room", function(req,res){
-	let reqbody = JSON.parse(req.body);
 	var room = new dbSchema.Room({
-		user_id: reqbody.user_id,
-		roomname: reqbody.roomname,
-		walls: reqbody.walls,
-		sky: reqbody.sky,
-		light: reqbody.light,
-		mediaobject: reqbody.mediaobject
+		user_id: req.body.user_id,
+		roomname: req.body.roomname,
+		walls: req.body.walls,
+		sky: req.body.sky,
+		light: req.body.light,
+		mediaobject: req.body.mediaobject
 	});
 
 	room.save(function(err,result){
@@ -191,13 +202,12 @@ server.put('/room/:_id', function (req,res) {
 				message:"Room with id: " + req.params._id+" not found."
 			}));
 		}
-		let reqbody = JSON.parse(req.body);
-		result.user_id=reqbody.user_id;
-		result.roomname=reqbody.roomname;
-		result.walls=reqbody.walls;
-		result.sky=reqbody.sky;
-		result.light=reqbody.light;
-		result.mediaobject=reqbody.mediaobject;
+		result.user_id=req.body.user_id;
+		result.roomname=req.body.roomname;
+		result.walls=req.body.walls;
+		result.sky=req.body.sky;
+		result.light=req.body.light;
+		result.mediaobject=req.body.mediaobject;
 	
 
 
@@ -281,15 +291,6 @@ server.get('/mediafile',function(req,res){
 	});
 });
 
-/*
- * GET: get all mediafiles by user_id
- * */
-server.get('/mediafile/by_user/:user_id',function(req,res){
-	dbSchema.Mediafile.find({user_id : req.params.user_id}, function(err, result){
-		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile list filed!' }));
-		res.send(JSON.stringify(result));
-	});
-});
 
 /*
  * GET: get all mediafiles by _id
@@ -301,57 +302,57 @@ server.get('/mediafile/:_id',function(req,res){
 	});
 });
 
-/*
- * GET: get file by _id
- * */
-server.get('/mediafile/file/:_id',function(req,res){
-	var id = req.params._id;
-	gfs.findOne({_id: req.params._id}, function (err, file) {
-		if (err) {return res.status(500).send(err);}
 
-		if (!file) {return res.status(404).send('file not found'); console.log("file not found")}
-		console.log(file.contentType);
-		res.set('Content-Type', file.contentType);
-		res.set('Content-Disposition', 'attachment; filename=' + file.filename + '' );
-		var readstream = gfs.createReadStream({
-			_id: file._id
+/*
+ * PUT: update mediafile
+ * */
+server.put('/mediafile/:_id', function (req,res) {
+	dbSchema.Mediafile.findById(req.params._id, function(err, result){
+		if(err) res.status(500).send(JSON.stringify({ error: 'get mediafile with id: '+req.params._id +'filed!' }));
+		if(!result){
+			res.send(JSON.stringify({
+				message:"Mediafile with id: " + req.params._id+" not found."
+			}));
+		}
+		result.src=req.body.src;
+		result.type=req.body.type;
+
+		result.save(function (err, result) {
+			if(err) result.status(500).send(JSON.stringify({ error: 'save mediafile with id: '+req.params._id +'filed!' }));
+			res.send(JSON.stringify({
+				message:"Successfully updated the mediafile",
+				mediafile: result
+			}));
 		});
+		res.send(JSON.stringify({status: "file  send"}));
 		readstream.on("error", function (err) {
 			console.log("Got error while processing stream " + err.message);
-			res.end();
+      		res.end();
 		});
 		readstream.pipe(res);
-	});
 
+	});
 });
 
 /*
- * DELETE: delete mediafile
+ * DELETE: delete room
  * */
 
 server.delete('/mediafile/:_id', function (req, res) {
-	var src = {"_id":""};
-	dbSchema.Mediafile.findById({_id: req.params._id}, function (err, result) {
+	dbSchema.Mediafile.findByIdAndRemove({_id: req.params._id}, function (err, result) {
 		if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+req.params._id +'filed!' }));
-		console.log("DELETING");
-		console.log(result.src);
-		src._id = result.src;
-
-		console.log(src);
-		gfs.remove(src, function (err, result) {
+		gfs.delete(result.src, function (err, result2) {
 			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete file with id: '+ result.src +'filed!' }));
-			dbSchema.Mediafile.findByIdAndRemove(req.params._id, function (err) {
-				if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+ req.params._id +'filed!' }));
-			});
+
 		});
-		res.json({
+		dbSchema.Mediafile.remove(req.params._id, function (err) {
+			if ( err ) res.status(500).send(JSON.stringify({ error: 'delete mediafile with id: '+ req.params._id +'filed!' }));
+		});
+		res.send(JSON.stringify({
 			message: "Successfully deleted the mediafile",
-			mediafile: result
-		});
+			room: result
+		}));
 	});
-
-
-
 });
 
 
