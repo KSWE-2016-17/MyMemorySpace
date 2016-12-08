@@ -4,14 +4,16 @@ var DaoHelper = function() {};
 
 DaoHelper.prototype.find = function(dest, callbacks) {
     var defer = q.defer();
-
+    console.log("dao helper:" + dest);
     if (typeof $ === "function" && typeof $.ajax === "function") {
         $.ajax({
             url: dest,
             type: "GET",
             contentType: "text/plain"
         }).success(function(data, textStatus, jqXHR) {
+            console.log("res data: "+ data);
             var jsonResponse = JSON.parse(data);
+             console.log("jsonResponse: "+ jsonResponse);
             var rows = [];
             for (var index = 0; index < jsonResponse.rows.length; index++) {
                 rows.push(jsonResponse.rows[index].value);
@@ -22,6 +24,8 @@ DaoHelper.prototype.find = function(dest, callbacks) {
             }
             defer.resolve(rows);
         }).error(function(jqXHR, textStatus, errorThrown) {
+            console.log("dao helper Error: ");
+            console.log(jqXHR);
             if (callbacks && typeof callbacks.error === "function") {
                 callbacks.error(errorThrown);
             }

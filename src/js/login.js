@@ -1,4 +1,6 @@
+import UserService from "./services/UserService";
 
+let userService = new UserService();
 if(!localStorage.getItem("userid")){
 	console.log("LOGIN JS");
 	console.log("LOADED LOGIN-JS");
@@ -67,17 +69,9 @@ if(!localStorage.getItem("userid")){
 
 	function checkLogin(){
 		let name = username.val();
-		let pass = password.val();
-		
-		//CHECK DIE DB AUF USER 
-		
-		route();
-	}
+		let passwordInput = password.val();
 
-	function checkRegister(){
-		let name = username.val();
-		let pass = password.val();
-
+		console.log('user name: '+ name);
 		userService.findByName(name).then(function(data) {
 			console.log('user: '+ data);
 			if(data) {
@@ -99,6 +93,11 @@ if(!localStorage.getItem("userid")){
 		}).catch((err) =>{
 			console.log('fehler: '+err.toString());
 		});
+	}
+
+	function checkRegister(){
+		let name = username.val();
+		let pass = password.val();
 	}
 
 	function route(){

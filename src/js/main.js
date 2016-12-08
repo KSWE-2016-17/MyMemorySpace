@@ -8,16 +8,23 @@ import bootstrap from 'bootstrap';
 import "./login.js";
 
 import "../html/main.html";
+import Room from "./Room";
+import RoomService from "./services/RoomService";
 
-if(localStorage.getItem("userid")){
+let roomService = new RoomService();
+let userid;
+let actualRoom;
+
+userid=localStorage.getItem("userid");
+if(userid){
 	console.log("A-FRAME JS");
 	$(() => {
 		registerClickDrag(aframe);
-
-		init();
+		initGUI();
+		loadRoom();
 	});
 }
-function init() {
+function initGUI() {
 	// alert("loaded");
 	// window.registerAframeClickDragComponent(window.AFRAME);
 
@@ -108,4 +115,13 @@ function showLeft(){
 
 function showRight(){
 	$("#west").toggle();
+}
+function buildScene(){
+
+}
+function loadRoom(){
+	roomService.findByUser(userid).then((roomData)=>{
+		console.log('room data: '+ roomData);
+
+	});
 }
