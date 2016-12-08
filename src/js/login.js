@@ -1,10 +1,12 @@
+import UserService from "./services/UserService";
+let userService = new UserService();
 
 if(!localStorage.getItem("userid")){
 	console.log("LOGIN JS");
 	console.log("LOADED LOGIN-JS");
 
-	let username;
-	let password;
+	let usernameInput;
+	let passwordInput;
 	let error;
 
 	$(function() {
@@ -20,8 +22,8 @@ if(!localStorage.getItem("userid")){
 		}
 		
 		function initFormFields(){
-		username = $("#username");
-		password = $("#password");
+		usernameInput = $("#username");
+		passwordInput = $("#password");
 		error = $("#error");
 	}
 	  
@@ -46,11 +48,11 @@ if(!localStorage.getItem("userid")){
 	}
 
 	function checkIfFieldEmpty(){
-		if(username.val() === "" || username.val() === null){
+		if(usernameInput.val() === "" || usernameInput.val() === null){
 			console.log("USERNAME EMPTY");
 			return false;
 		}
-		if(password.val() === "" || password.val() === null){
+		if(passwordInput.val() === "" || passwordInput.val() === null){
 			console.log("PASSWORD EMPTY");
 			return false;
 		}
@@ -66,16 +68,16 @@ if(!localStorage.getItem("userid")){
 	}
 
 	function checkLogin(){
-		let name = username.val();
-		let pass = password.val();
+		let name = usernameInput.val();
+		let password = passwordInput.val();
 
 		userService.findByName(name).then(function(data) {
 			console.log('user: '+ data);
 			if(data) {
-				console.log('input password: '+ passwordInput);
+				console.log('input password: '+ password);
 				console.log('user.password: '+data.password);
 
-				if(data.password === passwordInput){
+				if(data.password === password){
 
 					console.log('login succeseful');
 					route();
@@ -93,8 +95,8 @@ if(!localStorage.getItem("userid")){
 	}
 
 	function checkRegister(){
-		let name = username.val();
-		let pass = password.val();
+		let name = usernameInput.val();
+		let pass = passwordInput.val();
 	}
 
 	function route(){
