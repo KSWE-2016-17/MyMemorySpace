@@ -13,19 +13,14 @@ DaoHelper.prototype.find = function(dest, callbacks) {
         }).success(function(data, textStatus, jqXHR) {
             console.log("res data: "+ data);
             var jsonResponse = JSON.parse(data);
-             console.log("jsonResponse: "+ jsonResponse);
-            var rows = [];
-            for (var index = 0; index < jsonResponse.rows.length; index++) {
-                rows.push(jsonResponse.rows[index].value);
-            }
+             console.log("jsonResponse: ");
+            console.log(jsonResponse);
 
             if (callbacks && typeof callbacks.success === "function") {
-                callbacks.success(rows);
+                callbacks.success(jsonResponse);
             }
-            defer.resolve(rows);
+            defer.resolve(jsonResponse);
         }).error(function(jqXHR, textStatus, errorThrown) {
-            console.log("dao helper Error: ");
-            console.log(jqXHR);
             if (callbacks && typeof callbacks.error === "function") {
                 callbacks.error(errorThrown);
             }
@@ -41,15 +36,11 @@ DaoHelper.prototype.find = function(dest, callbacks) {
         }).then(function(response) {
             return response.json();
         }).then(function(jsonResponse) {
-            var rows = [];
-            for (var index = 0; index < jsonResponse.rows.length; index++) {
-                rows.push(jsonResponse.rows[index].value);
-            }
 
             if (callbacks && typeof callbacks.success === "function") {
-                callbacks.success(rows);
+                callbacks.success(jsonResponse);
             }
-            defer.resolve(rows);
+            defer.resolve(jsonResponse);
         }).catch(function(err) {
             if (callbacks && typeof callbacks.error === "function") {
                 callbacks.error(err);
