@@ -1,5 +1,5 @@
 import UserService from "./services/UserService";
-
+import User from "./User";
 
 export default class Login{
 	constructor(){
@@ -7,9 +7,7 @@ export default class Login{
 		this.usernameInputId= "#username";
 		this.passwordInputId="#password";
 		this.errorOutputId="#error";
-		this.inputData = null;
-		this.inputData.username='';
-		this.inputData.password='';
+		this.inputData = new User();
 	}
 	setInputValues() {
 		this.inputData.username = $(this.usernameInputId).val();
@@ -40,7 +38,7 @@ export default class Login{
 			console.log("USERNAME EMPTY");
 			return false;
 		}
-		if(this.passwordInput.val() === "" || this.passwordInput.val() === null){
+		if(this.inputData.password === "" || this.inputData.password === null){
 			console.log("PASSWORD EMPTY");
 			return false;
 		}
@@ -52,8 +50,8 @@ export default class Login{
 	}
 	checkLogin() {
 		let user = null;
-		let name = this.usernameInput;
-		let password = this.passwordInput;
+		let name = this.inputData.username;
+		let password = this.inputData.password;
 
 		userService.findByName(name).then(function (data) {
 			console.log('user: ' + data);

@@ -5,24 +5,44 @@ import $ from 'jquery';
 
 import bootstrap from 'bootstrap';
 
-import "./login.js";
+import "./Login.js";
 
 import "../html/main.html";
+import Login from "./Login";
 
-if(localStorage.getItem("userid")){
-	console.log("A-FRAME JS");
+let login = new Login();
+let actualUser;
+main();
+
+function main(){
 	$(() => {
-		registerClickDrag(aframe);
-
-		init();
+		if(localStorage.getItem("userid")){
+			initMainPage();
+		} else {
+			initLoginPage();
+		}
 	});
 }
-function init() {
-	// alert("loaded");
-	// window.registerAframeClickDragComponent(window.AFRAME);
 
+function initLoginPage(){
+	$(()=>{
+		$("#login").click(()=>{
+			actualUser = login.login();
+		});
+		$("#register").click(()=>{
+			login.register();
+		});
+	});
+}
+
+
+function initMainPage() {
+	// window.registerAframeClickDragComponent(window.AFRAME);
+	localStorage.setItem("userid","true");
+	window.location.replace("main.html");
+	registerClickDrag(aframe);
 	$("#btnNewImagePath").click(() => {
-		alert("TODO Implement me!");
+
 	});
 
 	$("#btnNewText").click(loadNewText);
