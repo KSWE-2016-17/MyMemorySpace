@@ -1,6 +1,6 @@
 export default class Wall {
     constructor(wall_obj){
-        this.id=wall_obj.id;
+        this._id=wall_obj._id;
         this.position=wall_obj.position;
         this.width=wall_obj.width;
         this.height=wall_obj.height;
