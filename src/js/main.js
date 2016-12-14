@@ -22,7 +22,7 @@ main();
 function main(){
 	$(() => {
 		console.log(window.location.pathname);
-		if(localStorage.getItem("userid") && window.location.pathname !== "/main.html"){
+		if(localStorage.getItem("userid")){
 			initMainPage();
 		} else {
 			initLoginPage();
@@ -34,7 +34,7 @@ function initLoginPage(){
 	$(()=>{
 		$("#login").click(()=>{
 			//actualUser = login.login();
-			login.login().then( (data) => {console.log("main stuff"); console.log(data);initMainPage();})
+			login.login().then( (data) => {localStorage.setItem("userid","true");window.location.replace("main.html");})
 						.fail( () => {console.log("User not found");});
 		});
 		$("#register").click(()=>{
@@ -46,8 +46,7 @@ function initLoginPage(){
 
 function initMainPage() {
 	// window.registerAframeClickDragComponent(window.AFRAME);
-	localStorage.setItem("userid","true");
-	window.location.replace("main.html");
+
 	registerClickDrag(aframe);
 	$("#btnNewImagePath").click(() => {
 
