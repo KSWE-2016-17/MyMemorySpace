@@ -17,8 +17,8 @@ main();
 
 function main(){
 	$(() => {
-		console.log(window.location.href);
-		if(localStorage.getItem("userid")){
+		console.log(window.location.pathname);
+		if(localStorage.getItem("userid") && window.location.pathname !== "/main.html"){
 			initMainPage();
 		} else {
 			initLoginPage();
