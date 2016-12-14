@@ -13,6 +13,10 @@ import Login from "./Login";
 let login = new Login();
 let actualUser;
 
+if(window.location.pathname === "/main.html" && !localStorage.getItem("userid")){
+	window.location.replace("index.html");
+}
+
 main();
 
 function main(){
