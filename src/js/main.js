@@ -12,10 +12,12 @@ import Login from "./Login";
 
 let login = new Login();
 let actualUser;
+
 main();
 
 function main(){
 	$(() => {
+		console.log(window.location.href);
 		if(localStorage.getItem("userid")){
 			initMainPage();
 		} else {
@@ -27,7 +29,9 @@ function main(){
 function initLoginPage(){
 	$(()=>{
 		$("#login").click(()=>{
-			actualUser = login.login();
+			//actualUser = login.login();
+			login.login().then( (data) => {console.log("main stuff"); console.log(data);initMainPage();})
+						.fail( () => {console.log("User not found");});
 		});
 		$("#register").click(()=>{
 			login.register();

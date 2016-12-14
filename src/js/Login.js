@@ -1,6 +1,8 @@
 import UserService from "./services/UserService";
 import User from "./User";
 
+import q from "q";
+
 export default class Login{
 	constructor(){
 		this.userService = new UserService();
@@ -52,7 +54,8 @@ export default class Login{
 		let user = null;
 		let name = this.inputData.username;
 		let password = this.inputData.password;
-
+		let deferred = q.defer();
+		let userService = new UserService();
 		userService.findByName(name).then(function (data) {
 			console.log('user: ' + data);
 			if (data) {
@@ -63,6 +66,7 @@ export default class Login{
 
 					console.log('login succeseful');
 					user = new User(data);
+					
 				} else {
 					//fehler password stimmt nicht überein
 					console.log('fehler password stimmt nicht überein');
@@ -73,11 +77,14 @@ export default class Login{
 				console.log('fehler user existiert nicht ');
 				this.sendErrorMessage('fehler user existiert nicht ');
 			}
+			deferred.resolve(user);
 		}).catch((err) => {
 			console.log('fehler: ' + err.toString());
+			deferred.reject();
 		});
-
-		return user;
+		
+		return deferred.promise;
+		//return user;
 	}
 	checkRegister(){
 		return true;
