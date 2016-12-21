@@ -3,7 +3,8 @@ let CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
     entry: {
         javascript: "./src/js/main.js",
-        html: "./src/html/index.html"
+        html: "./src/html/index.html",
+	css: "./src/html/main.css"
     },
     output: {
         path: "./dist",
@@ -24,6 +25,10 @@ module.exports = {
             },
             {
                 test: /\.html$/,
+                loader: "file?name=[name].[ext]"
+            },
+	{
+                test: /\.css$/,
                 loader: "file?name=[name].[ext]"
             }
         ]
