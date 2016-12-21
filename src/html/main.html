@@ -1,14 +1,14 @@
 <body>
-<div id="east" style="margin-left:auto;margin-right:auto;text-align:center">
+<div id="main-east-panel" style="margin-left:auto;margin-right:auto;text-align:center">
 	<div>Wall Color 
 
 		<div>
 			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="wall-color-choose" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				Dropdown
 				<span class="caret"></span>
 			  </button>
-			  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+			  <ul class="dropdown-menu" aria-labelledby="wall-color-choose">
 				<li><a href="#">Action</a></li>
 				<li><a href="#">Another action</a></li>
 				<li><a href="#">Something else here</a></li>
@@ -50,7 +50,7 @@
 
 
 
-<div id="west" style="margin-left:auto;margin-right:auto;text-align:center">
+<div id="main-west-panel" style="margin-left:auto;margin-right:auto;text-align:center">
 	Upload Mediafile
 	<br>
 	<label class="btn btn-primary btn-file" style="margin-top: 5px">
@@ -61,7 +61,7 @@
 			<br>
 			<div>
 			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="visibility-choose" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
 				Dropdown
 				<span class="caret"></span>
 			  </button>
@@ -71,15 +71,15 @@
 				<li><a href="#">Something else here</a></li>
 				<li><a href="#">Separated link</a></li>
 			  </ul>
-			  	<button type="button" class="btn btn-primary">
+			  	<button type="button" class="btn btn-primary"></button>
 			<span class="glyphicon glyphicon-eye-open" style="color:#CECECE"></span>
 			</div>
 			</div>
 			<hr>
 </div>
 
-<div id="center">
-<a-scene embedded id="myscene">
+<div id="main-center">
+<a-scene embedded id="main-myscene">
     <a-assets id="assetmanager">
         <img id="pic" src="./assets/images/pic.jpeg">
         <img id="deep" src="./assets/images/deep.jpg">
@@ -124,26 +124,27 @@
         <!---->
         <a-camera id="mycam" look-controls-enabled="false"></a-camera>
     </a-entity>
-</a-scene></div>
-<div id="south" style="text-align:center ;margin-left: auto; margin-right:auto;">
+</a-scene>
+</div>
+<div id="main-south-panel" style="text-align:center ;margin-left: auto; margin-right:auto;">
 
 	<ul class="list-inline" >
 		<li style=" border-left: 2px solid #000">
 		<br>
-		<button class="btn btn-default" style="width:200px" id="showLeft"><span class="glyphicon glyphicon-chevron-left"></button>
+		<button class="btn btn-default" style="width:200px" id="showLeft"><span class="glyphicon glyphicon-chevron-left"></span></button>
 		</li>
 		<li style="border-right: 2px solid #000; border-left: 2px solid #000">Share Room
 		<br>
-			<input type="text" placeholder="UserName"> <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></button>
+			<input type="text" placeholder="UserName"> <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></button></input>
 		</li>
   <li style="border-right: 2px solid #000">Create Room
   <br>
-	<input type="text" placeholder="Room Name">  <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></button>
+	<input type="text" placeholder="Room Name">  <button class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></button>
   </li>
-  <li style="border-right: 2px solid #000">Logout <br><button class="btn btn-info" id="logout"><span class=" glyphicon glyphicon-remove-circle"></button> </li>
+  <li style="border-right: 2px solid #000">Logout <br><button class="btn btn-info" id="logout"><span class=" glyphicon glyphicon-remove-circle"></span></button> </li>
   <li style="border-right: 2px solid #000">Change Room <br>
 			<div class="dropup">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			  <button class="btn btn-default dropdown-toggle" type="button" id="room-choose" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				Change Room
 				<span class="caret"></span>
 			  </button>
@@ -154,23 +155,24 @@
 			  </div>
   </li>
   <li style="border-right: 2px solid #000">Delete Room
+	  </ul>
   <br>
 		<div class="dropup">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				Delete Room
 				<span class="caret"></span>
-			  </button>
+			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				<li><a href="#">Maths</a></li>
 				<li><a href="#">Biology</a></li>
-			  </ul>
-			  <button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></button>
-			  
-			  <li style="border-right: 2px solid #000; ">
-				<br>
-				<button class="btn btn-default" style="width:200px" id="showRight"><span class="glyphicon glyphicon-chevron-right"></button>
-				</li>
-			  </div>
+			</ul>
+			<button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></button>
+
+		<li style="border-right: 2px solid #000; ">
+			<br>
+			<button class="btn btn-default" style="width:200px" id="showRight"><span class="glyphicon glyphicon-chevron-right"></span></button>
+		</li>
+		</div>
   </li>
 </ul>
 
