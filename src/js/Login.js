@@ -75,6 +75,29 @@ export default class Login{
         return defer.promise;
 	}
 
+	reLogin(id){
+		this.inputData = new User();
+		this.inputData._id = id;
+
+		let user = null;
+		let defer = q.defer();
+		this.inputData.loadFromDB().then((res) =>{
+			if(res){
+				user = res;
+			} else {
+				//fehler user existiert nicht
+				console.log('fehler user existiert nicht ');
+				this.sendErrorMessage('fehler user existiert nicht ');
+			}
+			defer.resolve(user);
+		}).catch((err) => {
+			console.log('fehler: ' + err.toString());
+            defer.reject(err);
+		});
+        console.log("login promise: ", defer.promise);
+        return defer.promise;
+	}
+
 	checkRegister(){
 		return true;
 	}

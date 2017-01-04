@@ -1,5 +1,6 @@
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
+import User from "./User";
 import q from "q";
 import $ from 'jquery';
 
@@ -22,10 +23,24 @@ $(()=>{
 
 function main(){
 		console.log("------------Main------------");
-		if(!localStorage.getItem("userid")){
+		let useridStorage= localStorage.getItem("userid");
+		if(!useridStorage){
 			initLoginPage();
 		} else {
-			initMainPage();
+			if(!actualUser){
+				login.reLogin(useridStorage).then((user)=>{
+					actualUser=user;
+				}).then(()=>{
+					if(actualUser){
+						console.log("actual user: ", actualUser);
+						initMainPage();
+					}
+				}).fail( () => {
+					console.log("User not found");
+					this.sendErrorMessage('fehler user existiert nicht ');
+				});
+			}
+
 			console.log("------------load main page------------");
 		}
 }
@@ -40,7 +55,7 @@ function initLoginPage(){
 					console.log("actual user:");
 					console.log(actualUser);
 					if(actualUser){
-						localStorage.setItem("userid", true);
+						localStorage.setItem("userid", actualUser._id);
 						initMainPage();
 					}
 				}).fail( () => {
@@ -140,7 +155,7 @@ function loadNewText() {
 
 function logout(){
 	console.log("Clearing local storage");
-	localStorage.setItem("userid", false);
+	localStorage.setItem("userid", null);
 	initLoginPage();
 }
 
