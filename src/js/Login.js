@@ -4,9 +4,9 @@ import q from "q";
 export default class Login{
 	constructor(){
 		this.userService = new UserService();
-		this.usernameInputId= "#username";
-		this.passwordInputId="#password";
-		this.errorOutputId="#error";
+		this.usernameInputId= "#login-username";
+		this.passwordInputId="#login-password";
+		this.errorOutputId="#login-error";
 		this.inputData = new User();
 	}
 	setInputValues() {
@@ -50,21 +50,12 @@ export default class Login{
 	}
 	checkLogin() {
 		let user = null;
-		let name = this.inputData.username;
-		let password = this.inputData.password;
         let defer = q.defer();
-		this.userService.findByName(name).then(function (data) {
-            console.log('--------start login function: ');
-			console.log('user: ');
-			console.log(data);
-			if (data) {
-				console.log('input password: ' + password);
-				console.log('user.password: ' + data.password);
-
-				if (data.password === password) {
-
+		this.inputData.loadFromDB().then((res) =>{
+			if(res){
+				if(res._id){
 					console.log('login succeseful');
-					user = new User(data);
+					user = res;
 				} else {
 					//fehler password stimmt nicht überein
 					console.log('fehler password stimmt nicht überein');
@@ -75,20 +66,15 @@ export default class Login{
 				console.log('fehler user existiert nicht ');
 				this.sendErrorMessage('fehler user existiert nicht ');
 			}
-            console.log("login result user:");
-            console.log(user);
-            console.log('--------end login function: ');
-            defer.resolve(user);
-
+			defer.resolve(user);
 		}).catch((err) => {
 			console.log('fehler: ' + err.toString());
             defer.reject(err);
-
 		});
-        console.log("login promise");
-        console.log(defer.promise);
+        console.log("login promise: ", defer.promise);
         return defer.promise;
 	}
+
 	checkRegister(){
 		return true;
 	}

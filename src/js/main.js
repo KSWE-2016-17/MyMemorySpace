@@ -1,6 +1,6 @@
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
-import "q";
+import q from "q";
 import $ from 'jquery';
 
 import bootstrap from 'bootstrap';
@@ -11,6 +11,8 @@ import loginPage from "../html/login.html";
 
 let login = new Login();
 let actualUser;
+let actualRoom;
+
 $(()=>{
 
 	console.log("---");
@@ -32,20 +34,22 @@ function initLoginPage(){
 		console.log("------------load login page------------");
 		console.log(login);
 		$('body').load(loginPage,()=>{
-			$("#login").click(()=>{
+			$("#login-button").click(()=>{
 				login.login().then((user)=>{
 					actualUser=user;
 					console.log("actual user:");
 					console.log(actualUser);
 					if(actualUser){
+						localStorage.setItem("userid", true);
 						initMainPage();
 					}
 				}).fail( () => {
 					console.log("User not found");
+					this.sendErrorMessage('fehler user existiert nicht ');
 				});
 
 			});
-			$("#register").click(()=>{
+			$("#register-button").click(()=>{
 				login.register();
 			});
 		});
@@ -59,7 +63,7 @@ function initMainPage() {
 		$('body').load(mainPage).then(()=>{
 			registerClickDrag(aframe);
 			$("#btnNewImagePath").click(() => {
-
+				console.log("click #btnNewImagePath");
 			});
 
 			$("#btnNewText").click(loadNewText);
@@ -131,19 +135,19 @@ function loadNewText() {
 	});
 
 	console.log(textnode);
-	document.getElementById("myscene").appendChild(textnode);
+	document.getElementById("main-myscene").appendChild(textnode);
 }
 
 function logout(){
 	console.log("Clearing local storage");
-	localStorage.clear();
-	window.location.replace("index.html");
+	localStorage.setItem("userid", false);
+	initLoginPage();
 }
 
 function showLeft(){
-	$("#east").toggle();
+	$("#main-east-panel").toggle();
 }
 
 function showRight(){
-	$("#west").toggle();
+	$("#main-west-panel").toggle();
 }
