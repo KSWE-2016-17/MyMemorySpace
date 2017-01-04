@@ -26,7 +26,7 @@ export default class UserService {
 	}
 	findById(id){
         let defer = q.defer();
-        this.userDao.findById(id)
+        this.userDao.findByID(id)
             .then(defer.resolve)
             .catch(defer.reject);
         return defer.promise;
