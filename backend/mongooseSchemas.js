@@ -38,11 +38,7 @@ var mediaobjectSchema = new mongoose.Schema({
 });
 
 var wallSchema=new mongoose.Schema({
-    position: positionSchema,
-    width: Number,
-    height: Number,
-    depth: Number,
-    rotation: positionSchema,
+    direction: String,
     color: String,
     textur: mediafileSchema,
     visible: Boolean

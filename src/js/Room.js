@@ -14,14 +14,14 @@ export default class Room {
             this.light=room_obj.light;
             this.mediaobjects=room_obj.mediaobjects;
         } else {
-            this.setDefoults(user_id);
+            this.setDefaults(user_id);
         }
     }
 
     setId(id){this._id= id;}
     setUserId(userid){this.user_id=userid;}
 
-    setDefoults(){
+    setDefaults(){
         this._id=null;
         this.user_id=null;
         this.roomname="New Room";
