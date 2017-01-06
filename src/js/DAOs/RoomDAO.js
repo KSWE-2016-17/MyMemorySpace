@@ -9,11 +9,11 @@ RoomDAO.prototype.findAll= function(callbacks){
 };
 
 RoomDAO.prototype.findByUser = function(user_id, callbacks){
-    return this.daoHelper.find(this.connection.getFullUrl() + "/room/by_user/:"+ user_id, callbacks);
+    return this.daoHelper.find(this.connection.getFullUrl() + "/room/by_user/"+ user_id, callbacks);
 };
 
 RoomDAO.prototype.findById = function(_id, callbacks){
-    return this.daoHelper.find(this.connection.getFullUrl() + "/room/:"+ _id, callbacks);
+    return this.daoHelper.find(this.connection.getFullUrl() + "/room/"+ _id, callbacks);
 };
 RoomDAO.prototype.create = function(obj, callbacks) {
     return this.daoHelper.create(obj, this.connection.getFullUrl() + "/room", callbacks);
