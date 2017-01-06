@@ -59,6 +59,10 @@ export default class User {
         console.log('--------User.findById: ');
         let user = this;
         let defer = q.defer();
+        if(!this._id){
+             defer.resolve(null);
+            return defer.promise;
+        }
         this.service.findById(this._id).then((data) =>{
             if(data) {
                 user.username=data.username;
