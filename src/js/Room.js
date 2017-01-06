@@ -5,16 +5,25 @@ import q from "q";
 
 export default class Room {
     constructor(room_obj, user_id){
+        this.service = new RoomService();
+        if(room_obj){
+            this.setupRoom(room_obj);
+        } else {
+            this.setDefaults(user_id);
+        }
+
+    }
+    setupRoom(room_obj){
         if(room_obj){
             this.setId(room_obj._id);
             this.setUserId(room_obj.user_id);
             this.setRoomName(room_obj.roomname);
             this.setWalls(room_obj.walls);
+            console.log("Room ctor walls: ", this.walls);
+
             this.setSky(room_obj.sky);
             this.setLight(room_obj.light);
             this.setMediaobjects(room_obj.mediaobjects);
-        } else {
-            this.setDefaults(user_id);
         }
     }
 
@@ -42,15 +51,17 @@ export default class Room {
         }
     }
     setWalls(walls){
+        console.log("Room setWalls walls: ", walls);
+        this.walls = [];
         if(walls){
             walls.forEach((wall)=>{
-                console.log("Room setWalls wall.direction", wall.getDirection());
-                let newWall = this.getDefaultWall(wall.getDirection());
+                console.log("Room setWalls walls wall: ", wall);
+                let newWall = this.getDefaultWall(wall.direction);
                 newWall.setColor(wall.color);
                 newWall.setTextur(wall.textur);
                 newWall.setVisible(wall.visible);
+                this.walls.push(newWall);
             });
-
         } else{
            this.walls = [
                this.getDefaultWall("right"),
@@ -98,7 +109,57 @@ export default class Room {
         return new Wall(null,direction);
     }
     loadFromDB(){
-
+        return this.findById();
     }
+    findById(){
+        console.log('--------Room.findById: ');
+        let room = this;
+        let defer = q.defer();
+        if(!this._id){
+             defer.resolve(null);
+            return defer.promise;
+        }
+        this.service.findById(this._id).then((data) =>{
+            if(data) {
+                room.setupRoom(data);
+
+            } else {
+                defer.resolve(null);
+            }
+            defer.resolve(room);
+        }).catch((err) => {
+            console.log('Room findById fehler: ' + err.toString());
+            defer.reject(err);
+        });
+        return defer.promise;
+    }
+    findAllByUserId(user_id){
+        console.log('--------Room.findAllByUserId: ');
+        let rooms = [];
+        let defer = q.defer();
+        if(!user_id){
+             defer.resolve(null);
+            return defer.promise;
+        }
+        this.service.findByUser(user_id).then((data) =>{
+            if(data) {
+                data.forEach((room) => {
+                    rooms.push(new Room(room, user_id));
+                });
+            }
+            defer.resolve(rooms);
+        }).catch((err) => {
+            console.log('Room findAllByUserId fehler: ' + err.toString());
+            defer.reject(err);
+        });
+        return defer.promise;
+    }
+    getId(){return this._id;}
+    getUserId(){return this.user_id;}
+    getRoomName(){return this.roomname;}
+    getWalls(){return this.walls;}
+    getSky(){return this.sky;}
+    getLight(){return this.light;}
+    getMediaobjects(){return this.mediaobjects;}
 
 }
