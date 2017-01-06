@@ -2,6 +2,7 @@ import Position from "./Position";
 import q from "q"
 export default class Wall {
     constructor(wall_obj, direction){
+        this.DEFAULT_SIZE =100;
         let dir = direction;
         if(wall_obj){
             this.setId(wall_obj._id);
@@ -22,26 +23,27 @@ export default class Wall {
         }
 
     }
+    getDefaultSize(){return this.DEFAULT_SIZE;}
     getDefaultPosition(direction){
         let position;
         switch (direction){
             case 'right':
-                position=new Position({x:20, y:0, z:0});
+                position=new Position({x: this.getDefaultDepth()/2, y:0, z:0});
                 break;
             case 'left':
-                position=new Position({x:-20, y:0, z:0});
+                position=new Position({x:-this.getDefaultDepth()/2, y:0, z:0});
                 break;
             case 'back':
-                position = this.position=new Position({x:0, y:0, z:-20});
+                position = this.position=new Position({x:0, y:0, z:-this.getDefaultDepth()/2});
                 break;
             case 'front':
-                position = this.position=new Position({x:0, y:0, z:20});
+                position = this.position=new Position({x:0, y:0, z:this.getDefaultDepth()/2});
                 break;
             case 'up':
-                position=new Position({x:0,y: 40, z:0});
+                position=new Position({x:0,y: this.getDefaultHeight()/2, z:0});
                 break;
             case 'down':
-                position=new Position({x:0, y:-10, z:0});
+                position=new Position({x:0, y:-this.getDefaultHeight()/2, z:0});
                 break;
             default:
                 position=new Position({x:0, y:0, z:0});
@@ -65,10 +67,10 @@ export default class Wall {
                 rotation=new Position({x:0, y:90, z:0});
                 break;
             case 'up':
-                rotation=new Position({x:90,y: 0,z: 0});
+                rotation=new Position({x:0,y: 0,z: 90});
                 break;
             case 'down':
-                rotation=new Position({x:90, y:0,z: 0});
+                rotation=new Position({x:0, y:0,z: 90});
                 break;
             default:
                 rotation=new Position({x:0, y:0,z: 0});
@@ -86,10 +88,10 @@ export default class Wall {
         return 2;
     }
     getDefaultHeight(){
-        return 40;
+        return this.DEFAULT_SIZE;
     }
     getDefaultDepth(){
-        return 40;
+        return this.DEFAULT_SIZE;
     }
     setDefaultWidth(){
         this.width= this.getDefaultWidth();
