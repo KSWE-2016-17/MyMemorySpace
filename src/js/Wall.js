@@ -2,22 +2,23 @@ import Position from "./Position";
 import q from "q"
 export default class Wall {
     constructor(wall_obj, direction){
+        let dir = direction;
         if(wall_obj){
             this.setId(wall_obj._id);
             if(wall_obj.direction){
-                direction = wall_obj.direction;
+                dir = wall_obj.direction;
             }
-            this.setDefaultPosition(direction);
+            this.setDefaultPosition(dir);
             this.setDefaultWidth();
             this.setDefaultHeight();
             this.setDefaultDepth();
-            this.setDefaultRotation(direction);
+            this.setDefaultRotation(dir);
             this.setColor(wall_obj.color);
             this.setTextur(wall_obj.textur);
             this.setVisible(wall_obj.visible);
-            this.setDirection(direction);
+            this.setDirection(dir);
         } else {
-            this.setDefaults(direction);
+            this.setDefaults(dir);
         }
 
     }
@@ -90,32 +91,30 @@ export default class Wall {
     getDefaultDepth(){
         return 40;
     }
-    getDefaultColor(){
-        return '#fff';
-    }
     setDefaultWidth(){
-        this.width= 2;
+        this.width= this.getDefaultWidth();
     }
     setDefaultHeight(){
-        this.height =40;
+        this.height =this.getDefaultHeight();
     }
     setDefaultDepth(){
-        this.depth =  40;
+        this.depth =  this.getDefaultDepth();
     }
     setDefaultColor(){
-        this.color= '#fff';
+        this.color= this.getDefaultColor();
     }
 
     setDefaults(direction){
-        this._id=null;
-        this.width=this.getDefaultWidth();
-        this.height=this.getDefaultHeight();
-        this.depth=this.getDefaultDepth();
-        this.color=this.getDefaultColor();
-        this.textur=null;
-        this.visible=true;
-        this.position = this.getDefaultPosition(direction);
-        this.rotation = this.getDefaultRotation(direction);
+        this.setId();
+        this.setDefaultWidth();
+        this.setDefaultHeight();
+        this.setDefaultDepth();
+        this.setColor();
+        this.setTextur();
+        this.setVisible();
+        this.setDefaultPosition(direction);
+        this.setDefaultRotation(direction);
+        this.setDirection(direction);
     }
     setColor(color){
         if(color){
