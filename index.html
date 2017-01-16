@@ -1,0 +1,2773 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Zeichentool Präsentation</title>
+
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <link href="css/impress.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+    <div class="fallback-message">
+        <p>Diese auf impress.js (HTML5) basierende Präsentation sollte in einem Browser betrachtet werden, der HTML5 beherrscht. Ihrer tut es nicht oder nicht vollständig.</p>
+    </div>
+
+    <article id="impress">
+        <!-- Slide template -->
+        <!-- <section class="step slide" data-x="0" data-y="0" data-z="0">
+            <header>
+            </header>
+
+            <main>
+                <h2>Titel</h2>
+
+                <ul>
+                    <li>Lorem</li>
+                    <li>Ipsum</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section> -->
+
+        <section id="start" class="step slide hide" data-x="0" data-y="0" data-z="0">
+            <header>
+                <h1> Zeichentool für Tetraeder</h1>
+            </header>
+            <main>
+                <h2>Überblick</h2>
+                <ul>
+                    <li>Einleitung
+                    </li>
+                    <li>Zeichentool Implementierung
+                        <ul>
+                            <li>
+                                Sytemarchitektur
+                            </li>
+                            <li>
+                                Frontend
+                            </li>
+                            <li>
+                                Backend
+                            </li>
+                            <li>
+                                Build und Deployment
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Software demo
+                    </li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro1" class="step slide hide" data-x="0" data-y="0" data-z="-1500">
+            <header>
+                <h1>Einleitung</h1>
+            </header>
+            <main>
+                <h2>Einleitung</h2>
+                <ul>
+                    <li>
+                        Einleitung
+                    </li>
+                    <li>
+                       Kanban-Workflow
+                    </li>
+                    <li>
+                        Motivation
+                    </li>
+                    <li>
+                       Idee
+                    </li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+
+        <section id="intro-team" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Team</h2>
+                <ul>
+                    <li>Alexej Esau</li>
+                    <li>Ruben Gees</li>
+                    <li>Karsten Tymann</li>
+                    <li>Oxana Zhurakovskaya</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-goal" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Ziel</h2>
+                <h3>Ein einfaches grafisches Raumplanungstool </h3>
+                <img src="./images/intro_history.png" height="400px">
+            </main>
+            <footer> <a href="#start"> Übersicht</a></footer>
+        </section>
+		<section id="intro-goal-1" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <img src="./images/intro_shapes.png" style="margin-top: 30px;">
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="intro-goal-2" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <img src="./images/intro_property.png" style="margin-top: 30px;">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team0" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Rollenverteilung</h2>
+                <table style="margin-top: 50px;">
+                    <tr>
+                        <th>Rolle/Aufgabenbereich </th>
+                        <th>Personen</th>
+                    </tr>
+                    <tr>
+                        <td>Frontend-Entwickler</td>
+                        <td>Karsten, Oxana</td>
+                    </tr>
+                    <tr>
+                        <td>Backend-Entwickler</td>
+                        <td>Alexej, Ruben</td>
+                    </tr>
+                    <tr>
+                        <td>DevOps</td>
+                        <td>Alexej</td>
+                    </tr>
+                    <tr>
+                        <td>Tester</td>
+                        <td>Alle</td>
+                    </tr>
+                    <tr>
+                        <td>Dokumentation</td>
+                        <td>Alle</td>
+                    </tr>
+                    <tr>
+                        <td>Teamleiter</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team1" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Kanban-Workflow (vereinfacht)</h2>
+                <ul>
+                    <li>Pull-Prinzip: Aufgaben sich selber erteilen/erzeugen</li>
+                    <li>=> Selbstorganisation</li>
+                    <li>Übersicht wer an was arbeitet</li>
+                </ul>
+                <img src="./images/kanban/workflow.png" height="300px" width="700">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team1_2" class="step blank multi" data-x="0" data-y="0" data-z="-3000">
+            <main>
+                <img class="vollbild" src="./images/kanban/workflow.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team2" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Stage 0: TODO</h2>
+                <ul>
+                    <li>Anstehende Aufgaben</li>
+                    <li>Aufgaben zuteilen und erzeugen</li>
+                </ul>
+                <img src="./images/kanban/todo.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team3" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Stage 1: VERIFY</h2>
+                <ul>
+                    <li>Task auf Bearbeitung vorbereiten</li>
+                    <li>Informationen sammeln und Planung</li>
+                </ul>
+                <img src="./images/kanban/verify.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team4" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Stage 2: WIP (Work in Progress)</h2>
+                <ul>
+                    <li>Task die aktuell bearbeitet werden</li>
+                    <li>Arbeit protokollieren, Diskussion, abschließen</li>
+                </ul>
+                <img src="./images/kanban/wip.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team5" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Stage 3: Test</h2>
+                <ul>
+                    <li>Testen</li>
+                </ul>
+                <img src="./images/kanban/test.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team6" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Stage 4: Done</h2>
+                <ul>
+                    <li>abgeschlossene Arbeiten</li>
+                </ul>
+                <img src="./images/kanban/done.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team7" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>dahinter stecken Issues</h2> für Diskussionen, Hilfe, interne Protokollierung
+                <img src="./images/kanban/issue.png" width="800px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team8" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Assignees</h2>
+                <b>(sich selber)</b> einer Aufgabe zuweisen
+                <img src="./images/kanban/assignees.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-team9" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Teamvorstellung</h1>
+            </header>
+            <main>
+                <h2>Labels</h2> strukturieren und beschreiben Aufgabentyp<br>
+                <table>
+                    <tr></tr>
+                    <tr>
+                        <td><img src="./images/kanban/labels2.png" height="400"></td>
+                        <td><img src="./images/kanban/labels.png" height="400"></td>
+                        <td><img src="./images/kanban/labels3.png"></td>
+                    </tr>
+                </table>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+                <h2>Motivation</h2> Raumplanungstool für und mit Tetraeder<br>
+                <img src="./images/tetra.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation1" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+                <h2>Raumplanung <img src="./images/tetraeder/tetraeder_dude.jpg" style="margin-left: 200px;height: 100px"></h2>
+                <h5><i>Unter Raumplanung werden die planerischen Vorgänge subsumiert, einen geographischen Raum, [...] nach seinen naturräumlichen, wirtschaftlichen und sozialen Möglichkeiten zu ordnen[...]</i></h5>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation1_1" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+                <ul>
+                    <li>Raum eingrenzen</li>
+					<li>Raum ordnen</li>
+                    <li>Textliche Stellungnahme</li>
+                    <li>Raum grafisch aufarbeiten</li>
+                </ul>
+                <img src="./images/tetraeder/raumplanung.png" width="600">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation1_2" class="step slide multi hide " data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+				<h5>Beispiel: Marktplatz Gütersloh</h5>
+                <img src="./images/tetraeder/gt_both.png" >
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation2" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+                <h3>Alte Variante</h3> - Kartennausschnitt als Bild <br> - Stellungnahme über Text <br>
+                <img src="./images/motivation.png" height="400px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-motivation3" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Motivation</h1>
+            </header>
+            <main>
+                <h3>Alte Variante</h3>
+                <img src="./images/motivation_text.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="intro-idee" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Idee</h1>
+            </header>
+            <main>
+                <h2>Idee</h2>
+                <p>Altes Tool:</p>
+                <ul>
+                    <li>nicht interaktiv</li>
+                    <li>umständlich</li>
+                    <li>Plan ohne Bebilderung schwierig nachzuvollziehen</li>
+                </ul>
+                <p>Schwerpunkte beim eigenen Tool</p>
+                <h3><i>Alles was in der Raumplanung mit Stift und Papier gezeichnet werden kann
+					soll das Tool ermöglichen</i></h3>
+            </main>
+            <footer></footer>
+        </section>
+		 <section id="intro-idee-1" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Einleitung: Idee</h1>
+            </header>
+            <main>
+			<h3><i>Alles was in der Raumplanung mit Stift und Papier gezeichnet werden kann
+					soll das Tool ermöglichen</i></h3>
+                <ul>
+                    <li><b>Hohe Usability</b> - Sachbearbeiter sind unerfahren und technisch unversiert</li>
+                    <li><b>Funktionalität</b> - Kreise, Linien, Formen - wie auf Papier</li>
+                    <li><b>Verlauf</b> - Änderungsverlauf speichern und zeigen</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi1" class="step slide multi" data-x="0" data-y="0" data-z="-1500">
+            <header>
+                <h1>Implementierung</h1>
+            </header>
+            <main>
+                <h1>Zeichentool Implementierung</h1>
+                <ul>
+                    <li>Überblick</li>
+                    <li>Sytemarchitektur</li>
+                    <li>Frontend</li>
+                    <li>Backend</li>
+                    <li>Build und Deployment</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi2" class="step slide multi" data-x="0" data-y="0" data-z="-1500">
+            <header>
+                <h1>Implementierung: Überblick</h1>
+            </header>
+            <main>
+                <h1>Verwendete Technologien</h1>
+                <img src="./images/techno.png" width="900">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-struckt" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Implementierung: Überblick</h1>
+            </header>
+            <main>
+                <h2>Sytemarchitektur</h2>
+                <img src="./images/architecture.png" height="450" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend" class="step slide multi hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>Frontend</h2>
+                <ul>
+                    <li>Leaflet</li>
+                    <li>Usecase Diagramme</li>
+                    <li>Grundfunktionen</li>
+                    <li>Codestruktur</li>
+                    <li>ECMA Script 6</li>
+                    <li>Babel</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/leafletlogo.png" width="400px" height="100px">
+                <p>OpenSource JS-Library für interaktive Karten</p>
+                <ul>
+                    <li>Aktuelle Version: 1.0.2 (Nov21,2016)</li>
+                    <li>Unterstützt alle gängigen Browser</li>
+                    <li>Mobile Friendly</li>
+                    <li>Exportiert Shapes in GeoJSONs</li>
+                    <li>Erweiterbar durch Plugins</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet2" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Beispiele</h3>
+                <img src="./images/leaflet_examples.png" width="800px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet3" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3><img src="./images/leafletlogo.png" height="50">Basics</h3>
+                <ul>
+                    <li>Karte erzeugen</li>
+                    <li><img src="./images/createmap.png"></li>
+                    <li>View (Koordinaten) und Zoom-Level setzen</li>
+                    <li><img src="./images/setmapview.png"></li>
+                    <li>Tile-Layer (Karte) setzen</li>
+                    <li><img src="./images/settilelayer.png"></li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet4" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <ul>
+                    <li>Event-Listener hinzufügen</li>
+                    <li><img src="./images/mapeventlistener.png"></li>
+                    <li>Shape hinzufügen</li>
+                    <li><img src="./images/addcircletomap.png"></li>
+                    <li>Layer Groups</li>
+                    <li><img src="./images/layergroup.png"></li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet5" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <ul>
+                    <li>Plugin Bibliothek</li>
+                    <li><img src="./images/leafletplugins.png"></li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-leaflet6" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/leaflet-class-diagram.png" width="1000" height="700">
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="presi-frontend-leaflet7" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+				<h5>Ausschnitt: Shapes</h5>
+                <img src="./images/leaflet_close_shapes.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-uc" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Usecase Diagramme</h3>
+				<ul>
+					<li>Grundfunktionen</li>
+					<li>Karte bearbeiten</li>
+					<li>Zeichenobjekte bearbeiten</li>
+				</ul>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-uc1" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Zeichentool Grundfunktionen</h3>
+                <img src="./images/usecases/ZeichentoolUseCases.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-uc2" class="step slide multi hide" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Karte Bearbeiten</h3>
+                <img src="./images/usecases/KarteBearbeitenUseCases.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-uc3" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Zeichenobjekte Bearbeiten</h3>
+                <img src="./images/usecases/ZeichenobjektBearbeitenUseCases.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Codestruktur</h3>
+				<ul>
+					<li>Version 1</li>
+					<li>Versionen im Überblick</li>
+					<li><b>Version 3</b></li>
+				</ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Code Version 1</h5>
+                <img src="./images/version1.png" width="800px">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Klassendiagramm</h5>
+                <img src="./images/version1code/uml.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>Code Version 1</h2>
+                <h5>CodeAusschnitte</h5>
+				<ul>
+					<li>tool.js <i>(States)</i></li>
+					<li>app.js <i>(Controller)</i></li>
+					<li>rectangle.js <i>(ShapeTool)</i></li>
+					<li>polygon.js <i>(ShapeTool)</i></li>
+				</ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>tool.js</h2>
+                <img src="./images/version1code/states.png" style="height: 400px">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_5" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>app.js</h2>
+                <img src="./images/version1code/import_functions.png">
+                <img src="./images/version1code/active_state.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_6" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>app.js</h5>
+                <img src="./images/version1code/switch_state.png" style="height: 500px" >
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_7" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>app.js</h5>
+                <img src="./images/version1code/switch_state_2.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>rectangle.js</h2>
+                <img src="./images/version1code/rectangle.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_4" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>polygon.js</h2>
+                <img src="./images/version1code/polygon.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-code-v1_8" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>Fazit</h2>
+                <ul>
+                    <li>doppelter Code</li>
+                    <li>unübersichtlich</li>
+                    <li>schwer erweiterbar</li>
+                </ul>
+                <h3><b>Ziel: OOP mit echten Klassen und Polymorphie</b></h3>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-versions-1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h2>3 große Versionen</h2>
+                <h5>Version 1</h5>
+                <ul>
+                    <li>Initiales Design mit StateMachine ohne Klassen - Rückgabe von Leaflet Objects</li>
+                    <li>StateMachine mit Funktionsaufrufen aus ausgelagerten JS-Files (je ShapeTool)</li>
+                </ul>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-versions-2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Version 2</h5>
+                <ul>
+                    <li>Design mit Klassen je Shape und Vererbung (ES6) - Rückgabe von Leaflet Objects</li>
+                    <li>Keine StateMachine</li>
+                    <li>Polymorphie</li>
+                    <li>Vererbungshierarchie unter den Shape-Tools</li>
+                </ul>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-versions-2_1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Version 2</h5>
+                <img src="./images/version2/hierachie.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-versions-3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Version 3</h5>
+                <ul>
+                    <li>Rückgabe von Shapes (Eigene-Definition)</li>
+                    <li><b>Unterteilung in 2 Klassenhierarchien Tool & Shape</b></li>
+                    <li>TOOL: Erzeugung von Shapes mit ihren Koordinaten</li>
+                    <li>SHAPE: Halten des Leaflet-Objects+Styling Methoden</li>
+                    <li>=>Trennung in [Circle/Rectangle...]-Tool und [Circle/Rectangle...]-Shape</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Neues Klassendiagramm</h5>
+                <h5>Tools</h5>
+                <img class="vollbild" src="./images/version3/tools.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new-tools-closer" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/version3/detailed_tools.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new-tools" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Tools - Tools bereitstellen</h5>
+                <img src="./images/version3/tool_first_level.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new-tools_1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>PointTools - Shapes einteilen</h5>
+                <img src="./images/version3/tool_second_level.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new-tools_2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>ShapeTools - Shapes erzeugen</h5>
+                <img src="./images/version3/tool_third_level_close.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new-tools_3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>PropertyTools - zum Styling</h5>
+                <img src="./images/version3/propertytools_close.png">
+            </main>
+            <footer></footer>
+        </section>
+		<section id="presi-frontend-codestruckt-class-new-tools_4" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/version3/propertytools_gui.png">
+            </main>
+            <footer></footer>
+        </section>
+		<section id="presi-frontend-codestruckt-class-new-tools_5" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/version3/propertytools_gui_done.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new_2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Shapes</h5>
+                <img src="./images/version3/shapes.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new_3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Shape</h5>
+                <img src="./images/version3/shape_close.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-class-new_4" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Circle und Line Shapes</h5>
+                <img src="./images/version3/circleandline_close.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-ecma6" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5><img src="./images/es6.png" width="100px">ECMA Script 6</h5>
+                <ul>
+                    <li>liefert Standards für u.a. JavaScript</li>
+                    <li>Finaler Release: Jun.2015</li>
+                    <li>Neueste Version: 7 - ECMAScript 2016 (Jun.2016)</li>
+                </ul>
+                <img src="./images/es6_technology_support.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-ecma6_1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>ECMA Script 6 Feature Auswahl</h5>
+                <ul>
+                    <li>Konstanten<br><img src="./images/es6_constants.png"></li>
+                    <li>Scopes (Variablen/Funktionen)<br><img src="./images/es6_scopes.png"></li>
+                    <li>Defaultparameter<br><img src="./images/es6_defaults.png"></li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-ecma6_2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <ul>
+                    <li>Exports/Imports<br><img src="./images/es6_exportsimports.png"></li>
+                    <li>Arrow Functions<br><img src="./images/es6_arrows.png"></li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-ecma6_3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Klassen statt Prototypes</h5>
+                <ul>
+                    <li>Klasse definieren<br><img src="./images/es6_classes.png" style="height:200px"></li>
+                    <li>Vererbung<br><img src="./images/es6_inheritance.png" style="height:150px"></li>
+                    <li>Get/Set innerhalb der Klasse</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Neue code Strucktur</h5>
+                <h5>Tool</h5>
+                <img src="./images/version3/code/tool.png" style="height: 400px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new-1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Tool</h5>
+                <h5>ShapeTool</h5>
+                <img src="./images/version3/code/shapetool.png" style="height: 450px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new-2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Tool</h5>
+                <h5>TwoPointShapeTool</h5>
+                <img src="./images/version3/code/twopointshapetool.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new-3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Tool</h5>
+                <h5>RectangleShapeTool</h5>
+                <img src="./images/version3/code/rectangletool.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new-4" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Shape</h5>
+                <h5>Shape</h5>
+                <img src="./images/version3/code/shape.png" style="height: 450px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruct-code-new-5" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>Shape</h5>
+                <h5>RectangleShape</h5>
+                <img src="./images/version3/code/rectangleshape.png" style="height: 450px">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-babel" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <br>
+                <h5><img src="./images/babelisolated.png" width="100px"></h5>
+                <ul>
+                    <li>Aktuelle Version: 6.19.0</li>
+                </ul>
+                <strong>Motivation</strong><br>
+                <img src="./images/oldbrowsers.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-babel1" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+            </header>
+            <main>
+                <ul>
+                    <li>Alte Browser unterstützen, neue Features beibehalten</li>
+                    <li>Transpiliert ES6 Standard in niedrigeren ES5</li>
+                </ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-codestruckt-babel2" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <img src="./images/babelised.png">
+                <br> ES5 Support
+                <img src="./images/es5support.png">
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-frontend-codestruckt-babel3" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h5>ES7 existiert bereits und ES8 ist in Planung</h5>
+                <br> ES7 Support
+                <br>
+                <img src="./images/es7+support.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-geojson" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>GeoJSON</h3>
+                <br> Das GeoJSON Format wurde für die verschiedenen Shapes erweitert:
+                <table>
+                    <tr>
+                        <th>GeoJSON Objekt</th>
+                        <th>Shape</th>
+                    </tr>
+                    <tr>
+                        <th>Circle</th>
+                        <th>CircleShape</th>
+                    </tr>
+                    <tr>
+                        <th>Rectangle</th>
+                        <th>RectangleShape</th>
+                    </tr>
+                    <tr>
+                        <th>Marker</th>
+                        <th>MarkerShape</th>
+                    </tr>
+                    <tr>
+                        <th>Text</th>
+                        <th>TextShape</th>
+                    </tr>
+                </table>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-to-geojson" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Konvertieren zu GeoJSON: Circle</h3>
+                <img src="./images/to_geo_json.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-frontend-from-geojson" class="step slide multi" data-x="0" data-y="0" data-z="-6000">
+            <header>
+                <h1>Implementierung: Frontend</h1>
+            </header>
+            <main>
+                <h3>Konvertieren von GeoJSON: Circle</h3>
+                <img src="./images/from_geo_json.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h2>Backend</h2>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-overview" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Technologie Überblick</h3>
+                <ul>
+                    <li>Servlets</li>
+                    <li>JSF</li>
+                    <li>JPA</li>
+                    <li>Apache Commons IO</li>
+                    <li>Apache Commons Lang</li>
+                    <li>Gson</li>
+                    <li>Gradle</li>
+                </ul>
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-Architektur" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Architektur</h3>
+                <img src="./images/architecture.png" />
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-Klassendiagramm" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Klassendiagramm</h3>
+                <img src="./images/class_diagram_backend.png" />
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-dbschema" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Datenbank-Schema</h3>
+                <br>
+                <img src="./images/database_model.png"/>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend-DAOs" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>DAO Pattern</h3>
+                <br>
+                <img src="./images/dao_pattern.jpg" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend-Entitys" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Beispiel für eine Entity: GeoJson</h3>
+                <img src="./images/entity_geojson.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend-Beispiel-DAO" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Beispiel für ein DAO: GeoJsonDAO</h3>
+                <img src="./images/dao_geojson.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend-Beispiel-DAO-2" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Beispiel für ein DAO: GeoJsonDAO</h3>
+                <img src="./images/dao_geojson_modify.png" />
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-Transactional" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Besonderheit @Transactional</h3>
+                <br>
+                <img src="./images/backend_not_transactional.png" />
+                <br> Vs.
+                <br>
+                <br>
+                <img src="./images/backend_transactional.png" />
+            </main>
+            <footer></footer>
+        </section>
+        <section id="presi-backend-Gson" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Exkurs: Gson</h3> Gson ist eine Bibliothek von Google, die es ermöglicht, Objekte von und zu JSON zu konvertieren.
+                <br>
+                <br>
+                <img src="./images/gson_entity.png" />
+                <img src="./images/gson_conversion.png" />
+                <img src="./images/gson_result.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-backend-Anwendung" class="step slide multi" data-x="0" data-y="0" data-z="-4500">
+            <header>
+                <h1>Implementierung: Backend</h1>
+            </header>
+            <main>
+                <h3>Anwendung im Servlet</h3>
+                <img src="./images/backend_servlet.png" />
+            </main>
+            <footer>
+            </footer>
+        </section>
+
+        <section id="presi-build0" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h2>Build und Deployment</h2>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build1" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Überblick</h2>
+
+                <ul>
+                    <li>Wie baut man ein Projekt?</li>
+                    <li>Build-Tools (npm, Gradle)</li>
+                    <li>Container (Docker)</li>
+                    <li>Unser Build- und Stage-System</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build2" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <br />
+                <br />
+                <p>Wie baut man ein Projekt?</p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build3" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <br />
+                <br />
+                <p>Variante 1: IDE verwenden</p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build4" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>IDEs</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Eclipse</li>
+                            <li>IntelliJ</li>
+                            <li>WebStorm</li>
+                            <li>NetBeans</li>
+                            <li>Visual Studio</li>
+                            <li>...</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build5" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Vorteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Projekt kann aus IDE heraus gestartet/getestet werden</li>
+                            <li>Schnell eingerichtet/verfügbar</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build6" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Nachteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>IDE muss installiert/eingerichtet sein</li>
+                            <li>Benutzer-/Systemabhängig</li>
+                            <li>Komplexe Builds problematisch</li>
+                            <li>Non-headless</li>
+                            <li>Potenziell fehleranfällig</li>
+                            <li>Nicht automatisierbar</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build7" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Nachteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Kein Dependency Management</li>
+                            <li>Nicht pflegbar</li>
+                            <li>Nur für Entwickler/Advanced User</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build8" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Projekt-Struktur</p>
+                <img src="images/build/idea-helloworld-project-structure.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build9" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Code</p>
+                <img src="images/build/idea-helloworld-code.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build10" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Anwendung kompilieren und starten</p>
+                <img src="images/build/idea-helloworld-run-buttons.png" />
+
+                <p>Ergebnis</p>
+                <img src="images/build/idea-helloworld-run-result.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build11" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt konfigurieren</p>
+                <p><code>File -> Project Structure -> Artefacts -> Add -> JAR</code></p>
+                <img src="images/build/idea-helloworld-project-structure-artefacts-add-jar.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build12" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt konfigurieren</p>
+                <img src="images/build/idea-helloworld-project-structure-artefacts-add-jar-wizard.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build13"  class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt konfigurieren</p>
+                <img src="images/build/idea-helloworld-project-structure-artefacts-add-jar-result.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build14" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt bauen</p>
+                <img src="images/build/idea-helloworld-build-jar.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build15" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt bauen</p>
+                <img src="images/build/idea-helloworld-build-jar-result.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build16" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt ausführen</p>
+                <img src="images/build/idea-helloworld-execute-jar-result.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build17" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <br />
+                <br />
+                <p>Variante 2: Skripte schreiben/verwenden</p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build18" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Skript-Sprachen</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Shell</li>
+                            <li>Batch</li>
+                            <li>PowerShell</li>
+                            <li>Python</li>
+                            <li>...</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build19" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Vorteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Simpel aufzurufen</li>
+                            <li>Automatisierbar</li>
+                            <li>Headless</li>
+                            <li>Komplexe Builds möglich</li>
+                            <li>Sehr flexibel</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build20" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Nachteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Recht aufwendig (Erstellung/Pflege)</li>
+                            <li>Einarbeitung nötig</li>
+                            <li>CLI für Aufruf benötigt</li>
+                            <li>Potenziell fehleranfällig</li>
+                            <li>Kein Dependency Management</li>
+                            <li>Systemabhängig</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+
+        <section id="presi-build21" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Projekt-Struktur</p>
+                <img src="images/build/idea-helloworld-project-structure-with-shell-script.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build22" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Code</p>
+                <img src="images/build/idea-helloworld-code.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build23" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Shell-Skript</p>
+                <img src="images/build/idea-helloworld-shell-script.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build24" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Shell-Skript ausführen</p>
+                <img src="images/build/idea-helloworld-build-artefact-by-shell-script.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build25" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>JAR-Artefakt</p>
+                <img src="images/build/idea-helloworld-build-jar-result.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build26" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <p>Shell-Skript ausführen</p>
+                <img src="images/build/idea-helloworld-run-artefact-created-by-shell-script.png" />
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build27" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <br />
+                <br />
+                <p>Variante 3: Build-Tools verwenden</p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build28" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Build-Tools</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Make</li>
+                            <li>Ant</li>
+                            <li>Maven</li>
+                            <li>Gradle</li>
+                            <li>MSBuild</li>
+                            <li>...</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build29" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Vorteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Automatisierbar</li>
+                            <li>Headless</li>
+                            <li>"Nur" Konfiguration nötig</li>
+                            <li>Systemunabhängig</li>
+                            <li>Dependency Management</li>
+                            <li>Komplexe Builds möglich</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build30" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Vorteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Gut pflegbar/anpassbar</li>
+                            <li>Viele zusätzliche Features/Plugins</li>
+                            <li>IDE-Support</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build31" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen</h2>
+
+                <ul>
+                    <li>Nachteile</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Systemabhängig</li>
+                            <li>Einarbeitung nötig</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build32" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <ul>
+                    <li>Node Package Manager</li>
+                    <li>Script-Runner und Dependency Manager</li>
+                    <li>Gewaltiges Ökosystem (Packages/Module)</li>
+                    <li>Allgemein für JS-Projekte geeignet</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build33" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Anzahl npm-Packages</p>
+                <p><img src="images/build/build-tools-amount-of-packages-npm.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build34" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>npm-Projekt initialisieren</p>
+                <p><img src="images/build/npm-init-command.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build35" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Fragen beantworten</p>
+                <p><img src="images/build/npm-init-questions.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build36" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Ergebnis bestätigen</p>
+                <p><img src="images/build/npm-init-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build37" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Erzeugte package.json</p>
+                <p><img src="images/build/npm-init-result-files.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build38" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>npm-Pakete suchen</p>
+                <p><img src="images/build/npm-search-package.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build39" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Neue Abhängigkeiten installieren</p>
+                <p><img src="images/build/npm-install-set-dependencies.png" /></p>
+
+                <p>Benötigte Abhängigkeiten installieren</p>
+                <p><img src="images/build/npm-install-command.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build40" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Unsere package.json</p>
+                <p><img src="images/build/npm-package.json-from-mapeditor-1.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+       <section id="presi-build41"class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Unsere package.json</p>
+                <p><img src="images/build/npm-package.json-from-mapeditor-2.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build42" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – npm</h2>
+
+                <p>Projekt bauen</p>
+                <p><img src="images/build/npm-run-build-command.png" /></p>
+
+                <p>Ergebnis</p>
+                <p><img src="images/build/npm-run-build-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build43" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <ul>
+                    <li>Build-Tool und Dependency Manager</li>
+                    <li>Unterstützt polyglote Projekte</li>
+                    <li>Zugriff auf viele Repositories</li>
+                    <li>Sehr viele Plugins</li>
+                    <li>Gradle-Wrapper Skripte</li>
+                    <li>Bidirektionaler IDE-Support</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build44" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Anzahl Gradle-Packages</p>
+                <p><img src="images/build/build-tools-amount-of-packages-gradle.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build45" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Gradle-Projekt initialisieren</p>
+                <p><img src="images/build/gradle-init-command.png" /></p>
+
+                <p>Initialisiertes Gradle-Projekt</p>
+                <p><img src="images/build/gradle-init-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build46" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>settings.gradle</p>
+                <p><img src="images/build/gradle-settings.gradle.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build47" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Generiertes build.gradle</p>
+                <p><img src="images/build/gradle-build.gradle-generated.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build48" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Unser build.gradle</p>
+                <p><img src="images/build/gradle-build.gradle-from-mapeditor-1.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build49" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Unser build.gradle</p>
+                <p><img src="images/build/gradle-build.gradle-from-mapeditor-2.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section  id="presi-build50" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Abhängigkeiten finden</p>
+                <p><img src="images/build/gradle-mvnrepository-search.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build51" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Abhängigkeiten finden</p>
+                <p><img src="images/build/gradle-mvnrepository-lib-version-overview.png" height="350" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build52" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>Abhängigkeiten finden</p>
+                <p><img src="images/build/gradle-mvnrepository-found-lib-dependency-config.png" height="350" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build53" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>IDE-Konfiguration generieren</p>
+                <p><img src="images/build/gradlew-idea-command.png" /></p>
+
+                <p>IDE-Konfiguration generieren</p>
+                <p><img src="images/build/gradlew-idea-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build54" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Projekt bauen – Gradle</h2>
+
+                <p>WAR-Archiv bauen</p>
+                <p><img src="images/build/gradlew-war-command.png" /></p>
+
+                <p>Fertiges WAR-Archiv</p>
+                <p><img src="images/build/gradlew-war-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build55" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Systemabhängigkeit eliminieren</h2>
+
+                <p>Warum?</p>
+
+                <ul>
+                    <li>Jedes System ist anders</li>
+                    <li>Ziel-System relevant</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build56" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Systemabhängigkeit eliminieren</h2>
+
+                <p>Ziel</p>
+
+                <ul>
+                    <li>Bestmöglicher Ausschluss von Umweltfaktoren</li>
+                    <li>Bestmöglicher Nachbau des Ziel-Systems</li>
+                </ul>
+
+                <p>=> "Works On My Machine" verhindern</p>
+                <p>=> Sandkasten</p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build57" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Systemabhängigkeit eliminieren</h2>
+
+                <p>Möglichkeiten</p>
+
+                <ul>
+                    <li>Virtuelle Maschinen</li>
+                    <li>Container</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build58" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Virtuelle Maschinen</h2>
+
+                <p>Vorteile</p>
+
+                <ul>
+                    <li>Sandbox-Wirkung</li>
+                    <li>Nach Bedarf verwendbar</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build59" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Virtuelle Maschinen</h2>
+
+                <p>Nachteile</p>
+
+                <ul>
+                    <li>Einrichtung</li>
+                    <li>Performance</li>
+                    <li>Speicherverbrauch</li>
+                    <li>Prozesse von außen nicht überwachbar</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build60" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Virtuelle Maschinen</h2>
+
+                <p>Kleines Helferlein: vagrant</p>
+
+                <ul>
+                    <li>Plattformunabhängig</li>
+                    <li>Support für verschiedene Hypervisor</li>
+                    <li>Fertig installierte Images in Repositories</li>
+                    <li>VM-Konfiguration/-Einrichtung via Skript (Vagrantfile)</li>
+                    <li>Einrichtung automatisierbar/reproduzierbar</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build61" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <ul>
+                    <li>Leichtgewichtige virtuelle Umgebungen (keine VMs!)</li>
+                    <li>Image-Konfiguration via Textdatei (Dockerfile)</li>
+                    <li>Container basieren auf Image</li>
+                    <li>Prozesse laufen nativ</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build62" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Vorteile</p>
+
+                <ul>
+                    <li>Sandbox-Wirkung</li>
+                    <li>Nahezu kein Overhead</li>
+                    <li>Sehr performant</li>
+                    <li>Speicherverbrauch nur durch enthaltene Anwendung</li>
+                    <li>Container-Erzeugung dauert keine 5 Sekunden</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build63" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Vorteile</p>
+
+                <ul>
+                    <li>Anwendungen unterschiedlicher Versionen gleichzeitig ausführen</li>
+                    <li>Prozesse von außen überwachbar</li>
+                    <li>Zu größeren Systemen kombinierbar</li>
+                    <li>Builtin Cluster-Support</li>
+                    <li>...</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build64" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Nachteile</p>
+
+                <ul>
+                    <li>Einarbeitung</li>
+                    <li>Oft als Pseudo-VM misbraucht</li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build65" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Container starten (Hello World)</p>
+                <p><img src="images/build/docker-run-helloworld.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build66" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Container starten (PostgreSQL)</p>
+                <p><img src="images/build/docker-run-postgres.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build67" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Eigenes Image bauen</p>
+                <p><img src="images/build/docker-mapeditor-db-dockerfile.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build68" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Eigenes Image bauen</p>
+                <p><img src="images/build/docker-mapeditor-db-build-image.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build69" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Eigenes Image bauen</p>
+                <p><img src="images/build/docker-mapeditor-db-build-image-result.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build70" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Container vom eigenen Image erstellen</p>
+                <p><img src="images/build/docker-mapeditor-db-run-container.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build71" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Leben erleichtern mit Docker Compose</p>
+                <p><img src="images/build/docker-mapeditor-docker-compose.yml.png" height="350" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build72" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Leben erleichtern mit Docker Compose</p>
+                <p><img src="images/build/docker-mapeditor-docker-compose-up-appserver.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build73" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Und noch einfacher ...</p>
+                <p><img src="images/build/docker-mapeditor-bin-scripts.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build74" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Shell-Skript</p>
+                <p><img src="images/build/docker-mapeditor-bin-build-frontend.sh.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build75" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Batch-Skript</p>
+                <p><img src="images/build/docker-mapeditor-bin-build-frontend.bat.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build76" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Container (mit Docker)</h2>
+
+                <p>Shell-Skript ausführen</p>
+                <p><img src="images/build/docker-mapeditor-bin-build-frontend.sh-command.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build77" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Unsere Build- und Stage-Umgebung</h2>
+
+                <p><img src="images/build/build-and-deployment.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build78" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Unsere Build- und Stage-Umgebung</h2>
+
+                <p><img src="images/build/build-and-deployment-build.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build79" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Unsere Build- und Stage-Umgebung</h2>
+
+                <p><img src="images/build/build-and-deployment-stage.png" /></p>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section id="presi-build80" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Zusammenfassung</h2>
+
+                <ul>
+                    <li>IDEs ungeeignet für reproduzierbare Builds</li>
+                    <li>Build-Tools lohnen sich</li>
+                    <li style="list-style: none;">
+                        <ul>
+                            <li>Dependency Management</li>
+                            <li>Automatisierung</li>
+                            <li>Reproduzierbar</li>
+                            <li>Headless</li>
+                        </ul>
+                    </li>
+                </ul>
+            </main>
+
+            <footer>
+            </footer>
+        </section>
+        <section d="presi-build81" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Build und Deployment</h1>
+            </header>
+
+            <main>
+                <h2>Zusammenfassung</h2>
+
+                <ul>
+                    <li>Build-Umgebung dem Ziel-System nachempfinden</li>
+                    <li>Virtuelle Maschinen umständlich in Handhabung</li>
+                    <li>Container sind leichtgewichtige Alternative zu VMs</li>
+                </ul>
+            </main>
+
+            <footer><a href="#start">Übersicht</a>
+            </footer>
+        </section>
+        <section id="sw-demo" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>Ergebnis: Software Demo</h1>
+            </header>
+            <main>
+                <h2>Software Demo</h2>
+            </main>
+            <footer>
+                <a href="#start">Übersicht</a>
+            </footer>
+        </section>
+
+        <!-- <section id="overview" class="step" data-x="0" data-y="2000" data-rotate-x="0" data-rotate-y="0" data-scale="10"></section> -->
+    </article>
+
+    <script src="js/impress.js"></script>
+    <script>
+        impress().init();
+    </script>
+
+    <div id="kopf">
+        <!-- <a href="#overview"><img src="images/home.png" alt="" style="vertical-align:top; margin-right:5px;" />Zur Übersicht</a>
+        <a href="http://ub.unibi.de/impressjs"><img src="images/online.png" alt="" style="vertical-align:top; margin:0 5px 0 15px;" />Original-Präsentation online ansehen</a> -->
+    </div>
+
+    <div id="fuss">
+        <!-- <a href="http://www.ub.uni-bielefeld.de/"><img src="images/ub.png" alt="" style="vertical-align:top; margin-right:5px;" />Universitätsbibliothek Bielefeld</a> -->
+    </div>
+</body>
+
+</html>
