@@ -1,6 +1,5 @@
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
-import User from "./User";
 import q from "q";
 import $ from 'jquery';
 
@@ -10,9 +9,12 @@ import Login from "./Login";
 import mainPage from "../html/main.html";
 import loginPage from "../html/login.html";
 
+import Wall from "./Wall";
+import Room from "./Room";
 let login = new Login();
 let actualUser;
 let actualRoom;
+let scene;
 
 $(()=>{
 
@@ -30,36 +32,35 @@ function main(){
 			if(!actualUser){
 				login.reLogin(useridStorage).then((user)=>{
 					actualUser=user;
-				}).then(()=>{
 					if(actualUser){
-						console.log("actual user: ", actualUser);
+						console.log("---------- actual user: ", actualUser);
 						initMainPage();
+					} else {
+						console.log("User not found");
 					}
-				}).fail( () => {
-					console.log("User not found");
-					this.sendErrorMessage('fehler user existiert nicht ');
+					console.log("------------load main page------------");
+				}).catch ( (err) => {
+					console.log("login failure", err);
 				});
 			}
-
-			console.log("------------load main page------------");
 		}
 }
 
 function initLoginPage(){
 		console.log("------------load login page------------");
 		console.log(login);
-		$('body').load(loginPage,()=>{
+		$('body').load(loginPage, ()=>{
 			$("#login-button").click(()=>{
 				login.login().then((user)=>{
 					actualUser=user;
-					console.log("actual user:");
-					console.log(actualUser);
+					console.log("actual user: ", actualUser);
 					if(actualUser){
 						localStorage.setItem("userid", actualUser._id);
 						initMainPage();
 					}
-				}).fail( () => {
+				}).fail( (err) => {
 					console.log("User not found");
+                    console.log(err);
 					this.sendErrorMessage('fehler user existiert nicht ');
 				});
 
@@ -73,61 +74,101 @@ function initLoginPage(){
 
 
 function initMainPage() {
-	// window.registerAframeClickDragComponent(window.AFRAME);
 		console.log("------------init main page---");
-		$('body').load(mainPage).then(()=>{
-			registerClickDrag(aframe);
-			$("#btnNewImagePath").click(() => {
-				console.log("click #btnNewImagePath");
-			});
+		$('body').load(mainPage, () => {
+            registerClickDrag(aframe);
+            initMainPageButtons();
+            registerKeyEvents();
+			scene = $('#main-myscene');
+            loadRoom();
+			renderRoom();
+        });
 
-			$("#btnNewText").click(loadNewText);
+}
 
-			$("#logout").click(logout);
+function initMainPageButtons(){
+	console.log("initMainPageButtons()");
+	$("#btnNewImagePath").click(() => {
+		console.log("click #btnNewImagePath");
+	});
 
-			$("#showLeft").click(showLeft);
-			$("#showRight").click(showRight);
+	$("#btnNewText").click(loadNewText);
 
-			window.onkeyup = function(e) {
-				var key = e.keyCode ? e.keyCode : e.which;
+	$("#logout").click(logout);
 
-				if (key == 81) {
-					console.log('PRESSED Q');
-					var camros = document.getElementById("mycamentity").getAttribute("rotation");
-					var campos = document.getElementById("mycamentity").getAttribute("position");
-					console.log(campos);
+	$("#showLeft").click(showLeft);
+	$("#showRight").click(showRight);
+}
 
-					var x = campos.x;
-					var y = campos.y;
-					var z = campos.z;
+function registerKeyEvents(){
+	window.onkeyup = function(e) {
+		var key = e.keyCode ? e.keyCode : e.which;
 
-					camros.y += 4;
-					campos.x -= 0.1;
+		if (key == 81) {
+			console.log('PRESSED Q');
+			var camros = document.getElementById("mycamentity").getAttribute("rotation");
+			var campos = document.getElementById("mycamentity").getAttribute("position");
+			console.log(campos);
 
-					document.getElementById("mycamentity").setAttribute("rotation", camros);
-				}
+			var x = campos.x;
+			var y = campos.y;
+			var z = campos.z;
 
-				if (key == 69) {
-					var locked = document.getElementById("mycam").getAttribute('look-controls');
-					console.log(locked);
+			camros.y += 4;
+			campos.x -= 0.1;
 
-					if (locked.enabled === "true") {
-						document.getElementById("mycam").setAttribute('look-controls', {
-							enabled: 'false'
-						});
-					} else {
-						document.getElementById("mycam").setAttribute('look-controls', {
-							enabled: 'true'
-						});
-					}
-				}
+			document.getElementById("mycamentity").setAttribute("rotation", camros);
+		}
 
-				if (key==70){
-					logout();
-				}
+		if (key == 69) {
+			var locked = document.getElementById("mycam").getAttribute('look-controls');
+			console.log(locked);
+
+			if (locked.enabled === "true") {
+				document.getElementById("mycam").setAttribute('look-controls', {
+					enabled: 'false'
+				});
+			} else {
+				document.getElementById("mycam").setAttribute('look-controls', {
+					enabled: 'true'
+				});
 			}
-		});
+		}
 
+		if (key==70){
+			logout();
+		}
+	}
+}
+function loadRoom(){
+   /* actualRoom = new Room({ roomname: "testRoom", walls: [
+		{color: '#330000', direction: 'right'},
+		{color: '#003300', direction: 'left'},
+		{color: '#000033', direction: 'back'},
+		{color: '#330033', direction: 'front'},
+		{color: '#ff3333', direction: 'up'},
+		{color: '#3333ff', direction: 'down'}
+	]}, actualUser.getId());*/
+   	actualRoom = new Room(null, actualUser.getId());
+	console.log("main loadRoom: ", actualRoom);
+	actualRoom.loadFromDB().then( () => {
+		console.log("main loadRoom after load from db: ", actualRoom);
+	});
+}
+
+function renderRoom(){
+	let walls = actualRoom.walls;
+	walls.forEach((wall) => {
+		let box = $('<a-box></a-box>');
+		box.attr('position', ""+wall.position.x+" "+wall.position.y+" "+wall.position.z);
+		box.attr('width', wall.getDefaultWidth());
+		box.attr('height', wall.getDefaultHeight());
+		box.attr('depth', wall.getDefaultDepth());
+		box.attr('rotation', (""+wall.rotation.x + " " + wall.rotation.y + " "+ wall.rotation.z));
+		box.attr('id', "wall-"+wall.getDirection());
+		box.attr('color', wall.getColor());
+		scene.append(box);
+	});
 }
 
 function loadNewText() {
@@ -156,6 +197,7 @@ function loadNewText() {
 function logout(){
 	console.log("Clearing local storage");
 	localStorage.setItem("userid", null);
+	actualUser = null;
 	initLoginPage();
 }
 
