@@ -490,7 +490,9 @@
                 <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-			<img src="images/ASMS.png">	
+			<br>Beispiel<br>
+			<img src="images/ASMS.png">	<br><br>
+			Asset in Entity einbinden als Component
             </main>
             <footer>
             </footer>
@@ -508,6 +510,74 @@
 			<code>&lt;video&gt;</code> - Video (Texturen)<br><br>
 			<code>&lt;a-mixin&gt;</code> - folgt
 
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame22" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<h4>Mixins</h4>
+			<ul>
+			<li>fasst Components zusammen zu einer Component<br></li>
+			<li>gut zur Wiederverwendung<br></li>
+			<li>Einbinden über Asset-Management-System mittels <code>&lt;a-mixin&gt;&lt;/a-mixin&gt;</code></li>
+			</ul>
+			<h4>-> Entities die dies Mixin einbinden erhalten die Eigenschaften der Mixin-Components</h4>
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame23" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<br>Beispiel <br>
+			<img src="images/mixins.png">	<br><br>
+			<img src="images/mixin1.png"> <br>
+			übernimmt Components-Eigenschaften von <code>red</code> und <code>cube</code> (in der Reihenfolge)
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame24" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<img src="images/mixin2_1.png">	<br>
+			<img src="images/mixin2.png"> <br>
+			<br>Entity ohne Mixin geschrieben <br><br>
+			<img src="images/mixin2_2.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame25" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<h4>Eigenschaften von Multi-Properties mischen sich im Entity wenn sie von mehreren Mixins definiert werden</h4>
+			<img src="images/mixins_3.png">
+			Resultat
+			<img src="images/mixin4.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame26" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<h4>Reihenfolge beim einbinden der Mixins beachten</h4>
+			<img src="images/mixin5.png"><br>
+			<img src="images/greencube.png" height="150px"><br><br>
+			Erst Components (links nach rechts), dann das Entity
             </main>
             <footer>
             </footer>
