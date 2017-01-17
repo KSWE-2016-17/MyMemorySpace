@@ -370,29 +370,41 @@
             <footer>
             </footer>
         </section>
-        <section id="intro-motivation1_1" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+        <section id="a-frame14" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Motivation</h1>
+                <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-                <ul>
-                    <li>Raum eingrenzen</li>
-					<li>Raum ordnen</li>
-                    <li>Textliche Stellungnahme</li>
-                    <li>Raum grafisch aufarbeiten</li>
-                </ul>
-                <img src="./images/tetraeder/raumplanung.png" width="600">
+                <h4><code>&lt;a-entity&gt;.components</code><br>  Components hängen dem Entity an</h4>
+			
+				<span>&#8594;</span>Zugriff möglich auf Eigenschaften und Methoden der Components
+				<br><br>
+				Material-Object aulesen<br>
+				<code>var material = document.querySelector('a-entity[material]').components.material.material;</code>
+				<br><br>
+				Methode des Component: Sound aufrufen<br>
+				<code>document.querySelector('a-entity[sound]').components.sound.pause();</code>
+				
             </main>
             <footer>
             </footer>
         </section>
-        <section id="intro-motivation1_2" class="step slide multi hide " data-x="0" data-y="0" data-z="-3000">
+        <section id="a-frame15" class="step slide multi hide " data-x="0" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Motivation</h1>
+                <h1>A-FRAME: Konzept</h1>
             </header>
             <main>
-				<h5>Beispiel: Marktplatz Gütersloh</h5>
-                <img src="./images/tetraeder/gt_both.png" >
+				<h4>Single-Property Component</h4>
+                definieren nur 1 Wert - sehen aus wie HTML-Attribute
+				<br><br>
+				<code>&lt;a-entity position="1 2 3"&gt;&lt;/a-entity&gt;</code>
+				
+				<h4>Multi-Property Component</h4>
+                beinhalten mehrere Key-Value Paare - sehen aus wie Inline-CSS-Style
+				<br><br>
+				<code>&lt;a-entity light="type: point; color: crimson"&gt;&lt;/a-entity&gt;</code>
+				<br><br>
+				<h5 style="text-align:center">können beliebig im Entity kombiniert werden um den gewünschten Effekt zu erzeugen</h5>
             </main>
             <footer>
             </footer>
