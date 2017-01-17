@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/0.3.2/aframe.min.js"> </script>
+</head>
+<body>
+	<a-scene>
+	  <!-- Asset management system. -->
+	  <a-assets>
+	    <a-asset-item id="sculpture" src="./assets/objects/cube/sculpture.dae"></a-asset-item>
+	    <a-mixin id="image" geometry="height: 2; width: 2"></a-mixin>
+	    <audio id="blip1" src="blipaudio.wav"></audio>
+	    <img id="advertisement" src="ad.png">
+	    <video id="kentucky-derby" src="derby.mp4">
+	  </a-assets>
+	  <!-- Scene. -->
+	  <a-plane src="advertisement"></a-plane>
+	  <a-sound src="#blip1"></a-sound>
+	  <a-entity geometry="primitive: plane" material="src: #kentucky-derby"></a-entity>
+	  <a-collada-model click-drag src="#sculpture" position="10 0 -6"></a-collada-model>
+	</a-scene>
+
+</body>
+</html>
+

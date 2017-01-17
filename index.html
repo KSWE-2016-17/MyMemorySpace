@@ -1,12 +1,12 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>Zeichentool Präsentation</title>
+    <title>A-Frame Präsentation</title>
 
     <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
     <meta name="author" content="Bartek Szopka" />
@@ -23,24 +23,6 @@
     </div>
 
     <article id="impress">
-        <!-- Slide template -->
-        <!-- <section class="step slide" data-x="0" data-y="0" data-z="0">
-            <header>
-            </header>
-
-            <main>
-                <h2>Titel</h2>
-
-                <ul>
-                    <li>Lorem</li>
-                    <li>Ipsum</li>
-                </ul>
-            </main>
-
-            <footer>
-            </footer>
-        </section> -->
-
         <section id="start" class="step slide hide" data-x="0" data-y="0" data-z="0">
             <header>
                 <h1>A-FRAME: VR im Web</h1>
@@ -252,7 +234,7 @@
             </header>
             <main>
               <h4>Inheritance Beispiel:</h4>
-                <img src= "images/InheritanceBeispiel.png">
+                <img src= "images/InheritanceBeispiel.png" class="vollbild">
             </main>
             <footer>
             </footer>
@@ -263,7 +245,7 @@
             </header>
             <main>
               <h4>Composition over Inheritance Beispiel:</h4>
-                <img src= "images/CompositionOverInheritance.png">
+                <img src= "images/CompositionOverInheritance.png" class="vollbild">
             </main>
             <footer>
             </footer>
@@ -356,7 +338,10 @@
                 <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-			<img src="images/simpleBox.png">
+              <iframe src="./tryit_editor_mirror/a-frame-box.html" width="100%" height="400px">
+
+              </iframe>
+			<!--<img src="images/simpleBox.png">-->
 			<br><br>
 			<code>&lt;a-box&gt;</code> beschreibt das Ursprungs-Entity bereits in Geometrie
 			<br><br>
@@ -374,8 +359,13 @@
 				verleihen Entities Eigenschaften
 				<br>
 				hinzufügen über HTML-Attribute
-				<img src="images/componentsCode.png">
-				<img src="images/componentsCodeR.png" height="200px">
+        <iframe src="./tryit_editor_mirror/a-frame-comonents.html" width="100%" height="400px">
+
+        </iframe>
+        <!--<p data-height="182" data-theme-id="0" data-slug-hash="egBVmP" data-default-tab="html" data-user="Xelusion" data-embed-version="2" data-pen-title="A-Frame-Components1" class="codepen">See the Pen <a href="http://codepen.io/Xelusion/pen/egBVmP/">A-Frame-Components1</a> by Xenia (<a href="http://codepen.io/Xelusion">@Xelusion</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>-->
+			<!--	<img src="images/componentsCode.png">
+				<img src="images/componentsCodeR.png" height="200px">-->
         <br />
 				Dynamisch einbinden über JavaScript möglich
             </main>
@@ -492,7 +482,7 @@
 			</ul>
 			<br>
 			Best Practice <br> <code>&lt;a-assets&gt;&lt;/a-assets&gt;</code> als erstes Child der Scene definieren
-			
+
             </main>
             <footer>
             </footer>
@@ -504,7 +494,12 @@
             </header>
             <main>
 			<br>Beispiel<br>
-			<img src="images/ASMS.png">	<br><br>
+      <iframe class="vollbild" src="../tryit_editor_mirror/a-frame-entity-comonents.html">
+
+      </iframe>
+      <!---<p data-height="365" data-theme-id="0" data-slug-hash="jyVabo" data-default-tab="html,result" data-user="Xelusion" data-embed-version="2" data-pen-title="A-farme-Entities" class="codepen">See the Pen <a href="http://codepen.io/Xelusion/pen/jyVabo/">A-farme-Entities</a> by Xenia (<a href="http://codepen.io/Xelusion">@Xelusion</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>-->
+			<!---<img src="images/ASMS.png">	<br><br>-->
 			Asset in Entity einbinden als Component
             </main>
             <footer>
@@ -538,7 +533,7 @@
 			<li>gut zur Wiederverwendung<br></li>
 			<li>Einbinden über Asset-Management-System mittels <code>&lt;a-mixin&gt;&lt;/a-mixin&gt;</code></li>
 			</ul>
-			<h4>-> Entities die dies Mixin einbinden erhalten die Eigenschaften der Mixin-Components</h4>
+			<h4> → Entities die dies Mixin einbinden erhalten die Eigenschaften der Mixin-Components</h4>
             </main>
             <footer>
             </footer>
@@ -569,15 +564,24 @@
             <footer>
             </footer>
         </section>
-		<section id="a-frame25" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+		<section id="a-frame25.1" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
                 <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
 			<h4>Eigenschaften von Multi-Properties mischen sich im Entity wenn sie von mehreren Mixins definiert werden</h4>
 			<img src="images/mixins_3.png">
-			Resultat
-			<img src="images/mixin4.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        	<section id="a-frame25.2" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			           <h4>Resultat</h4>
+			           <img src="images/mixin4.png">
             </main>
             <footer>
             </footer>
