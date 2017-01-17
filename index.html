@@ -272,25 +272,45 @@
             <footer>
             </footer>
         </section>
-        <section id="intro-team7" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+        <section id="a-frame9" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Teamvorstellung</h1>
+                <h1>A-FRAME:Konzepte</h1>
             </header>
             <main>
-                <h2>dahinter stecken Issues</h2> für Diskussionen, Hilfe, interne Protokollierung
-                <img src="./images/kanban/issue.png" width="800px">
+				<h4>Scene
+                <img src="./05-A-FRAME/images/a-frame scene.png" height="80px"></h4>
+				Objekte werden erst innerhalb einer Szene (klassischer 3D-Raum) sichtbar
+				<br>
+				<img src="./05-A-FRAME/images/Coordinates.png" height="200px">
+				<br>
+				<ul>
+					<li>Scene ist ein Entity</li>
+					<li>Scene hält Entities</li>
+					<li>Fortbewegen über Maus+Tastatur oder VR-Headset</li>
+				</ul>
             </main>
             <footer>
             </footer>
         </section>
-        <section id="intro-team8" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+        <section id="a-frame10" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Teamvorstellung</h1>
+                <h1>A-FRAME:Konzepte</h1>
             </header>
             <main>
-                <h2>Assignees</h2>
-                <b>(sich selber)</b> einer Aufgabe zuweisen
-                <img src="./images/kanban/assignees.png">
+                <h4>Entities</h4>
+                <ul>
+					<li>dargestelt durch HTML-Tag</li>
+					<li>Platzhalter Objekt</li>
+					<li><code>&lt;a-entity&gt;</code> simpelstes Entity</li>
+					<li>Position, Rotation und Scale werden immer gehalten</li>
+				</ul>
+				<br>
+				Eigenschaften und Methoden lesen erfolgt über DOM
+				<br><br>Entity<br>
+				
+				<code>&lt;a-entity id="mario"&gt;&lt;/a-entity&gt;</code>
+				<br><br>DOM<br>
+				<code>var el = document.querySelector('#mario');</code>
             </main>
             <footer>
             </footer>
