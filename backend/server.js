@@ -144,7 +144,7 @@ server.post("/room", function(req,res){
 		walls: reqbody.walls,
 		sky: reqbody.sky,
 		light: reqbody.light,
-		mediaobject: reqbody.mediaobject
+		mediaobjects: reqbody.mediaobjects
 	});
 
 	room.save(function(err,result){
@@ -202,7 +202,7 @@ server.put('/room/:_id', function (req,res) {
 		result.walls=reqbody.walls;
 		result.sky=reqbody.sky;
 		result.light=reqbody.light;
-		result.mediaobject=reqbody.mediaobject;
+		result.mediaobjects=reqbody.mediaobjects;
 	
 
 
