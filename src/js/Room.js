@@ -116,7 +116,9 @@ export default class Room {
                 if(data && data.length > 0){
                     //this._id = data[0]._id;
                     this.setupRoom(data[0]);
+                    console.log("loadFromDB room succuseful: ",this);
                     defer.resolve(this);
+
                 }
             }).catch( (err) => {
                 defer.resolve(null);
@@ -126,6 +128,7 @@ export default class Room {
             console.log("2 loadFromDB room this._id: ", this._id);
             return this.findById();
         }
+        return defer.promise;
     }
     findById(){
         console.log('--------Room.findById: ', this._id);

@@ -80,8 +80,12 @@ function initMainPage() {
             initMainPageButtons();
             registerKeyEvents();
 			scene = $('#main-myscene');
-            loadRoom();
-			renderRoom();
+            loadRoom().then( () => {
+				renderRoom();
+			}).fail( ( ) => {
+				renderRoom();
+			});
+
         });
 
 }
@@ -151,12 +155,11 @@ function loadRoom(){
 	]}, actualUser.getId());*/
    	actualRoom = new Room(null, actualUser.getId());
 	console.log("main loadRoom: ", actualRoom);
-	actualRoom.loadFromDB().then( () => {
-		console.log("main loadRoom after load from db: ", actualRoom);
-	});
+	return actualRoom.loadFromDB();
 }
 
 function renderRoom(){
+	console.log("+++++++++++renderRoom",actualRoom );
 	let walls = actualRoom.walls;
 	walls.forEach((wall) => {
 		let box = $('<a-box></a-box>');
