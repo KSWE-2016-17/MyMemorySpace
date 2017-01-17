@@ -109,19 +109,17 @@ export default class Room {
         return new Wall(null,direction);
     }
     loadFromDB(){
+        let defer = q.defer();
         if(!this._id){
             this.findRoomListByUser(this.user_id).then((data) =>{
                 console.log("loadFromDB room list data: ", data[0]._id);
                 if(data && data.length > 0){
-                    this._id = data[0]._id;
+                    //this._id = data[0]._id;
+                    this.setupRoom(data[0]);
+                    defer.resolve(this);
                 }
-            }).then(()=>{
-                console.log("1 loadFromDB room this._id: ", this._id);
-                let res = this.findById();
-                console.log("loadFromDB findById() res:" , res);
-                return res;
-
             }).catch( (err) => {
+                defer.resolve(null);
                 console.log("loadFromDB findRoomListByUser error");
             });
         } else {
