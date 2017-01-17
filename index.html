@@ -409,58 +409,63 @@
             <footer>
             </footer>
         </section>
-        <section id="intro-motivation2" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
+        <section id="a-frame16" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Motivation</h1>
+                <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-                <h3>Alte Variante</h3> - Kartennausschnitt als Bild <br> - Stellungnahme über Text <br>
-                <img src="./images/motivation.png" height="400px">
-            </main>
-            <footer>
-            </footer>
-        </section>
-        <section id="intro-motivation3" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
-            <header>
-                <h1>Einleitung: Motivation</h1>
-            </header>
-            <main>
-                <h3>Alte Variante</h3>
-                <img src="./images/motivation_text.png">
-            </main>
-            <footer>
-            </footer>
-        </section>
-        <section id="intro-idee" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
-            <header>
-                <h1>Einleitung: Idee</h1>
-            </header>
-            <main>
-                <h2>Idee</h2>
-                <p>Altes Tool:</p>
+				<h4>Components Auswahl</h4>
                 <ul>
-                    <li>nicht interaktiv</li>
-                    <li>umständlich</li>
-                    <li>Plan ohne Bebilderung schwierig nachzuvollziehen</li>
-                </ul>
-                <p>Schwerpunkte beim eigenen Tool</p>
-                <h3><i>Alles was in der Raumplanung mit Stift und Papier gezeichnet werden kann
-					soll das Tool ermöglichen</i></h3>
+				<li>Position <code>position="3 2 5"</code> (x,y,z)</li>
+				<li>Rotation <code>rotation="90 0 45"</code>(x,y,z)</li>
+				<li>Color <code>color="#FFFFFF"</code></li>
+				<li>Scale <code>scale="0.5 1 2"(x,y,z)</code></li>
+				<li>Geometry <code>geometry="primitive: box"</code></li>
+				<li>Camera <code>camera="userHeight: 1.6"</code></li>
+				<li>Cursor <code>cursor="fuse: true; fuseTimeout: 500"</code></li>
+				<li>Material <code>material="shader: ocean; color: blue; wave-height: 10"</code></li>
+				<li>Visibility <code>visible="false"</code></li>
+				</ul>
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="a-frame17" class="step slide multi hide" data-x="000" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+                <h3>Entities - dynamisch manipulieren</h3>
+                <h4>Methoden</h4>
+				<code>getAttribute(attr)</code> Attribut eines Components einer Entity lesen
+				<img src="./images/getAttr.png">
+            </main>
+            <footer>
+            </footer>
+        </section>
+        <section id="a-frame18" class="step slide hide" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+			<br>
+                <code>setAttribute(attr)</code> Component einer Entity zuweisen
+				<img src="./images/setAttr.png">
+				<br><br>
+				<code>removeAttribute(attr)</code> Component entfernen
+				<img src="./images/removeAttr.png">
+				<br>
+				<h4>Event-Listener können ebenso eingesetzt werden bspw. können Entities auf Änderungen ihrer Components eingehen 
+				oder reagieren auf neu angehängte Components</h4>
             </main>
             <footer></footer>
         </section>
-		 <section id="intro-idee-1" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+		 <section id="a-frame19" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
-                <h1>Einleitung: Idee</h1>
+                <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-			<h3><i>Alles was in der Raumplanung mit Stift und Papier gezeichnet werden kann
-					soll das Tool ermöglichen</i></h3>
-                <ul>
-                    <li><b>Hohe Usability</b> - Sachbearbeiter sind unerfahren und technisch unversiert</li>
-                    <li><b>Funktionalität</b> - Kreise, Linien, Formen - wie auf Papier</li>
-                    <li><b>Verlauf</b> - Änderungsverlauf speichern und zeigen</li>
-                </ul>
+			<h4>Asset-Management-System</h4>
             </main>
             <footer>
             </footer>
