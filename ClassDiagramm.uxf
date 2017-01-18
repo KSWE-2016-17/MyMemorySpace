@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>385</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Login
+--
+- inputData: User
+--
++ login()
++ register()
++ checkIfFieldEmpty()
++ checkLogin()
++ reLogin(id: ObjectId)
++ checkRegister(data: Object)
++ registerNewUser(data: Object)
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>483</x>
+      <y>378</y>
+      <w>147</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>main
+--
++ login:Login";
++ actualUser: User;
++ actualRoom: Room;
++ scene aframe.Scene;
+--
++ main()
++ initLoginPage()
++ initMainPage()
++ loadRoom()
++ renderRoom()
++ logout()
+
+... //GUI initialisierung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>623</x>
+      <y>455</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>273</x>
+      <y>154</y>
+      <w>266</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Room
+--
+- service: RoomService
+- _id: ObjectId
+- user_id: ObjectId
+- roomname: String
+- walls: Wall[]
+- sky: Object
+- light: Light
+- mediaobjects: Mediaobject[]
+--
++ constructor(room_obj: Object, user_id: ObjectId)
++ setDefaults(user_id: ObjectId)
++ getDefaultWall(direction: String)
++ loadFromDB(): Room
++ findById(): Room
++ findAllByUserId(user_id: ObjectId): Room[]
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>301</y>
+      <w>35</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>707</x>
+      <y>301</y>
+      <w>28</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>182</y>
+      <w>147</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>User
+--
+- service: UserService
+- _id: ObjectId
+- username: String
+- password: String
+--
++ constructor(user_obj: Object)
++ loadFromDB(): User
++ findByName(): User
++ findById(): User
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>336</y>
+      <w>91</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>385</y>
+      <w>238</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>Wall
+--
+- _id: ObjectId
+- _DEFAULT_SIZE_
+- direction: String
+- color: String
+- textur: Mediaobject
+- visible: Boolean
+--
++ constructor(wall_obj: Object, direction: String)
++ getDefaultSize(): Number
++ getDefaultPosition(direction: String): Position
++ getDefaultRotation(direction: String): Position
++ getDefaultWidth(): Number
++ getDefaultHeight(): Number
++ getDefaultDepth(): Number
+....
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>336</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>273</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Position
+--
+- x : Number
+- y: Number
+--
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>329</y>
+      <w>35</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>329</x>
+      <y>84</y>
+      <w>259</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>Frontend Classendiagramm</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
