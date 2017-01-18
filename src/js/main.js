@@ -106,6 +106,7 @@ function initMainPageButtons(){
 
 	$("#showLeft").click(showLeft);
 	$("#showRight").click(showRight);
+	registerButtonEvents();
 }
 
 function registerKeyEvents(){
@@ -147,6 +148,12 @@ function registerKeyEvents(){
 			logout();
 		}
 	}
+}
+
+function registerButtonEvents(){
+	$('#input-wall-color').on('change', () => {
+		changeWallColor();
+	});
 }
 function loadRoom(){
    /* actualRoom = new Room({ roomname: "testRoom", walls: [
@@ -218,10 +225,20 @@ function showRight(){
 }
 
 function changeWallColor(){
-	let inputSelectWall = $('#selectWall').value;
-	let inputColor = $('#input-wall-color').value;
-	if(inputSelectWal && inputColor ){
-		let updatedWall = actualRoom.changeWallColor(inputSelectWall, inputColor );
-		$('#'+updatedWall.getDirection()).attr("color", updatedWall.getColor());
+	console.log(".............changeWallColor");
+	let inputSelectWall = $('#selectWall');
+	let selectedWall =inputSelectWall[0].options[inputSelectWall[0].selectedIndex].value ;
+	let inputColor = $('#input-wall-color')[0].value;
+
+	console.log("inputSelectWall", selectedWall);
+	console.log("inputColor", inputColor);
+	if(selectedWall && inputColor ){
+		let updatedWall = actualRoom.changeWallColor(selectedWall, inputColor );
+		console.log("updatedWall", updatedWall);
+		console.log("wall id: ", '#'+updatedWall.getDirection());
+		console.log("wall element: ",$( "#wall-"+updatedWall.getDirection()).attr('material'));
+		$( "#wall-"+updatedWall.getDirection()).attr("color",updatedWall.getColor());
+		console.log("wall element: ",$( "#wall-"+updatedWall.getDirection()).attr('material'));
+		console.log("scene", $('a-scene'));
 	}
 }

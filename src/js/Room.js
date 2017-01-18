@@ -190,12 +190,15 @@ export default class Room {
     }
 
     changeWallColor(direction, color){
+        console.log("Room,,,,,,,,changeWallColor");
         let wall = this.walls.find( (wall) => {
             return wall.direction === direction;
         });
+        console.log("Room,,changeWallColor wall", wall);
         if(wall){
             wall.setColor(color);
         }
+        console.log("Room,,changeWallColor wall after set color", wall);
         return wall;
     }
 
