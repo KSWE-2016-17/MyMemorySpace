@@ -1,25 +1,31 @@
 <body>
-<div id="main-east-panel" style="margin-left:auto;margin-right:auto;text-align:center">
-	<div>Wall Color 
-
-		<div>
-			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="wall-color-choose" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				Dropdown
-				<span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" aria-labelledby="wall-color-choose">
-				<li><a href="#">Action</a></li>
-				<li><a href="#">Another action</a></li>
-				<li><a href="#">Something else here</a></li>
-				<li><a href="#">Separated link</a></li>
-			  </ul>
-			  <button type="button" class="btn btn-primary">OK</button>
-			</div>
-		</div>
+<div id="main-content">
+<div id="main-east-panel" class="panel">
+	<header>Room properties</header>
+    <hr>
+	<div> Walls:
+        <br>
+        <div class="btn" >
+            <select>
+                <option>right</option>
+                <option>left</option>
+                <option>back</option>
+                <option>front</option>
+                <option>butom</option>
+                <option>ciel</option>
+            </select>
+        </div>
+        <div class="wall-color">
+                <label for="input-wall-color" >Wall Color</label>
+                <input id="input-wall-color"class="btn btn-default" type="color"class="jscolor" value="ab2567">
+        </div>
 	</div>
 	<hr>
 	Sky Box
+        <div class="wall-color">
+                <label for="input-sky-color" >Wall Color</label>
+                <input id="input-sky-color"class="btn btn-default" type="color"class="jscolor" value="ab2567">
+        </div>
 		<div style=" margin-top: 5px">
 		<label class="btn btn-primary btn-file">
 		Upload File<input type="file" style="display: none;">
@@ -30,17 +36,6 @@
 		<br>
 		<!-- Single button -->
 		<div style="margin-top:15px">
-	<div class="btn-group" >
-	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		Wall<span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu">
-		<li><a href="#">Wall 1</a></li>
-		<li><a href="#">Wall 2</a></li>
-		<li><a href="#">Something else here</a></li>
-		<li><a href="#">Separated link</a></li>
-	  </ul>
-	</div>
 	<button type="button" class="btn btn-primary">
       <span class="glyphicon glyphicon-eye-open" style="color:#CECECE"></span>
     </button>
@@ -50,7 +45,7 @@
 
 
 
-<div id="main-west-panel" style="margin-left:auto;margin-right:auto;text-align:center">
+<div id="main-west-panel" class="panel">
 	Upload Mediafile
 	<br>
 	<label class="btn btn-primary btn-file" style="margin-top: 5px">
@@ -83,12 +78,11 @@
 
 </a-scene>
 </div>
-<div id="main-south-panel" style="text-align:center ;margin-left: auto; margin-right:auto;">
-
+<div id="main-south-panel"  class="panel" >
 	<ul class="list-inline" >
 		<li style=" border-left: 2px solid #000">
 		<br>
-		<button class="btn btn-default" style="width:200px" id="showLeft"><span class="glyphicon glyphicon-chevron-left"></span></button>
+		<button class="btn btn-default" style="width:100px" id="showLeft"><span class="glyphicon glyphicon-chevron-left"></span></button>
 		</li>
 		<li style="border-right: 2px solid #000; border-left: 2px solid #000">Share Room
 		<br>
@@ -111,28 +105,32 @@
 			  </ul>
 			  </div>
   </li>
-  <li style="border-right: 2px solid #000">Delete Room
-	  </ul>
-  <br>
-		<div class="dropup">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				Delete Room
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li><a href="#">Maths</a></li>
-				<li><a href="#">Biology</a></li>
-			</ul>
-			<button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></button>
+        <li style="border-right: 2px solid #000">
+        Delete Room
+        <div class="dropup">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Delete Room
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Maths</a></li>
+                <li><a href="#">Biology</a></li>
+            </ul>
+            <button class="btn btn-danger"><span class=" glyphicon glyphicon-remove"></span></button>
+        </div>
+        </li>
+        <li style="border-right: 2px solid #000">
+                    <br>
+                    <button class="btn btn-default" style="width:100px" id="showRight"><span class="glyphicon glyphicon-chevron-right"></span></button>
+            </ul>
+        </li>
+	</ul>
 
-		<li style="border-right: 2px solid #000; ">
-			<br>
-			<button class="btn btn-default" style="width:200px" id="showRight"><span class="glyphicon glyphicon-chevron-right"></span></button>
-		</li>
-		</div>
-  </li>
-</ul>
+
+
 
 </div>
+</div>
+<script src="../js/lib/jscolor.min.js"></script>
 </body>
 
