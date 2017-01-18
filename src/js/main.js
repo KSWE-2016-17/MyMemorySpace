@@ -1,5 +1,6 @@
 import aframe from 'aframe';
 import registerClickDrag from 'aframe-click-drag-component';
+require('aframe-bmfont-text-component');
 import q from "q";
 import $ from 'jquery';
 
@@ -79,6 +80,9 @@ function initMainPage() {
             registerClickDrag(aframe);
             initMainPageButtons();
             registerKeyEvents();
+			$("#textupload").click(()=>{
+				loadNewText();
+			});
 			scene = $('#main-myscene');
             loadRoom().then( () => {
 				renderRoom();
@@ -175,16 +179,17 @@ function renderRoom(){
 }
 
 function loadNewText() {
-	var yourtext = document.getElementById("newtext").value;
-	var yourcolor = document.getElementById("newcolor").value;
+	var yourtext = document.getElementById("textinput").value;
+	//var yourcolor = document.getElementById("newcolor").value;
+	var yourcolor = "red";
 
 	var textnode = document.createElement("A-ENTITY");
 	textnode.setAttribute('click-drag', 1);
-	textnode.setAttribute('position', {
+	/*textnode.setAttribute('position', {
 		x: 1,
 		y: 1,
 		z: 0
-	});
+	});*/
 
 	textnode.setAttribute("bmfont-text", "text: " + yourtext + "; color:" + yourcolor + "; width:1000");
 	textnode.setAttribute("scale", {

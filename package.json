@@ -30,6 +30,7 @@
   ],
   "dependencies": {
     "aframe": "0.3.2",
+    "aframe-bmfont-text-component": "^0.1.4",
     "aframe-click-drag-component": "2.0.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
