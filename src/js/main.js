@@ -216,3 +216,12 @@ function showLeft(){
 function showRight(){
 	$("#main-west-panel").toggle();
 }
+
+function changeWallColor(){
+	let inputSelectWall = $('#selectWall').value;
+	let inputColor = $('#input-wall-color').value;
+	if(inputSelectWal && inputColor ){
+		let updatedWall = actualRoom.changeWallColor(inputSelectWall, inputColor );
+		$('#'+updatedWall.getDirection()).attr("color", updatedWall.getColor());
+	}
+}

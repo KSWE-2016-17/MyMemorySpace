@@ -189,6 +189,16 @@ export default class Room {
         return defer.promise;
     }
 
+    changeWallColor(direction, color){
+        let wall = this.walls.find( (wall) => {
+            return wall.direction === direction;
+        });
+        if(wall){
+            wall.setColor(color);
+        }
+        return wall;
+    }
+
     getId(){return this._id;}
     getUserId(){return this.user_id;}
     getRoomName(){return this.roomname;}
