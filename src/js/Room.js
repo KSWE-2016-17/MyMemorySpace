@@ -91,7 +91,7 @@ export default class Room {
         if(mediaobjects){
             this.mediaobjects = mediaobjects;
         } else {
-            this.mediaobjectsm = null;
+            this.mediaobjects = null;
         }
     }
 
