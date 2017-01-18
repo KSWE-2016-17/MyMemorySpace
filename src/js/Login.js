@@ -28,10 +28,25 @@ export default class Login{
 			this.sendErrorMessage("Username or Password Field are empty");
 			return;
 		}
-		let dataValide = this.checkRegister();
-		if(dataValide){
-			this.registerNewUser(this.inputData);
-		}
+		//let dataValide = this.checkRegister(this.inputData);
+		//if(dataValide){
+		this.checkRegister(this.inputData).then(() => {
+			this.registerNewUser(this.inputData).then((res) =>{
+				this.sendSuccessMessage("Register successful!");
+			}).catch((err) => {
+				this.sendErrorMessage("Register failed");
+			});
+		}).catch((err) => {
+			console.log("Error");
+			console.log(err);
+			if(err === "Already in db"){
+				this.sendErrorMessage("User is already in DB!");
+			}
+			else{
+				this.sendErrorMessage("No Response...");
+			}	
+		});
+
 	}
 	checkIfFieldEmpty(){
 		if(this.inputData.username === "" || this.inputData.username === null){
@@ -46,6 +61,12 @@ export default class Login{
 		return true;
 	}
 	sendErrorMessage(msg){
+		
+		$(this.errorOutputId).css('color', "red");
+		$(this.errorOutputId).text(msg);
+	}
+	sendSuccessMessage(msg){
+		$(this.errorOutputId).css('color', "green");
 		$(this.errorOutputId).text(msg);
 	}
 	checkLogin() {
@@ -98,10 +119,30 @@ export default class Login{
         return defer.promise;
 	}
 
-	checkRegister(){
-		return true;
+	checkRegister(data){
+		//return true;
+		let defer = q.defer();
+		
+		this.userService.findByName(data.username).then((data) => {
+			if(data){
+				defer.reject("Already in db");
+			}else{
+				defer.resolve("Not in DB yet");
+			}
+		}).catch((err) => {
+			defer.reject(err);
+		});
+		
+		return defer.promise;
 	}
 	registerNewUser(data){
-
+		let defer = q.defer();
+		this.userService.create(data).then((data) =>{
+			console.log(data);
+            defer.resolve("Success");
+        }).catch((err) => {
+            defer.reject(err);
+        });
+        return defer.promise;
 	}
 }
