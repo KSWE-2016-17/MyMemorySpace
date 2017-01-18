@@ -28,7 +28,6 @@
                 <h1>A-FRAME: VR im Web</h1>
             </header>
             <main>
-			<img src="images/a-frameLogo.png" height="100px">
                 <h2>Überblick</h2>
                 <ul>
                     <li>VR
@@ -343,10 +342,7 @@
                 <h1>A-FRAME: Konzepte</h1>
             </header>
             <main>
-              <iframe src="./tryit_editor_mirror/a-frame-box.html" width="100%" height="400px">
-
-              </iframe>
-			<!--<img src="images/simpleBox.png">-->
+		 <img src="images/simpleBox.png">
 			<br><br>
 			<code>&lt;a-box&gt;</code> beschreibt das Ursprungs-Entity bereits in Geometrie
 			<br><br>
@@ -364,13 +360,11 @@
 				verleihen Entities Eigenschaften
 				<br>
 				hinzufügen über HTML-Attribute
-        <iframe src="./tryit_editor_mirror/a-frame-comonents.html" width="100%" height="400px">
+      <!--  <iframe src="./tryit_editor_mirror/a-frame-comonents.html" width="100%" height="400px">
 
-        </iframe>
-        <!--<p data-height="182" data-theme-id="0" data-slug-hash="egBVmP" data-default-tab="html" data-user="Xelusion" data-embed-version="2" data-pen-title="A-Frame-Components1" class="codepen">See the Pen <a href="http://codepen.io/Xelusion/pen/egBVmP/">A-Frame-Components1</a> by Xenia (<a href="http://codepen.io/Xelusion">@Xelusion</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>-->
-			<!--	<img src="images/componentsCode.png">
-				<img src="images/componentsCodeR.png" height="200px">-->
+      </iframe>-->
+			<img src="images/componentsCode.png">
+				<img src="images/componentsCodeR.png" height="200px">
         <br />
 				Dynamisch einbinden über JavaScript möglich
             </main>
@@ -499,12 +493,12 @@
             </header>
             <main>
 			<br>Beispiel<br>
-      <iframe class="vollbild" src="../tryit_editor_mirror/a-frame-entity-comonents.html">
+    <!---  <iframe class="vollbild" src="../tryit_editor_mirror/a-frame-entity-comonents.html">
 
-      </iframe>
+      </iframe>-->
       <!---<p data-height="365" data-theme-id="0" data-slug-hash="jyVabo" data-default-tab="html,result" data-user="Xelusion" data-embed-version="2" data-pen-title="A-farme-Entities" class="codepen">See the Pen <a href="http://codepen.io/Xelusion/pen/jyVabo/">A-farme-Entities</a> by Xenia (<a href="http://codepen.io/Xelusion">@Xelusion</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>-->
-			<!---<img src="images/ASMS.png">	<br><br>-->
+			<img src="images/ASMS.png">	<br><br>
 			Asset in Entity einbinden als Component
             </main>
             <footer>
@@ -604,7 +598,81 @@
             <footer>
             </footer>
         </section>
-		<section id="a-frame27" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+        <section id="a-frame27" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+                <header>
+                    <h1>A-FRAME: Konzepte</h1>
+                </header>
+                <main>
+    			Components-Camera
+    			<img src="images/hud.png" height="400px">
+    			<img src="images/hudcode.png">
+                </main>
+                <footer>
+                </footer>
+            </section>
+            <section id="a-frame28" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+                <header>
+                    <h1>A-FRAME: Konzepte</h1>
+                </header>
+                <main>
+                  <h4>Component selbst definieren</h4>
+
+                    <pre style="padding: 4px">
+                    <code >
+                      // Registering component in foo-component.js
+                      AFRAME.registerComponent('ente', {
+                        schema: {},
+                          init: function () {},
+                          update: function () {},
+                          tick: function () {},
+                          remove: function () {},
+                          pause: function () {},
+                          play: function () {}
+                        });
+                    </code></pre>
+Anwenden:<br />
+  <code>
+    &lt; a-scene &gt;<br />
+      &lt;a-entity ente&gt;&lt;/a-entity&gt;<br />
+    &lt;/a-scene&gt;
+</code>
+
+
+                </main>
+                <footer>
+                </footer>
+            </section>
+        <section id="a-frame29" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+            <header>
+                <h1>A-FRAME: Konzepte</h1>
+            </header>
+            <main>
+              <h4>Schema</h4>
+              <ul>
+                <li>Definiert properties für Component</li>
+                <li>key: ist name der Property</li>
+                <li>value: definieren type und mögliche Werte</li>
+              </ul>
+			<pre style="padding: 4px; height=200px;">
+                    <code >
+                      AFRAME.registerComponent('bar', {
+                        schema: {
+                          color: {default: '#FFF'},
+                          size: {type: 'int', default: 5}
+                        }
+                      }
+                    </code></pre>
+                    Anwendung:<br />
+                    <code>
+                      &lt;  a-scene &gt;<br />
+                          &lt;a-entity foo="color: red; size: 20"&gt;&lt;/a-entity&gt;<br />
+                        &lt;/a-scene&gt;<br />
+                    </code>
+            </main>
+            <footer>
+            </footer>
+        </section>
+		<section id="a-frame20" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
                 <h1>A-FRAME: Konzepte</h1>
             </header>
@@ -617,19 +685,7 @@
             <footer>
             </footer>
         </section>
-		<section id="a-frame28" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
-            <header>
-                <h1>A-FRAME: Konzepte</h1>
-            </header>
-            <main>
-			Components-Camera
-			<img src="images/hud.png" height="400px">
-			<img src="images/hudcode.png">
-            </main>
-            <footer>
-            </footer>
-        </section>
-		<section id="a-frame29" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
+		<section id="a-frame31" class="step slide multi" data-x="0" data-y="0" data-z="-3000">
             <header>
                 <h1>A-FRAME: Konzepte</h1>
             </header>
